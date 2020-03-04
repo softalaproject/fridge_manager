@@ -23,7 +23,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 load_dotenv()
 SECRET_KEY = os.getenv("DJANGO_TOKEN")
-CSRF_COOKIE_NAME = "XSRF-TOKEN"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
