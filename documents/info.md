@@ -22,7 +22,7 @@
 Only production ready stuff into `master` and after customer review `merge` into `master` which causes into new `release`.</br> Keeping track on changes actively done within `development` is good thing to keep in mind.</br> By doingthis way it helps to fix `merge conflicts` properly but inviduals can always ask student fellow to be sure about to get right changes into conflict resolving commit.  
 
 **<a id="hotfix"></a>Hotfixes:**</br>
-A case where customer notices faults or has extra needs for changes after `pull request` review there is needed `hotfix branch` to fix those.</br> New minor `release` is done into `master` after fixes & problems are resolved.  
+A case where customer notices faults or has extra needs for changes after `pull request` review there is needed `hotfix branch` or using just `dev branch` to fix those.</br> New minor `release` is done into `master` after fixes & problems are resolved.  
 </br>
 </br>
 ****
