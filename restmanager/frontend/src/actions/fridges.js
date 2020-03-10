@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { GET_FRIDGES, DELETE_FRIDGE, ADD_FRIDGE } from "./types";
+import { $CombinedState } from "redux";
 
 // get fridges
 export const getFridges = () => dispatch => {
@@ -40,3 +41,11 @@ export const addFridge = fridge => dispatch => {
     })
     .catch(err => console.log(err));
 };
+
+export function botNotification() {
+  axios
+    .get("/api/beer")
+    .then(function(response) {
+      console.log(response);
+    })
+}
