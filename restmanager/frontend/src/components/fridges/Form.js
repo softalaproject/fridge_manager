@@ -25,13 +25,17 @@ export class Form extends Component {
     const { name, fridge_is_empty } = this.state;
     const fridge = { name, fridge_is_empty };
     this.props.addFridge(fridge);
+    this.setState({
+      name: "",
+      fridge_is_empty: null
+    });
   };
 
   render() {
     const { name, fridge_is_empty } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
-        <h2>Add Lead</h2>
+        <h2>Add Fridge!</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Name</label>
@@ -44,7 +48,8 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Fridge is empty</label>
+            <label>Fridge status (check if empty)</label>
+            <br />
             <input
               name="fridge_is_empty"
               type="checkbox"

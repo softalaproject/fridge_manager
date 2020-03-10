@@ -1,4 +1,9 @@
-import { GET_FRIDGES, DELETE_FRIDGE, ADD_FRIDGE } from "../actions/types.js";
+import {
+  GET_FRIDGES,
+  DELETE_FRIDGE,
+  ADD_FRIDGE,
+  BOT_NOTIFY
+} from "../actions/types.js";
 
 const initialState = {
   fridges: []
@@ -20,6 +25,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         fridge: [...state.fridges, action.payload]
+      };
+    case BOT_NOTIFY:
+      return {
+        ...state,
+        fridge: action.payload
       };
 
     default:
