@@ -47,6 +47,7 @@ export function botNotification() {
   });
 }
 
+/*
 export const botNotify = id => dispatch => {
   axios
     .get(`/api/fridges/${id}/`)
@@ -58,3 +59,4 @@ export const botNotify = id => dispatch => {
     })
     .catch(err => console.log(err));
 };
+*/

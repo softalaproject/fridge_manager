@@ -12,14 +12,21 @@ export class Form extends Component {
   static propTypes = {
     addFridge: PropTypes.func.isRequired
   };
-
+  /* 
+Function to handle boolean changes
+*/
   handleFridgeStatus = e => {
     const fridge_is_empty = e.target.checked;
     this.setState({ fridge_is_empty });
   };
-
+  /*
+function to handle string changes
+*/
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
+  /*
+Function to handle submit action
+*/
   onSubmit = e => {
     e.preventDefault();
     const { name, fridge_is_empty } = this.state;

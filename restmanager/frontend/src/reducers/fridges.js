@@ -9,6 +9,11 @@ const initialState = {
   fridges: []
 };
 
+/*
+Switch statements to determine what action.type client does
+
+*/
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_FRIDGES:

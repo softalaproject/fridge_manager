@@ -5,6 +5,7 @@ import slack
 from dotenv import load_dotenv
 from django.contrib import messages
 from django.http import JsonResponse
+from .strings import *
 
 # Create your views here.
 
@@ -22,10 +23,10 @@ client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 def nobeer(request):
     client.chat_postMessage(
-        channel='#general',
-        text="Saunatilasta on juomat loppu. Haeppa lisää!"
+        channel=strings.CHANNEL_NAME_1,
+        text=strings.SLACKMESSAGE_1
     )
-    messages.success(request, 'Viesti lähetetty Slack-kanavalle')
+    messages.success(request, strings.SUCCESS_MSG)
     return JsonResponse({'success': True})
 
 # Another beer function
@@ -33,8 +34,8 @@ def nobeer(request):
 
 def another_beer(request):
     client.chat_postMessage(
-        channel="#general",
-        text="Beer is out"
+        channel=strings.CHANNEL_NAME_2,
+        text=strings.SLACKMESSAGE_2
     )
-    messages.success(request, 'Message sent')
+    messages.success(request, strings.SUCCESS_MSG_2)
     return JsonResponse({'success': True})

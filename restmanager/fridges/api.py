@@ -1,4 +1,4 @@
-from fridges.models import Fridge
+from .models import Fridge
 from rest_framework import viewsets, permissions
 from .serializers import FridgeSerializer
 
