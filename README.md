@@ -1,5 +1,5 @@
 # Softalaproject repo for automated fridge management app
-The application is containerized with Docker and can be run with Vagrant. The build is done with Django and Node. For now we use an SQLite database
+The application is containerized with Docker and can be run with Vagrant. The build is done with Django and Node. For now we use an SQLite database.
 
 ## SW requirements:
 
