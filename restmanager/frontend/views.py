@@ -4,7 +4,7 @@ import os
 import slack
 from dotenv import load_dotenv
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from . import strings
 
 # Create your views here.
@@ -26,7 +26,14 @@ def beeer(request):
         text=strings.SLACKMESSAGE_3
     )
     messages.success(request, strings.SUCCESS_MSG_3)
+    #return render(request, 'frontend/responsehtml.html')
     return JsonResponse({strings.SUCCESS_MSG_3: True})
+
+
+#def beeer(request):
+#    return render(request, 'frontend/responsehtml.html')
+    # html = 'frontend/responsehtml.html'
+    # return HttpResponse(html)
 
 
 def nobeer(request):
