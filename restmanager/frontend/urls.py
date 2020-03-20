@@ -5,5 +5,5 @@ urlpatterns = [
     path('', views.index),
     path('api/beeer/', views.beeer),
     path('api/nobeer/', views.nobeer),
-    path('fridge',views.fridge)
+    path('fridge', views.fridge)
 ]
