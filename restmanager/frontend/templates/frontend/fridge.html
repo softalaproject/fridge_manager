@@ -1,16 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-    .container{
-        padding: 1%;
+    .container {
         text-align: center;
     }
+
+    .center {
+        width: auto;
+        height: auto;
+        display: inline-block;
+
+    }
+
+    .rivi {
+        margin-bottom: 10px;
+
+    }
+
+    .empty {
+        border: none;
+        background: #404040;
+        color: #ffffff !important;
+        font-weight: 100;
+        padding: 20px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        display: inline-block;
+        transition: all 0.3s ease 0s;
+    }
+
+    .empty:hover {
+        color: #725252 !important;
+        font-weight: 700 !important;
+        letter-spacing: 3px;
+        background: none;
+        box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);
+        transition: all 0.3s ease 0s;
+        outline: 1px solid #777777;
+    }
 </style>
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
     <title>Fridge manager</title>
 </head>
 <!--Django displays this page from views-->
@@ -19,23 +54,23 @@
 
 <body>
 
-<div class="container">
-    <div class="row">
-        <h1 align="center">Rasp käyttöliittymä</h1>
-    </div>
     <div class="container">
         <div class="row">
-            <form method="get" action="/api/nobeer/">
-                <input class="btn btn-primary" type="submit" value="Kaappi tyhjä.">
-            </form>
+            <h1 align="center">Rasp käyttöliittymä</h1>
         </div>
-        <div class="row" align="center">
-            <form method="get" action="api/beeer">
-                <input class="btn btn-primary" type="submit" value="Kaappi täytetty.">
-            </form>
+        <div class="center">
+            <div class="rivi">
+                <form method="get" action="/api/nobeer/">
+                    <input class="empty" type="submit" value="Kaappi tyhjä.">
+                </form>
+            </div>
+            <div class="rivi" align="center">
+                <form method="get" action="api/beeer">
+                    <input class="empty" type="submit" value="Kaappi täytetty.">
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 
 </body>
