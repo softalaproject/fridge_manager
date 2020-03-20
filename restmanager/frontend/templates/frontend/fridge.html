@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .container{
+        padding: 1%;
+        text-align: center;
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">
@@ -12,13 +18,26 @@
 <!-- Found in Components -> App.js -->
 
 <body>
-    <h1 align="center">Rasp käyttöliittymä</h1>
-    <form method="get" action="/api/nobeer/">
-        <input class="btn btn-primary" type="submit" value="Kaappi tyhjä.">
-    </form>
-    <form method="get" action="api/beeer">
-        <input class="btn btn-primary" type="submit" value="Kaappi täytetty.">
-    </form>
+
+<div class="container">
+    <div class="row">
+        <h1 align="center">Rasp käyttöliittymä</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <form method="get" action="/api/nobeer/">
+            <input class="btn btn-primary" type="submit" value="Kaappi tyhjä.">
+        </form>
+        </div>
+        <div class="row" align="center">
+            <form method="get" action="api/beeer">
+            <input class="btn btn-primary" type="submit" value="Kaappi täytetty.">
+        </form>
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 </html>
