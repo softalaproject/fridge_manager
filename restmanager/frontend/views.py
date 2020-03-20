@@ -5,7 +5,7 @@ import slack
 from dotenv import load_dotenv
 from django.contrib import messages
 from django.http import JsonResponse
-from .strings import *
+from . import strings
 
 # Create your views here.
 
