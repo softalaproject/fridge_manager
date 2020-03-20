@@ -13,6 +13,11 @@ from . import strings
 def index(request):
     return render(request, 'frontend/index.html')
 
+
+def funcresponse(request):
+    return render(request, 'frontend/funcresponse.html')
+
+
 def fridge(request):
     return render(request, 'frontend/fridge.html')
 
@@ -29,14 +34,7 @@ def beeer(request):
         text=strings.SLACKMESSAGE_3
     )
     messages.success(request, strings.SUCCESS_MSG_3)
-    #return render(request, 'frontend/responsehtml.html')
-    return JsonResponse({strings.SUCCESS_MSG_3: True})
-
-
-#def beeer(request):
-#    return render(request, 'frontend/responsehtml.html')
-    # html = 'frontend/responsehtml.html'
-    # return HttpResponse(html)
+    return HttpResponse(funcresponse(request))
 
 
 def nobeer(request):
