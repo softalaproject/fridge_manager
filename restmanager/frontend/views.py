@@ -43,7 +43,7 @@ def nobeer(request):
         text=strings.SLACKMESSAGE_1
     )
     messages.success(request, strings.SUCCESS_MSG_1)
-    return JsonResponse({'success': True})
+    return HttpResponse(funcresponse(request))
 
 # Another beer function
 
