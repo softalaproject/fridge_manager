@@ -26,7 +26,7 @@ def nobeer(request):
         channel=strings.CHANNEL_NAME_1,
         text=strings.SLACKMESSAGE_1
     )
-    messages.success(request, strings.SUCCESS_MSG)
+    messages.success(request, strings.SUCCESS_MSG_1)
     return JsonResponse({'success': True})
 
 # Another beer function
