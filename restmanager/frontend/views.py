@@ -18,7 +18,15 @@ def index(request):
 load_dotenv()
 client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
+
 # Beer function
+def beeer(request):
+    client.chat_postMessage(
+        channel=strings.CHANNEL_NAME_1,
+        text=strings.SLACKMESSAGE_3
+    )
+    messages.success(request, strings.SUCCESS_MSG_3)
+    return JsonResponse({strings.SUCCESS_MSG_3: True})
 
 
 def nobeer(request):
