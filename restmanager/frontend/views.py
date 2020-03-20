@@ -13,6 +13,9 @@ from . import strings
 def index(request):
     return render(request, 'frontend/index.html')
 
+def fridge(request):
+    return render(request, 'frontend/fridge.html')
+
 
 # GET SLACK TOKEN HERE
 load_dotenv()
