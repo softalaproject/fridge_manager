@@ -37,7 +37,7 @@ client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 def no_beer(request):
     client.chat_postMessage(
         channel=strings.CHANNEL_NAME_1,
-        text=strings.SLACKMESSAGE_1
+        text=strings.SLACK_MESSAGE_1
     )
     return HttpResponse(no_beer_response(request))
 
@@ -47,7 +47,7 @@ def beer(request):
     # Sending message to slack, message contents imported from strings.py
     client.chat_postMessage(
         channel=strings.CHANNEL_NAME_1,
-        text=strings.SLACKMESSAGE_2
+        text=strings.SLACK_MESSAGE_2
     )
     # returning HttpResponse defined in function beer_response
     return HttpResponse(beer_response(request))
