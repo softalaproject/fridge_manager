@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+# Defining URL endpoints and what views they should return.
 urlpatterns = [
     path('', views.fridge),
     path('manage', views.manage),
