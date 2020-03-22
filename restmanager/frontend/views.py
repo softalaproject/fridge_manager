@@ -10,12 +10,16 @@ from . import strings
 # Create your views here.
 
 
-def index(request):
+def manage(request):
     return render(request, 'frontend/index.html')
 
 
-def funcresponse(request):
-    return render(request, 'frontend/funcresponse.html')
+def beer_response(request):
+    return render(request, 'frontend/beer.html')
+
+
+def no_beer_response(request):
+    return render(request, 'frontend/no_beer.html')
 
 
 def fridge(request):
@@ -28,22 +32,22 @@ client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 
 # Beer function
-def beeer(request):
+def beer(request):
     client.chat_postMessage(
         channel=strings.CHANNEL_NAME_1,
         text=strings.SLACKMESSAGE_3
     )
     messages.success(request, strings.SUCCESS_MSG_3)
-    return HttpResponse(funcresponse(request))
+    return HttpResponse(beer_response(request))
 
 
-def nobeer(request):
+def no_beer(request):
     client.chat_postMessage(
         channel=strings.CHANNEL_NAME_1,
         text=strings.SLACKMESSAGE_1
     )
     messages.success(request, strings.SUCCESS_MSG_1)
-    return HttpResponse(funcresponse(request))
+    return HttpResponse(no_beer_response(request))
 
 # Another beer function
 
