@@ -4,6 +4,7 @@
 # Applen DS_Store
 .DS_Store
 
+vir/
 ### react ###
 .DS_*
 *.log
