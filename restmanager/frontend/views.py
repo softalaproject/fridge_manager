@@ -1,10 +1,8 @@
 from django.shortcuts import render
-from rest_framework import viewsets
 import os
 import slack
 from dotenv import load_dotenv
-from django.contrib import messages
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from . import strings
 from django.views.decorators.csrf import csrf_exempt
 
@@ -15,14 +13,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 def fridge(request):
     return render(request, 'frontend/fridge.html')
-
-
-def no_beer_response(request):
-    return render(request, 'frontend/no_beer.html')
-
-
-def beer_response(request):
-    return render(request, 'frontend/beer.html')
 
 
 def manage(request):
@@ -52,23 +42,3 @@ def post_no_beer(request):
             text=strings.SLACK_MESSAGE_1
         )
     return HttpResponse("ok")
-
-
-# Defining what the view at no_beer.html does
-def no_beer(request):
-    client.chat_postMessage(
-        channel=strings.CHANNEL_NAME_1,
-        text=strings.SLACK_MESSAGE_1
-    )
-    return HttpResponse(no_beer_response(request))
-
-
-# Defining what the view at beer.html does
-def beer(request):
-    # Sending message to slack, message contents imported from strings.py
-    client.chat_postMessage(
-        channel=strings.CHANNEL_NAME_1,
-        text=strings.SLACK_MESSAGE_2
-    )
-    # returning HttpResponse defined in function beer_response
-    return HttpResponse(beer_response(request))
