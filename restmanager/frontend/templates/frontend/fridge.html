@@ -41,8 +41,6 @@
             }
         </style>
         <script src="https://code.jquery.com/jquery-2.1.4.js"integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="	crossorigin="anonymous"></script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% load static %}
@@ -62,12 +60,12 @@
                 <br>
                 <div class="rivi">
                     <form id="beer_post_form">
-                        <input class="empty" id="beer_post" value="Kaappi Täytetty">
+                        <input class="empty" type="button" value="Kaappi täytetty" id="beer_post">
                     </form>
                 </div>
                 <div class="rivi">
                     <form id="no_beer_post_form">
-                        <input class="empty" id="no_beer_post" type="submit" value="Kaappi tyhjä">
+                        <input class="empty" type="button" id="no_beer_post" value="Kaappi tyhjä">
                     </form>
                 </div>
             </div>
@@ -80,7 +78,7 @@
                 data: $("#beer_post_form").serialize(),
                 url: '/postB/',
             });
-            alert('{Täytöstä ilmoitettu slackiin.}');
+            alert('Täytöstä ilmoitettu slackiin.');
         });
         $("#no_beer_post").on("click", function(){
             $.ajax({
@@ -88,7 +86,7 @@
                 data: $("#no_beer_post_form").serialize(),
                 url: '/postNb/',
             });
-            alert('{Tyhjästä kaapista ilmoitettu slackiin.}');
+            alert('Tyhjästä kaapista ilmoitettu slackiin.');
         });
     </script>
 </html>
