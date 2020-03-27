@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/beer/', views.post_beer),
     path('api/no_beer/', views.post_no_beer),
     path('fridge', views.fridge),
+    path('api/test_method/', views.test_method)
 ]
