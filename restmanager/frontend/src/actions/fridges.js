@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_FRIDGES, DELETE_FRIDGE, ADD_FRIDGE } from "./types";
+import { GET_FRIDGES, DELETE_FRIDGE, ADD_FRIDGE, BOT_NOTIFY } from "./types";
 
 // get fridges
 export const getFridges = () => dispatch => {
@@ -38,7 +38,25 @@ export const addFridge = fridge => dispatch => {
         payload: res.data
       });
     })
-    .catch(err =>
-      dispatch(returnErrors(err.response.data, err.response.status))
-    );
+    .catch(err => console.log(err));
 };
+//general notify function to #general in test_slack_env
+export function botNotification() {
+  axios.get("/api/beer").then(function(response) {
+    console.log(response);
+  });
+}
+
+/*
+export const botNotify = id => dispatch => {
+  axios
+    .get(`/api/fridges/${id}/`)
+    .then(res => {
+      dispatch({
+        type: BOT_NOTIFY,
+        payload: id
+      });
+    })
+    .catch(err => console.log(err));
+};
+*/

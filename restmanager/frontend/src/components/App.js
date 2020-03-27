@@ -7,6 +7,13 @@ import Dashboard from "./fridges/Dashboard";
 import { Provider } from "react-redux";
 import store from "../store";
 
+/*
+Root file for react-project
+Includes:
+layout = Header
+fridges = Dashboard
+*/
+
 class App extends Component {
   render() {
     return (

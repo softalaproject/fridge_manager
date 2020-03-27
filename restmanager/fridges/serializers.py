@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from fridges.models import Fridge
+from .models import Fridge
 
 # Fridge Serializer
 class FridgeSerializer(serializers.ModelSerializer):

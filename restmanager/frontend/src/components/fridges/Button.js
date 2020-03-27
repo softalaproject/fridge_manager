@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  getFridges,
-  deleteFridge,
-  botNotification
-} from "../../actions/fridges";
+import { getFridges, deleteFridge } from "../../actions/fridges";
 
 export class Fridges extends Component {
   static propTypes = {
@@ -49,17 +45,7 @@ export class Fridges extends Component {
                   </button>
                 </td>
                 <td>
-                  {/* 
-                  Here is the notify function to send message to the slack-channel
-                  Message is still general
-                */}
-                  <button
-                    onClick={botNotification}
-                    className="btn btn-success btn-sm"
-                    type="submit"
-                  >
-                    Notify
-                  </button>
+                  <button className="btn btn-success btn-sm">Notify</button>
                 </td>
               </tr>
             ))}
