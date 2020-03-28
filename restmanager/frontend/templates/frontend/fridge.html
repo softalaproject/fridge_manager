@@ -143,7 +143,7 @@
             data: $("#beer_post_form").serialize(),
             url: '/api/beer/',
         });
-        alert('Täytöstä ilmoitettu slackiin.');
+        tAlert('Täytöstä ilmoitettu slackiin.', 3000);
     });
     $("#no_beer_post").on("click", function () {
         $.ajax({
@@ -151,7 +151,7 @@
             data: $("#no_beer_post_form").serialize(),
             url: '/api/no_beer/',
         });
-        alert('Tyhjästä kaapista ilmoitettu slackiin.');
+        tAlert('Tyhjästä kaapista ilmoitettu slackiin.', 3000);
     });
     $("#test_method").on("click", function () {
         $.ajax({
@@ -159,7 +159,20 @@
             data: $("#test_method_form").serialize(),
             url: '/api/test_method/',
         });
+        tAlert('Lista jääkaappien tilasta lähetetty Slack kanavalle.', 3000)
     })
+
+
+    function tAlert(msg, time) {
+        var div = document.createElement("div");
+        div.setAttribute("style", "position:absolute;top:10%;left:15%;border:none;background:#007373;color:#ffffff!important;font-weight:bold;padding:20px;border-radius:6px;display:inline-block;width:20%;height:20%;text-align:center;box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);");
+        div.innerHTML = msg;
+        setTimeout(function() {
+            div.parentNode.removeChild(div);
+        }, time);
+        document.body.appendChild(div)
+    }
+
 </script>
 
 </html>
