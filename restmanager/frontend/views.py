@@ -17,22 +17,24 @@ def fridge(request):
     r = requests.get('http://localhost:8000/api/fridges/')
 
     json_data = json.loads(r.text)
-
     data_list = []
 
     for i in json_data:
+        a = ''
+        if i['fridge_is_empty'] == True:
+            a = 'Empty'
+        else:
+            a = 'Full'
         dict = {
             'id': i['id'],
             'name': i['name'],
-            'state': i['fridge_is_empty'],
+            'state': a,
         }
 
         data_list.append(dict)
-
     context = {
         'data_list': data_list
     }
-
 
     return render(request, 'frontend/fridge.html', context)
 
@@ -87,7 +89,7 @@ def test_method(request):
         zipObj = zip(names, states)
         dict1 = dict(zipObj)
 
-        #Text formatting in SLACK
+        # Text formatting in SLACK
         str1 = ''.join(['```%s : %s``` \n' % (key, value)
                         for (key, value) in dict1.items()])
         client.chat_postMessage(

@@ -29,7 +29,7 @@
             border-radius: 6px;
             display: inline-block;
             transition: all 0.3s ease 0s;
-            width: 75%
+            width: 100%
         }
 
         .empty:hover {
@@ -43,29 +43,7 @@
             border-radius: 6px;
         }
 
-        .empty2 {
-            border: none;
-            background: #404040;
-            color: #ffffff !important;
-            font-weight: 100;
-            padding: 20px;
-            text-transform: uppercase;
-            border-radius: 6px;
-            display: inline-block;
-            transition: all 0.3s ease 0s;
-            width: 75%
-        }
-
-        .empty2:hover {
-            color: #725252 !important;
-            font-weight: 700 !important;
-            letter-spacing: 3px;
-            background: none;
-            box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);
-            transition: all 0.3s ease 0s;
-            border: 1px solid #777777;
-            border-radius: 6px;
-        }
+     
     </style>
     <script src="https://code.jquery.com/jquery-2.1.4.js"
         integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
@@ -108,7 +86,7 @@
             <div class="box">
                 <article class="media">
                     <div class="media-content">
-                        <div class="content">
+                        <div class="media-left">
                             <p>
                                 <span class="title">{{ ctx.name }}</span>
                                 <br>
@@ -119,12 +97,12 @@
                     <div class="media-right">
                         <div class="rivi">
                             <a href="{% url 'empty' %}">
-                                <button class="btn-danger">Tyhjä</button>
+                                <button class="empty">Tyhjä</button>
                             </a>
                         </div>
                         <div class="rivi">
                             <a href="{% url 'full' %}">
-                                <button class="btn-success">Täytetty</button>
+                                <button class="empty">Täytetty</button>
                             </a>
                         </div>
                     </div>
@@ -143,7 +121,7 @@
             data: $("#beer_post_form").serialize(),
             url: '/api/beer/',
         });
-        tAlert('Täytöstä ilmoitettu slackiin.', 3000);
+        tAlert('Täytöstä ilmoitettu slackiin.', TIME);
     });
     $("#no_beer_post").on("click", function () {
         $.ajax({
@@ -151,7 +129,7 @@
             data: $("#no_beer_post_form").serialize(),
             url: '/api/no_beer/',
         });
-        tAlert('Tyhjästä kaapista ilmoitettu slackiin.', 3000);
+        tAlert('Tyhjästä kaapista ilmoitettu slackiin.', TIME);
     });
     $("#test_method").on("click", function () {
         $.ajax({
@@ -159,10 +137,10 @@
             data: $("#test_method_form").serialize(),
             url: '/api/test_method/',
         });
-        tAlert('Lista jääkaappien tilasta lähetetty Slack kanavalle.', 3000)
+        tAlert('Lista jääkaappien tilasta lähetetty Slack kanavalle.', TIME)
     })
 
-
+    const TIME = 2000
     function tAlert(msg, time) {
         var div = document.createElement("div");
         div.setAttribute("style", "position:absolute;top:10%;left:15%;border:none;background:#007373;color:#ffffff!important;font-weight:bold;padding:20px;border-radius:6px;display:inline-block;width:20%;height:20%;text-align:center;box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);");
