@@ -77,9 +77,20 @@ def test_method(request):
         states = []
         empty = 'Tyhjä'
         full = 'Täynnä'
+        empty_checker = 0
+        length = 0
+        empty_ones = []
 
         for i in json_data:
+            if i['fridge_is_empty'] == True:
+                empty_checker += 1
+                length += 1
+                empty_ones.append(i['name'])
+            else:
+                length += 1
+
             names.append(i['name'])
+
             if i['fridge_is_empty'] == True:
                 states.append(empty)
             else:
@@ -88,11 +99,19 @@ def test_method(request):
         zipObj = zip(names, states)
         dict1 = dict(zipObj)
 
-        # Text formatting in SLACK
+        if empty_checker == 0:
+            str2 = '*Kaikki jääkaapit täynnä!*'
+        elif empty_checker/length < 0.5:
+            str2 = f'Osa jääkaapeista on tyhjiä *{empty_ones}*'
+        elif empty_checker/length < 1:
+            str2 = f'Suurin osa jääkaapeista on tyhjiä *{empty_ones}*'
+        else:
+            str2 = f'Kaikki jääkapit ovat tyhjiä *{empty_ones}*'
+            # Text formatting in SLACK
         str1 = ''.join(['```%s : %s``` \n' % (key, value)
                         for (key, value) in dict1.items()])
         client.chat_postMessage(
             channel=strings.CHANNEL_NAME_1,
-            text=str(str1)
+            text=str(str1 + str2)
         )
     return HttpResponse("ok")
