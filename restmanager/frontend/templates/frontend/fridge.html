@@ -42,14 +42,13 @@
             border: 1px solid #777777;
             border-radius: 6px;
         }
-
-     
     </style>
     <script src="https://code.jquery.com/jquery-2.1.4.js"
         integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
     <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
     <title>Fridge manager</title>
@@ -65,22 +64,52 @@
                 <h1>Rasp käyttöliittymä</h1>
             </div>
 
-            <div class="rivi">
-                <form id="beer_post_form">
-                    <input class="empty" type="button" value="Kaappi täytetty" id="beer_post">
-                </form>
-            </div>
 
-            <div class="rivi">
-                <form id="no_beer_post_form">
-                    <input class="empty" type="button" id="no_beer_post" value="Kaappi tyhjä">
-                </form>
-            </div>
             <div class="rivi">
                 <form id="test_method">
                     <input class="empty" type="button" id="test_method" value="Listaa status">
                 </form>
             </div>
+            <div class="rivi">
+                <button onclick="document.getElementById('modal1').style.display='block'" class="empty">Lähetä
+                    viesti</button>
+            </div>
+
+            <div id="modal1" class="w3-modal">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+                    <div class="w3-center"><br>
+                        <span onclick="document.getElementById('modal1').style.display='none'"
+                            class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+                            title="Close Modal">&times;</span>
+                        <img src="https://media.hintaseuranta.fi/prod/i27528935w800h465.jpg" alt="Avatar"
+                            style="width:30%">
+                    </div>
+
+                    <form class="w3-container" id="modal_msg_form">
+                        <div class="w3-section">
+                            <label><b>Message</b></label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="textarea"
+                                placeholder="Juomat lopussa..." name="msg" required>
+                            <button id="laheta" class="w3-button w3-block w3-green w3-section w3-padding"
+                                type="submit">Lähetä</button>
+                        </div>
+                    </form>
+
+
+                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                        <button onclick="document.getElementById('modal1').style.display='none'" type="button"
+                            class="w3-button w3-red">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
 
             {% for ctx in data_list %}
             <div class="box">
@@ -93,17 +122,10 @@
                                 <span class="subtitle">{{ ctx.state }}</span>
                             </p>
                         </div>
-                    </div>
-                    <div class="media-right">
-                        <div class="rivi">
-                            <a href="{% url 'empty' %}">
-                                <button class="empty">Tyhjä</button>
-                            </a>
-                        </div>
-                        <div class="rivi">
-                            <a href="{% url 'full' %}">
-                                <button class="empty">Täytetty</button>
-                            </a>
+                        <div class="media-right">
+                            <form id="indi_method_form">
+                                <input class="empty" type="button" id="indi_method" value="Listaa status">
+                            </form>
                         </div>
                     </div>
                 </article>
@@ -115,22 +137,6 @@
 </body>
 
 <script>
-    $("#beer_post").on("click", function () {
-        $.ajax({
-            type: 'POST',
-            data: $("#beer_post_form").serialize(),
-            url: '/api/beer/',
-        });
-        tAlert('Täytöstä ilmoitettu slackiin.', TIME);
-    });
-    $("#no_beer_post").on("click", function () {
-        $.ajax({
-            type: 'POST',
-            data: $("#no_beer_post_form").serialize(),
-            url: '/api/no_beer/',
-        });
-        tAlert('Tyhjästä kaapista ilmoitettu slackiin.', TIME);
-    });
     $("#test_method").on("click", function () {
         $.ajax({
             type: 'POST',
@@ -138,19 +144,28 @@
             url: '/api/test_method/',
         });
         tAlert('Lista jääkaappien tilasta lähetetty Slack kanavalle.', TIME)
+    });
+    $("#modal_msg").on("click", function () {
+        $.ajax({
+            type: 'POST',
+            data: $("modal_message_form").serialize(),
+            url: 'api/post_message/',
+        });
     })
 
-    const TIME = 2000
+    const TIME = 1000
+
     function tAlert(msg, time) {
         var div = document.createElement("div");
-        div.setAttribute("style", "position:absolute;top:10%;left:15%;border:none;background:#007373;color:#ffffff!important;font-weight:bold;padding:20px;border-radius:6px;display:inline-block;width:20%;height:20%;text-align:center;box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);");
+        div.setAttribute("style",
+            "position:absolute;top:10%;left:15%;border:none;background:#007373;color:#ffffff!important;font-weight:bold;padding:20px;border-radius:6px;display:inline-block;width:20%;height:20%;text-align:center;box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);"
+        );
         div.innerHTML = msg;
-        setTimeout(function() {
+        setTimeout(function () {
             div.parentNode.removeChild(div);
         }, time);
         document.body.appendChild(div)
     }
-
 </script>
 
 </html>

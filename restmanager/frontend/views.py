@@ -35,7 +35,6 @@ def fridge(request):
     context = {
         'data_list': data_list
     }
-
     return render(request, 'frontend/fridge.html', context)
 
 
