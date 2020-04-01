@@ -16,6 +16,4 @@ script:
 - pwd
 - python3 restmanager/manage.py migrate
 - python3 restmanager/manage.py test
-after_success: '[[ $TRAVIS_BRANCH == "feature/travis-server" && $TRAVIS_PULL_REQUEST
-  == "false" ]] && .travis/deploy.sh'
-  --yes
+after_success: '[[ $TRAVIS_BRANCH == "feature/travis-server" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
