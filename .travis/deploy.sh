@@ -12,7 +12,6 @@ git push deploy master
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
   pip install -r requirements.txt
-  yes
   python restmanager/manage.py migrate
   python restmanager/manage.py runserver
 
