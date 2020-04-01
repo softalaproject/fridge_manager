@@ -11,6 +11,6 @@ git push deploy master
 # Skip this command if you don't need to execute any additional commands after deploying.
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
-  pip3 install -r requirements.txt --no-binary :all:
+  pip3 install -r requirements.txt
   python3 restmanager/manage.py runserver
 EOF
