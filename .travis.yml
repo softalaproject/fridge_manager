@@ -1,24 +1,24 @@
 language: python
 python:
-  - "3.7"      # current default Python on Travis CI
-
+- '3.7'
 env:
+  matrix:
   - DJANGO=3.0.3
-
+  global:
+  - secure: cc8Hj4QUw3S2AxggTqGTSJydSKR8reDRgRMs/BeINxUfeCdHnFVYPxx1S5aYtyDE84rtd496WHne3XTpegQiI008Sb+rFFPszqzKJmDZk4WgzynSYgwyKaWiqSGLAV7cObTCkwlEsBv6rf3MvBRlL09lBweaPwbar0SbrkzYv+bNopSAAk31zqp98kpBa9ZmKO4SCVsuYyt45xBRQUA3rT2E+wVRaH1aUPkMgzGmLHrVMXsKZLB3nWfHElX1L9WWWPYK/n1KI0A8hWjFdsnFpCxBID3BE6+8L+2/HJCj8sDgwJ/mTXg9zpR2gWNA4aLX15Sd1WYohy2qmzJ7N1DPD3sCGzpka1OaK9lHDVjctDx9bkyf18x3ZpCoA7GmNh21XuyMB6ckIVBpGkBYgMsN8qz5G1n/mEYUFdFlezCSTTZr6ZrG1Vxn9+Mo/lGvy/ApBjcmNjBvtciC+cHfWVjx4Yd0MGyT/mv6FTpsFwu7+GhkpLpEU3MpJ44rrnSVjq2i0JFvRRFkJ24986cjB2aPwY0yRee+Z/4T5gE0Cf/8dtevbH9tuMBlxkEVp6lG7u0VfSiJICc7JdY59BEvt9yhPms27x03N4hDz3jvonWv3uiw1lmxdJGQEKOiR6p5qyq9WIRV16xwmqDKI3H+VqexRs9gpFppiXkzZd0P7YnLGPo=
+  - secure: mO8JYk7LlNFvB33b8NS8r6gdUasCzT931N9f4wYvDy9PlqXaFy2K+okCOB8xtPzydYKn63n1XKaUrDYWIK+onRgLYFlLTo8nXug4k7/KfaM3W9rxNEcU2c1+clHwmxqakby4Kg4ZAQ5dYqnVtOSc7WsOx/iOy4JffnkSRsgEJF+PiHNr7qMgVTkuGs3VmrXwcYhhuCd6OAhj2Bwshpz8mQ80MB29sX1/xNaWEuxR44s8R0CzooNkCJ+JvFz4ZjE8cADsQVWmIvd9Pl2N8kvNVU4gANiZV1Kx0zMoPurWoqrdmDg415RqjWm/RE9FP9knE3rLd53vEDyoAgmne7aJuV4INRaS3iLMmI9JNvESYmkHQidK+TWrLK5+oUWNRDyob8XYUQIICSMZfALb8VZCEzxfCiCOEtPz6h4SDkiDTBUjgdMQUGbTuZyVyUrAYpQ8Pm0syiRbLcWjfe25+3qKhbEajYjGyzzbM4LT5y/RoaZwGUE6klltaWSbxndWqg0HlIAZLvT1y5abtmxLMx5B8W/HGeEsbkslH5i4qTPLAksPdm6y0wVxh5GguJykaLVKOv1FXWxrP4KkrtSQ2sOI6ELQTFMvaFx6DPmVPXZUUfluXAJK0BkjDGUzFvmAuqBRVSurgU5N3xe5zM+Jocp/P8uIh/aW3fNeOwmXHvFO4DI=
 before_install:
-  - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv -in .travis/id_rsa.enc -out .travis/id_rsa -d
-  - export DJANGO_SETTINGS_MODULE=restmanager.restmanager.settings
-  - export PYTHONPATH="/home/travis/build/softalaproject/fridge_manager"
-
+- openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv
+  -in .travis/id_rsa.enc -out .travis/id_rsa -d
+- export PYTHONPATH="/home/travis/build/softalaproject/fridge_manager"
 install:
-  - pip3 install -r requirements.txt
-  - pip3 install django==$DJANGO --quiet
-  - pip3 install psycopg2 --quiet
-
+- pip3 install -r requirements.txt
+- pip3 install django==$DJANGO --quiet
+- pip3 install psycopg2 --quiet
 script:
-  - pwd
-  - python restmanager/manage.py migrate
-  - python restmanager/manage.py runserver
-  - python restmanager/manage.py test functional_tests
-
-after_success: "[[ $TRAVIS_BRANCH == \"feature/travis-server\" && $TRAVIS_PULL_REQUEST == \"false\" ]] && .travis/deploy.sh"
+- pwd
+- python3 restmanager/manage.py migrate
+- python3 restmanager/manage.py runserver
+- python3 restmanager/manage.py test functional_tests
+after_success: '[[ $TRAVIS_BRANCH == "feature/travis-server" && $TRAVIS_PULL_REQUEST
+  == "false" ]] && .travis/deploy.sh'
