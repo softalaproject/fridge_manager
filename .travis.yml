@@ -19,3 +19,4 @@ script:
 after_success: '[[ $TRAVIS_BRANCH == "feature/travis-server" && $TRAVIS_PULL_REQUEST
   == "false" ]] && .travis/deploy.sh'
   --yes
+#testi
