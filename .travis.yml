@@ -15,7 +15,6 @@ install:
 script:
 - pwd
 - python3 restmanager/manage.py migrate
-- python3 restmanager/manage.py runserver
 - python3 restmanager/manage.py test functional_tests
 after_success: '[[ $TRAVIS_BRANCH == "feature/travis-server" && $TRAVIS_PULL_REQUEST
   == "false" ]] && .travis/deploy.sh'
