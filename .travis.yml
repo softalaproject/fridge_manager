@@ -16,6 +16,7 @@ install:
   - pip3 install psycopg2 --quiet
 
 script:
+  - pwd
   - python restmanager/manage.py migrate
   - python restmanager/manage.py runserver
   - python restmanager/manage.py test functional_tests
