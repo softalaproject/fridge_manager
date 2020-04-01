@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fridges',
     'rest_framework',
-    'frontend'
+    'frontend',
 ]
 
 MIDDLEWARE = [
