@@ -85,12 +85,16 @@
                     <div class="media-content">
                         <div class="media-left">
                             <p>
+                                <span class="w3-sepia">{{ ctx.id }}</span>
                                 <span class="title">{{ ctx.name }}</span>
                                 <br>
                                 <span class="subtitle">{{ ctx.state }}</span>
                             </p>
                         </div>
                         <div class="media-right">
+                            <a href="{% url 'update' ctx.id %}">
+                                <button class="delete"></button>
+                            </a>
                         </div>
                     </div>
                 </article>
@@ -116,7 +120,7 @@
     function tAlert(msg, time) {
         var div = document.createElement("div");
         div.setAttribute("style",
-            "position:absolute;top:10%;left:15%;border:none;background:#007373;color:#ffffff!important;font-weight:bold;padding:20px;border-radius:6px;display:inline-block;width:20%;height:20%;text-align:center;box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);"
+            "position:absolute;top:10%;left:10%;border:none;background:#007373;color:#ffffff!important;font-weight:bold;padding:20px;border-radius:6px;display:inline-block;width:20%;height:20%;text-align:center;box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);"
         );
         div.innerHTML = msg;
         setTimeout(function () {

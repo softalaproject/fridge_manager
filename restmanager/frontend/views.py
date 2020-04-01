@@ -1,12 +1,13 @@
 import requests
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import os
 import slack
 from dotenv import load_dotenv
 from django.http import HttpResponse
 from . import strings
 from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 
@@ -115,3 +116,19 @@ def test_method(request):
             text=str(str1 + str2)
         )
     return HttpResponse("ok")
+
+
+def update(request, id):
+    if request.method == 'PUT':
+        url = 'http://localhost:8000/api/fridges/'+id
+        r = requests.get(url)
+        json_data = json.loads(r.text)
+
+        if json_data['fridge_is_empty'] == True:
+            s = requests.put(url, data={'fridge_is_empty': False})
+            print(s)
+        elif json_data['fridge_is_empty'] == False:
+            s = requests.put(url, data={'fridge_is_empty': True})
+            print(s)
+
+    return redirect('')
