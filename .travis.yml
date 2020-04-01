@@ -7,7 +7,7 @@ env:
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv -in .travis/id_rsa.enc -out .travis/id_rsa -d
-  - export DJANGO_SETTINGS_MODULE=restmanager.restmanager.settings
+  - export DJANGO_SETTINGS_MODULE=fridge_manager.restmanager.restmanager.settings
   - export PYTHONPATH="/home/travis/build/softalaproject/fridge_manager"
 
 install:
