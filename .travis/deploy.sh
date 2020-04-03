@@ -10,6 +10,7 @@ git push deploy master
 
 # Skip this command if you don't need to execute any additional commands after deploying.
 ssh apps@$IP -p $PORT <<EOF
+  pkill -f runserver
   cd $DEPLOY_DIR
   pip3 install -r requirements.txt
   python3.6 restmanager/manage.py runserver $IP2:8080
