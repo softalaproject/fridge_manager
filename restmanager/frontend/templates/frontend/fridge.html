@@ -4,6 +4,10 @@
 <head>
     <style>
         .container {
+            color: #f6f5f6;
+        }
+
+        .container {
             text-align: center;
         }
 
@@ -66,17 +70,12 @@
 
 
             <div class="rivi">
-                <form id="test_method">
-                    <input class="empty" type="button" id="test_method" value="Listaa status">
-                </form>
+                <input class="empty" type="button" id="test_method" value="Listaa status">
             </div>
 
-
-
-
-
-
-
+            <div class="rivi">
+                <input class="empty" type="button" id="change_method" value="Muuta status">
+            </div>
 
 
             {% for ctx in data_list %}
@@ -91,29 +90,37 @@
                                 <span class="subtitle">{{ ctx.state }}</span>
                             </p>
                         </div>
-                        <div class="media-right">
-                            <a href="{% url 'update' ctx.id %}">
-                                <button class="delete"></button>
-                            </a>
-                        </div>
                     </div>
                 </article>
             </div>
             {% endfor %}
         </div>
     </div>
-
 </body>
 
 <script>
     $("#test_method").on("click", function () {
         $.ajax({
             type: 'POST',
-            data: $("#test_method_form").serialize(),
+            data: "",
             url: '/api/test_method/',
         });
         tAlert('Lista jääkaappien tilasta lähetetty Slack kanavalle.', TIME)
     });
+
+   
+
+    $("#change_method").on("click", function () {
+        $.ajax({
+            type: 'POST',
+            data: "",
+            url: '/api/change_method/',
+        });
+        tAlert('Muutettu', TIME)
+    })
+    var id = JSON.parse("{{ ctx.id|escapejs }}")
+
+
 
     const TIME = 1000
 
