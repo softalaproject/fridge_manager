@@ -1,7 +1,8 @@
 # Dockerfile for django project
 
 # Add a base image to build this image off of
-FROM alang/django
+#FROM alang/django
+FROM python:3
 
 ENV PYTHONUNBUFFERED 1
 
