@@ -77,6 +77,10 @@
                 <input class="empty" type="button" id="change_method" value="Muuta status">
             </div>
 
+            <div class="rivi">
+                <input class="empty" type="button" id="change_to_empty" value="Tyhjennä">
+            </div>
+
 
             {% for ctx in data_list %}
             <div class="box">
@@ -89,6 +93,9 @@
                                 <br>
                                 <span class="subtitle">{{ ctx.state }}</span>
                             </p>
+                        </div>
+                        <div class="media-right">
+                            <input class="empty" type="button" id="{{ ctx.id }}" value="muuta">
                         </div>
                     </div>
                 </article>
@@ -117,8 +124,19 @@
             url: '/api/change_method/',
         });
         tAlert('Muutettu', TIME)
-    })
+    });
+    $("#change_to_empty").on("click", function() {
+        $.ajax({
+            type: 'POST',
+            data: "",
+            url: '/api/change_to_empty/',
+        });
+        tAlert("Tyhjennetty", TIME)
+    });
+
+
     var id = JSON.parse("{{ ctx.id|escapejs }}")
+    var name = JSON.parse("{{ ctx.name|escapejs }}")
 
 
 

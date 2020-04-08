@@ -12,3 +12,8 @@ class Fridge(models.Model):
 
 class Message(models.Model):
     msg = models.CharField(max_length=1000)
+
+
+class NewFridge(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    state = models.CharField(max_length=20)

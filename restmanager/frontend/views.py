@@ -139,3 +139,32 @@ def change_method(request):
             print(s)
 
     return HttpResponse("b")
+
+
+@csrf_exempt
+def get_url_id(request):
+    pass
+
+
+@csrf_exempt
+def change_to_empty(request):
+    if request.method == 'POST':
+        url_id = '26'
+        url = f'http://localhost:8000/api/fridges/{url_id}/'
+        r = requests.get(url)
+        json_data = json.loads(r.text)
+
+        if json_data['fridge_is_empty'] == True:
+            s = requests.put(url, data={
+                'name': json_data['name'],
+                'fridge_is_empty': False
+            })
+            print(s)
+        elif json_data['fridge_is_empty'] == False:
+            s = requests.put(url, data={
+                'name': json_data['name'],
+                'fridge_is_empty': True
+            })
+            print(s)
+
+    return HttpResponse("b")

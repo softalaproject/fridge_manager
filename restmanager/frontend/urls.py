@@ -10,5 +10,6 @@ urlpatterns = [
     path('fridge', views.fridge),
     path('api/test_method/', views.test_method),
     path('api/change_method/', views.change_method),
+    path('api/change_to_empty/', views.change_to_empty),
 
 ]
