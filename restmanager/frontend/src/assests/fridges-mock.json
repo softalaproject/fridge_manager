@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "id": 0,
+            "name": "main",
+            "fridge_is_empty": "EMPTY"
+        },
+        {
+            "id": 1,
+            "name": "yellow",
+            "fridge_is_empty": "NOT EMPTY"
+        },
+        {
+            "id": 2,
+            "name": "red",
+            "fridge_is_empty": "EMPTY"
+        }
+    ]
+}
