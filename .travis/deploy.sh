@@ -15,5 +15,5 @@ ssh apps@$IP -p $PORT <<EOF
   git fetch origin
   git reset --hard origin/dev
   pip3 install -r requirements.txt
-  python3.6 restmanager/manage.py runserver $IP2:8080
+  python3.6 restmanager/manage.py runserver $IP2:8080 &
 EOF
