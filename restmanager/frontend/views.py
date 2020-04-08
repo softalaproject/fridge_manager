@@ -43,6 +43,25 @@ def manage(request):
     return render(request, 'frontend/index.html')
 
 
+def items(request):
+
+    r = requests.get('http://localhost:8000/api/items/')
+    data = json.loads(r.text)
+    data_dict = []
+
+    for i in data:
+        dict = {
+            'id': i['id'],
+            'name': i['name'],
+            'state': i['state'],
+        }
+        data_dict.append(dict)
+    context = {
+        'data': data_dict
+    }
+    return render(request, 'frontend/items.html', context)
+
+
 # GET SLACK TOKEN HERE
 load_dotenv()
 client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
@@ -168,3 +187,53 @@ def change_to_empty(request):
             print(s)
 
     return HttpResponse("b")
+
+
+@csrf_exempt
+def change_item(request):
+    if request.method == 'POST':
+        url = 'http://localhost:8000/api/items/1/'
+        r = requests.get(url)
+        data = json.loads(r.text)
+
+        if data['state'] == 'Empty':
+            s = requests.put(url, data={
+                'name': data['name'],
+                'state': 'Tasked'
+
+            })
+            post = data['state']
+            str1 = f'*Fridge state changed to Pending*'
+            print(s)
+
+        elif data['state'] == 'Tasked':
+            s = requests.put(url, data={
+                'name': data['name'],
+                'state': 'Pending'
+            })
+            post = data['state']
+            str1 = f'*Fridge state changed to Tasked*'
+            print(s)
+
+        elif data['state'] == 'Pending':
+            s = requests.put(url, data={
+                'name': data['name'],
+                'state': 'Full'
+            })
+            post = data['state']
+            str1 = f'*Fridge state changed to Full*'
+            print(s)
+        elif data['state'] == 'Full':
+            s = requests.put(url, data={
+                'name': data['name'],
+                'state': 'Empty'
+            })
+            print(s)
+            post = data['state']
+            str1 = f'*Fridge state changed to Empty*'
+
+        client.chat_postMessage(
+            channel=strings.CHANNEL_NAME_1,
+            text=str(str1)
+        )
+    return HttpResponse('ok')
