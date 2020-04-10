@@ -29,7 +29,7 @@
     </style>
 
     <script src="https://code.jquery.com/jquery-2.1.4.js"
-    integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
+        integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
@@ -47,12 +47,11 @@
         <div class="row">
             <h1>User Portal</h1>
         </div>
-
         {% for ctx in data %}
         <div id="items-wrapper" class="box">
             <article id="items" class="media">
                 <div class="media-content">
-                    <div  class="media-left">
+                    <div class="media-left">
                         <p>
                             <span class="w3-sepia">{{ctx.id}}</span>
                             <span class="title">{{ctx.name}}</span>
@@ -63,11 +62,11 @@
             </article>
         </div>
         {% endfor %}
-        <input class="empty" type="button" id="send" value="Change">
+        <input class="empty" type="submit" id="send" value="Change">
     </div>
 </body>
 <script>
-    $("#send").on("click", function() {
+    $("#send").on("click", function () {
         $.ajax({
             type: 'POST',
             data: "",
@@ -75,8 +74,8 @@
         });
         var url = 'http://localhost:8000/items'
         $("#items-wrapper").load(url + " #items");
+        window.location.reload()
     })
-
-
 </script>
+
 </html>
