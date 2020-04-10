@@ -13,15 +13,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from dotenv import load_dotenv
 
-
-# Tokens
-DJANGO_TOKEN = "zl%2g+kczoc93+ez(#t*&y-dt8wq!mwupdl44z21)gv5x8yb%y"
-SLACK_TOKEN = "xoxb-920318127077-1004745849031-qgdlCyNuLHfiDQrcMlU85glj"
-CLIENT_ID = "920318127077.990086142818"
-CLIENT_SECRET = "d3c4f939e2b0f84c183d65142a56716b"
-SLACK_VERIFICATION_TOKEN = '0pbBzl7uQmndGB1xmEKAW7VC'
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -49,9 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fridges',
     'rest_framework',
-    'frontend',
-    'events'
-
+    'frontend'
 ]
 
 MIDDLEWARE = [
