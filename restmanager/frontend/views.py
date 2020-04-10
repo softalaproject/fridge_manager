@@ -8,11 +8,12 @@ from django.http import HttpResponse
 from . import strings
 from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here.
+# GET SLACK TOKEN HERE
+load_dotenv()
+client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 
-# Defining what html file to return when this function is called.
-
+# Endpoint http://localhost:8000/. Displays HTML page with jquery. found in templates -> fridge.html
 def fridge(request):
 
     r = requests.get('http://localhost:8000/api/fridges/')
@@ -38,9 +39,15 @@ def fridge(request):
     }
     return render(request, 'frontend/fridge.html', context)
 
+# Endpoint http://localhost:8000/manage. Displays admin web domain powered by React.
+
 
 def manage(request):
     return render(request, 'frontend/index.html')
+
+# Endpoint http://localhost:8000/items.
+# Displays User Portal domain with a single item(fridge).
+# and PUT command to communicate the state to slack channel.
 
 
 def items(request):
@@ -60,11 +67,6 @@ def items(request):
         'data': data_dict
     }
     return render(request, 'frontend/items.html', context)
-
-
-# GET SLACK TOKEN HERE
-load_dotenv()
-client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 
 @csrf_exempt
@@ -203,7 +205,7 @@ def change_item(request):
 
             })
             post = data['state']
-            str1 = f'*Fridge state changed to Pending*'
+            str1 = f'*Fridge state changed to Tasked*'
             print(s)
 
         elif data['state'] == 'Tasked':
@@ -212,7 +214,7 @@ def change_item(request):
                 'state': 'Pending'
             })
             post = data['state']
-            str1 = f'*Fridge state changed to Tasked*'
+            str1 = f'*Fridge state changed to Pending*'
             print(s)
 
         elif data['state'] == 'Pending':

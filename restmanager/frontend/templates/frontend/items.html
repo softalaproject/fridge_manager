@@ -45,14 +45,14 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <h1>Command Portal</h1>
+            <h1>User Portal</h1>
         </div>
 
         {% for ctx in data %}
-        <div class="box">
-            <article class="media">
+        <div id="items-wrapper" class="box">
+            <article id="items" class="media">
                 <div class="media-content">
-                    <div class="media-left">
+                    <div  class="media-left">
                         <p>
                             <span class="w3-sepia">{{ctx.id}}</span>
                             <span class="title">{{ctx.name}}</span>
@@ -63,7 +63,7 @@
             </article>
         </div>
         {% endfor %}
-        <input class="empty" type="button" id="send" value="Ascend">
+        <input class="empty" type="button" id="send" value="Change">
     </div>
 </body>
 <script>
@@ -73,6 +73,8 @@
             data: "",
             url: '/api/change_item/',
         });
+        var url = 'http://localhost:8000/items'
+        $("#items-wrapper").load(url + " #items");
     })
 
 
