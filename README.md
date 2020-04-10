@@ -10,8 +10,10 @@ Git bash (if you're using Windows): https://gitforwindows.org/
 
 Docker or Python3.
 
-## Start server:
+Make sure you have a .env file in fridge_manager/restmanager folder with appropriate values:
+SLACK_TOKEN, DJANGO_TOKEN and IP2.
 
+## Start server:
 
 Locally using python;
 
@@ -48,3 +50,7 @@ Starting with Docker (container)
 	docker container run -p 8000:8000 --name djangoapp djangoapp
 
 3. To stop container ctrl + c
+
+## Bad Request 400
+If you get Bad Request 400 when trying to access the server, <br>
+please add your local internal IP (192.168.x.x) to the .env file located in fridge_manager/restmanager
