@@ -1,0 +1,7 @@
+DJANGO_TOKEN='DJANGO secret key' 
+
+SLACK_TOKEN="Slack bottikäyttäjän Bot User OAuth Access Token"
+
+IP2="palvelimen IP-osoite"
+
+.env tiedoston sijainti tulee olla fridge_manager/restmanager kansiossa
