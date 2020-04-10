@@ -24,7 +24,10 @@ Once you've done that, make sure that the user and the group can access and modi
 You are now ready to start configuring Travis! 
 
 The main configuration file that Travis uses is .travis.yml. The commands and configs you'll want to change depend on your language, 
-so just take a look at the official Travis guide for that. The only things you'll need to worry about are the before_install and after_success hooks. If you encrypted the SSH private key correctly, you should have a command in the before_install section containing some OpenSSL stuff. If you don't, try re-encrypting the file. The after_success hook should contain the scripts you want to execute after your tests succeed. I named my script deploy.sh and put it in the .travis folder that I previously created during the encryption step. 
+so just take a look at the official Travis guide for that. The only things you'll need to worry about are the before_install and after_success hooks. 
+If you encrypted the SSH private key correctly, you should have a command in the before_install section containing some OpenSSL stuff. If you don't, try re-encrypting the file. 
+The after_success hook should contain the scripts you want to execute after your tests succeed. 
+I named my script deploy.sh and put it in the .travis folder that I previously created during the encryption step. 
 
 Once you're done with the deploy script, push it to your repository and enable Travis integration for it. 
 The next step is to add environment variables to Travis to keep your IP, SSH port, and deploy directory secret. 
