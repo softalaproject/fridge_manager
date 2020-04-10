@@ -37,17 +37,6 @@ Starting with Docker-compose;
 
 	docker-compose down
 
-Starting with Docker (container)
-
-1. Build container
-
-	docker build -t djangoapp .
-
-2. Run container 
-
-	docker container run -p 8000:8000 --name djangoapp djangoapp
-
-3. To stop container ctrl + c
 
 ## Bad Request 400
 If you get Bad Request 400 when trying to access the server, <br>
