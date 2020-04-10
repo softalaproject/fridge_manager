@@ -1,18 +1,16 @@
 # Softalaproject repo for automated fridge management app
-The application is containerized with Docker. 
-
-The build is done with Django and Node. 
-
+The application is containerized with Docker. <br>
+The build is done with Django and Node.<br> 
 Project uses SQLite for the database.
 
 ## SW requirements:
-Git bash (if you're using Windows): https://gitforwindows.org/
-
-Docker or Python3.
-
-Make sure you have a .env file in fridge_manager/restmanager folder with appropriate values:
-SLACK_TOKEN, DJANGO_TOKEN and IP2.
-
+Git bash (if you're using Windows): https://gitforwindows.org/<br>
+Docker or Python3.<br>
+Make sure you have a .env file in fridge_manager/restmanager folder with appropriate values:<br>
+SLACK_TOKEN<br>
+DJANGO_TOKEN<br>
+IP2<br>
+Documentation regarding these values is found in documents/env information
 ## Start server:
 
 Locally using python;
