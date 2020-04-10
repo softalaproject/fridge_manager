@@ -1,9 +1,14 @@
 # Softalaproject repo for automated fridge management app
-The application is containerized with Docker and can be run with Vagrant. The build is done with Django and Node. For now we use an SQLite database
+The application is containerized with Docker. 
+
+The build is done with Django and Node. 
+
+Project uses SQLite for the database.
 
 ## SW requirements:
 Git bash (if you're using Windows): https://gitforwindows.org/
-Docker or python.
+
+Docker or Python3.
 
 ## Start server:
 
@@ -15,7 +20,8 @@ Locally using python;
 	python manage.py runserver
 
 2. Open localhost or http://127.0.0.1/ on your host machine.
-3. To stop python from running application ctrl + c
+
+3. To stop hosting the server use ctrl + c in the python console window.
 
 Starting with Docker-compose;
 
