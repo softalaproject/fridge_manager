@@ -52,6 +52,17 @@ def manage(request):
 
 def items(request):
 
+    t = requests.get('https://sauna.eficode.fi/get-latest')
+    temp_data = json.loads(t.text)
+    t_dict = []
+    temp = round(temp_data['temperature'], 2)
+    humid = round(temp_data['humidity'], 2)
+    temps = {
+        'temp': temp,
+        'humid': humid
+    }
+    t_dict.append(temps)
+
     r = requests.get('http://localhost:8000/api/items/')
     data = json.loads(r.text)
     data_dict = []
@@ -64,8 +75,10 @@ def items(request):
         }
         data_dict.append(dict)
     context = {
-        'data': data_dict
+        'data': data_dict,
+        'temp': t_dict
     }
+
     return render(request, 'frontend/items.html', context)
 
 

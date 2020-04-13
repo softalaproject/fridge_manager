@@ -55,6 +55,13 @@
 </head>
 
 <body>
+    {% for t in temp %}
+    <nav id="navbarr" class="navbar navbar-light bg-light">
+        <span id="time" class="navbar-text"></span>
+        <span class="navbar-text">{{ t.temp }} °C</span>
+        <span class="navbar-text">{{ t.humid }} %</span>
+    </nav>
+    {% endfor %}
     <div class="container">
         <div class="keskitys">
             <div class="row">
@@ -92,6 +99,8 @@
         $("#items-wrapper").load(url + " #items");
         window.location.reload()
     })
+    var t = new Date()
+    document.getElementById("time").innerHTML = t.toLocaleDateString();
 </script>
 
 </html>
