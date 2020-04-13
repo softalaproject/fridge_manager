@@ -7,7 +7,7 @@
             border: none;
             background: #404040;
             color: #ffffff !important;
-            font-weight: 100;
+            font-weight: 400;
             padding: 20px;
             text-transform: uppercase;
             border-radius: 6px;
@@ -18,13 +18,25 @@
 
         .empty:hover {
             color: #725252 !important;
-            font-weight: 700 !important;
+            font-weight: 800 !important;
             letter-spacing: 3px;
             background: none;
             box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);
             transition: all 0.3s ease 0s;
             border: 1px solid #777777;
             border-radius: 6px;
+        }
+
+
+
+
+        .keskitys {
+            text-align: center;
+            width: auto;
+            height: auto;
+            display: inline-table;
+            padding-left: 35%;
+            padding-top: 25%;
         }
     </style>
 
@@ -43,26 +55,30 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <h1>User Portal</h1>
-        </div>
-        {% for ctx in data %}
-        <div id="items-wrapper" class="box">
-            <article id="items" class="media">
-                <div class="media-content">
-                    <div class="media-left">
-                        <p>
-                            <span class="w3-sepia">{{ctx.id}}</span>
-                            <span class="title">{{ctx.name}}</span>
-                            <span class="subtitle">{{ctx.state}}</span>
-                        </p>
+    <div class="container">
+        <div class="keskitys">
+            <div class="row">
+                <h1>User Portal</h1>
+            </div>
+            <div class="row"></div>
+            {% for ctx in data %}
+            <div id="items-wrapper" class="box">
+                <article id="items" class="media">
+                    <div class="media-content">
+                        <div class="media-left">
+                            <p>
+                                <span class="w3-sepia">{{ctx.id}}</span>
+                                <span class="title">{{ctx.name}}</span>
+                                <span class="subtitle">{{ctx.state}}</span>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            </div>
+            {% endfor %}
+            <input class="empty" type="submit" id="send" value="Change">
         </div>
-        {% endfor %}
-        <input class="empty" type="submit" id="send" value="Change">
+    </div>
     </div>
 </body>
 <script>
