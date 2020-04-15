@@ -206,6 +206,9 @@ def change_to_empty(request):
 
 @csrf_exempt
 def change_item(request):
+    '''
+    docstring: put method to change fridge state
+    '''
     if request.method == 'POST':
         url = 'http://localhost:8000/api/items/1/'
         r = requests.get(url)
