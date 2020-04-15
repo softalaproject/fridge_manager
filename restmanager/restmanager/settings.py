@@ -25,9 +25,9 @@ load_dotenv()
 SECRET_KEY = os.getenv("DJANGO_TOKEN")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.getenv('IP2'), "127.0.0.1"]
 
 # Application definition
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fridges',
     'rest_framework',
-    'frontend'
+    'frontend',
 ]
 
 MIDDLEWARE = [

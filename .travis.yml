@@ -1,19 +1,23 @@
 language: python
 python:
-  - "3.6"     
-  - "3.7"      # current default Python on Travis CI
-# command to install dependencies
+- '3.7'
+env:
+  matrix:
+  - DJANGO=3.0.3
+addons:
+  ssh_known_hosts:
+  - 95.217.134.247
+  - 95.217.134.247:8080
+before_install:
+- openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv
+  -in .travis/id_rsa.enc -out .travis/id_rsa -d
+- export PYTHONPATH="/home/travis/build/softalaproject/fridge_manager"
 install:
-  - pip3 install -r requirements.txt
-  - pip3 install pylint pylint-django
-# command to run tests
-script: "pwd"
-#  - pylint --load-plugins pylint-django ./restmanager
-deploy:
-  provider: heroku
-  api_key:
-    secure: DrrvF08okKaKdZeUXpJ03HbAhAtiOh09GpYFtxfMsi6cAQeEKMKr2tKPEaM9u8VFKkTzVezq1AgaDJqv2htZDUxY5N9FlZ+rhssfMvM0/dZhQQMmQ8KggLtd38YP0VhJ4eOr8qFz+8kAAdcjN0Y9rwA9wGpHLGgWDD214iWIuKoSlt7pawIz8gX8muk4asvyRuTwAXKTZn+LIKSr84U057pv1ngP2MvHKcvUxYYITE/8Z/l1FDrp6qOdGBb05iV8fFzDHKArX/6a4KB6lFZ5LKOERN/aQEuNgbYuMv1hAVVUoXe/iQh9L8eAV85fEsLOOfpvVCG14T4o43RpYtZgIz/q4FbccMThrm/pxkR8YYbwSOnOL3K3GiV+/KDI+G33niPwB5pt1kTeGlcaY5kiHAWWil4aAvw2aIO8QwNZAwXAqf5gHePuQEtFXSTNLJ2JPFr4DT0zy70BalUdqAb5K4YvkuuoC+64SyEvavo/sZUnSDmQhPwKRmz4hg+XzWjND0WvyeCCY83vHvRaWG7T9eGNDfwHK5c5Xb+YZhvLPoVyc4hNtC/4VN3UxsIvCAHOYhXP+M3dlCsGGzIvufm5z5DkKoLs56cmrSCOunHvHuj4+rpawT1wc4b8MCkGNgSHIOEyctgRWu7MP/tBY08Z2CEy0VkvbwnSck+XpLaYsVk=
-  app: fridge-mngr
-  strategy: git
-  on:
-    repo: softalaproject/fridge_manager
+- pip3 install -r requirements.txt
+- pip3 install django==$DJANGO --quiet
+- pip3 install psycopg2 --quiet
+script:
+- pwd
+- python3 restmanager/manage.py migrate
+- python3 restmanager/manage.py test frontend
+after_success: '[[ $TRAVIS_BRANCH == "dev" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'

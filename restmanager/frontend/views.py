@@ -8,11 +8,11 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-
 # Defining what html file to return when this function is called.
 
-def fridge(request):
-    return render(request, 'frontend/fridge.html')
+
+def fridge2(request):
+    return render(request, 'frontend/fridge2.html')
 
 
 def manage(request):
