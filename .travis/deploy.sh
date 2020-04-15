@@ -13,5 +13,5 @@ ssh apps@$IP -p $PORT <<EOF
   pip3 install -r requirements.txt
   python3.6 restmanager/manage.py makemigrations
   python3.6 restmanager/manage.py migrate
-  python3.6 restmanager/manage.py runserver $IP2:$PORT &
+  python3.6 restmanager/manage.py runserver $IP2:8079 &
 EOF
