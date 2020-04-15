@@ -1,11 +1,16 @@
 import axios from "axios";
 
-import { GET_FRIDGES, DELETE_FRIDGE, ADD_FRIDGE, BOT_NOTIFY } from "./types";
+import {
+  GET_FRIDGES,
+  DELETE_FRIDGE,
+  ADD_FRIDGE,
+  BOT_NOTIFY
+} from "./types";
 
 // get fridges
 export const getFridges = () => dispatch => {
   axios
-    .get("/api/fridges/")
+    .get("/api/items/")
     .then(res => {
       dispatch({
         type: GET_FRIDGES,
@@ -18,7 +23,7 @@ export const getFridges = () => dispatch => {
 // delete fridges
 export const deleteFridge = id => dispatch => {
   axios
-    .delete(`/api/fridges/${id}/`)
+    .delete(`/api/items/${id}/`)
     .then(res => {
       dispatch({
         type: DELETE_FRIDGE,
@@ -31,7 +36,7 @@ export const deleteFridge = id => dispatch => {
 // add fridge
 export const addFridge = fridge => dispatch => {
   axios
-    .post("/api/fridges/", fridge)
+    .post("/api/items/", fridge)
     .then(res => {
       dispatch({
         type: ADD_FRIDGE,
@@ -42,7 +47,7 @@ export const addFridge = fridge => dispatch => {
 };
 //general notify function to #general in test_slack_env
 export function botNotification() {
-  axios.get("/api/beer").then(function(response) {
+  axios.get("/api/beer").then(function (response) {
     console.log(response);
   });
 }
