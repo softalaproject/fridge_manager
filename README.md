@@ -55,5 +55,3 @@ Build Docker image:
 Run Docker container:
 
  docker container run -p 8000:8000 --name djangoapp djangoapp
-
-#test
