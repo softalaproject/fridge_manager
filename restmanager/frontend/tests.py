@@ -1,23 +1,24 @@
-from .views import fridge, manage, post_beer, post_no_beer
+from .views import fridge2, manage, post_beer, post_no_beer
 from django.urls import reverse, resolve
 from unittest import TestCase
 from . import strings
 
-class UrlsTest(TestCase):
-    def fridge_test(self):
-        url = reverse('')
-        self.assertEquals(resolve(url).func, fridge)
 
-    def manage_test(self):
-        url = reverse('manage')
+class UrlsTest(TestCase):
+    def test_fridge(self):
+        url = reverse(fridge2)
+        self.assertEquals(resolve(url).func, fridge2)
+
+    def test_manage(self):
+        url = reverse(manage)
         self.assertEquals(resolve(url).func, manage)
 
-    def beer_test(self):
-        url = reverse('api/beer')
+    def test_beer(self):
+        url = reverse(post_beer)
         self.assertEquals(resolve(url).func, post_beer)
 
-    def no_beer_test(self):
-        url = reverse('api/no_beer')
+    def test_no_beer(self):
+        url = reverse(post_no_beer)
         self.assertEquals(resolve(url).func, post_no_beer)
 
 
@@ -28,3 +29,7 @@ class UnitTests(TestCase):
         self.assertEqual('Saunatilan kaappi on täytetty.', strings.SLACK_MESSAGE_2)
         self.assertEqual('Täyttäminen vaiheessa.', strings.SLACK_MESSAGE_3)
         self.assertEqual('Otit vastuun täyttämisestä, viesti laitettu Slackiin.', strings.SUCCESS_MSG_3)
+
+
+if __name__ == '__main__':
+    unittest.main()
