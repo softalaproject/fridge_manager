@@ -13,15 +13,8 @@ ssh apps@$IP -p $PORT <<EOF
   pkill -f runserver
   cd $DEPLOY_DIR
   git fetch origin
-<<<<<<< HEAD
-  git pull origin dev
-  pip3 install -r requirements.txt
-  python3.6 restmanager/manage.py runserver $IP2:8080 &
-=======
-  git reset --hard origin/feature/docker
+  git reset --hard origin/dev
   docker-compose down
   docker-compose build
   docker-compose up -d
-
->>>>>>> parent of 82a60d3... Merge branch 'dev' into feature/docker
 EOF
