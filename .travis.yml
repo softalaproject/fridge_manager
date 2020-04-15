@@ -18,5 +18,5 @@ install:
 - pip3 install psycopg2 --quiet
 script:
 - python3 restmanager/manage.py migrate
-- python3 restmanager/manage.py test
+- python3 restmanager/manage.py test frontend
 after_success: '[[ $TRAVIS_BRANCH == "dev" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
