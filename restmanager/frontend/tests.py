@@ -1,3 +1,4 @@
+import unittest
 from .views import fridge, manage, post_beer, post_no_beer
 from django.urls import reverse, resolve
 from unittest import TestCase
