@@ -55,8 +55,8 @@ def items(request):
     t = requests.get('https://sauna.eficode.fi/get-latest')
     temp_data = json.loads(t.text)
     t_dict = []
-    temp = round(temp_data['temperature'], 2)
-    humid = round(temp_data['humidity'], 2)
+    temp = round(temp_data['temperature'], 1)
+    humid = round(temp_data['humidity'], 1)
     temps = {
         'temp': temp,
         'humid': humid

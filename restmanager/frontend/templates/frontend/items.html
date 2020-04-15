@@ -6,8 +6,8 @@
         .empty {
             border: none;
             background: #404040;
-            color: #ffffff !important;
-            font-weight: 400;
+            color: hsl(0, 0%, 100%) !important;
+            font-weight: 300;
             padding: 20px;
             text-transform: uppercase;
             border-radius: 6px;
@@ -18,8 +18,8 @@
 
         .empty:hover {
             color: #725252 !important;
-            font-weight: 800 !important;
-            letter-spacing: 3px;
+            font-weight: 700 !important;
+            letter-spacing: 2px;
             background: none;
             box-shadow: 0px 5px 40px -10px rbga(0, 0, 0, 0.57);
             transition: all 0.3s ease 0s;
@@ -28,15 +28,16 @@
         }
 
 
-
+        .container {
+            text-align: center;
+        }
 
         .keskitys {
             text-align: center;
             width: auto;
             height: auto;
-            display: inline-table;
-            padding-left: 35%;
-            padding-top: 25%;
+            display: inline-block;
+            position: relative;
         }
     </style>
 
@@ -57,15 +58,15 @@
 <body>
     {% for t in temp %}
     <nav id="navbarr" class="navbar navbar-light bg-light">
+        <span class="navbar-text"></span>
+        <span class="navbar-text">{{ t.temp }} °C || {{ t.humid }} %</span>
         <span id="time" class="navbar-text"></span>
-        <span class="navbar-text">{{ t.temp }} °C</span>
-        <span class="navbar-text">{{ t.humid }} %</span>
     </nav>
     {% endfor %}
     <div class="container">
         <div class="keskitys">
             <div class="row">
-                <h1>User Portal</h1>
+                <h1>Interface</h1>
             </div>
             <div class="row"></div>
             {% for ctx in data %}
