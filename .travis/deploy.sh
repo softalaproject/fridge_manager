@@ -12,7 +12,7 @@ ssh-add .travis/id_rsa # Add the private key to SSH
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
   git fetch origin
-  git reset --hard origin/feature/docker
+  git reset --hard origin/dev
   docker-compose down
   docker-compose build
   docker-compose up -d
