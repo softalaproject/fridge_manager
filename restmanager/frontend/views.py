@@ -210,6 +210,7 @@ def change_item(request):
         url = 'http://localhost:8000/api/items/1/'
         r = requests.get(url)
         data = json.loads(r.text)
+        name = data['name']
 
         if data['state'] == 'Empty':
             s = requests.put(url, data={
@@ -217,8 +218,7 @@ def change_item(request):
                 'state': 'Tasked'
 
             })
-            post = data['state']
-            str1 = f'*Fridge state changed to Tasked*'
+            str1 = f'*{name} Fridge state changed to Tasked*'
             print(s)
 
         elif data['state'] == 'Tasked':
@@ -226,8 +226,7 @@ def change_item(request):
                 'name': data['name'],
                 'state': 'Pending'
             })
-            post = data['state']
-            str1 = f'*Fridge state changed to Pending*'
+            str1 = f'*{name} Fridge state changed to Pending*'
             print(s)
 
         elif data['state'] == 'Pending':
@@ -235,8 +234,7 @@ def change_item(request):
                 'name': data['name'],
                 'state': 'Full'
             })
-            post = data['state']
-            str1 = f'*Fridge state changed to Full*'
+            str1 = f'*{name} Fridge state changed to Full*'
             print(s)
         elif data['state'] == 'Full':
             s = requests.put(url, data={
@@ -244,8 +242,7 @@ def change_item(request):
                 'state': 'Empty'
             })
             print(s)
-            post = data['state']
-            str1 = f'*Fridge state changed to Empty*'
+            str1 = f'*{name} Fridge state changed to Empty*'
 
         client.chat_postMessage(
             channel=strings.CHANNEL_NAME_1,
