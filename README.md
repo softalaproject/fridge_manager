@@ -1,43 +1,59 @@
 # Softalaproject repo for automated fridge management app
-The application is containerized with Docker. <br>
-The build is done with Django and Node.<br> 
-Project uses SQLite for the database.
+The application is containerized with Docker and can be run with Vagrant. The build is done with Django and Node. For now we use an SQLite database
 
 ## SW requirements:
-Git bash (if you're using Windows): https://gitforwindows.org/<br>
-Docker or Python3.<br>
-Make sure you have a .env file in fridge_manager/restmanager folder with appropriate values:<br>
-SLACK_TOKEN<br>
-DJANGO_TOKEN<br>
-IP2<br>
-Documentation regarding these values is found in documents/env information
+
+Virtualbox 6.0.x: https://www.virtualbox.org/wiki/Download_Old_Builds_6_0
+Vagrant: https://www.vagrantup.com/downloads.html
+Git bash (if you're using Windows): https://gitforwindows.org/
+Some text editor, VSCode (https://code.visualstudio.com/) , notepad++ (https://notepad-plus-plus.org/), something else than Notepad
+Todo:
+
+## Starting vagrant:
+
+Install first Virtualbox 6.0.x
+
+Install vagrant after Virtualbox
+
+And then run this command:
+
+  vagrant up
+Based on Ubuntu 18.04 Bionic server with docker-ce, docker-compose and minikube preinstalled
+
+## Starting environment:
+
+vagrant up
+Stopping environment:
+
+vagrant halt
+Destroying environment:
+
+vagrant destroy -f
+Destroying and rebuilding environment:
+
+vagrant destroy -f && vagrant up
+
+Vagrant is automaticly installing python-pip and all python modules according to requirements.txt.
+
+When development enviroment is up;
+
+Navigate to django/restfull/
+
 ## Start server:
 
-Locally using python;
+ python manage.py runserver 0.0.0.0:8000
+Open localhost:8000 or http://127.0.0.1:8000/ on your host machine.
 
-1. Start server
+Starting with Docker;
 
-	python manage.py runserver
+if you are using Vagrant:
 
-2. Open localhost or http://127.0.0.1/ on your host machine.
+ cd /softala/django
+Build Docker image:
 
-3. To stop hosting the server use ctrl + c in the python console window.
+ docker build -t djangoapp .
+Run Docker container:
 
-Starting with Docker-compose;
+ docker container run -p 8000:8000 --name djangoapp djangoapp
 
-1. Build Docker image:
-
-	docker-compose build
-
-2. Start application:
-
-	docker-compose up -d
-
-3. Stop using application
-
-	docker-compose down
-
-
-## Bad Request 400
-If you get Bad Request 400 when trying to access the server, <br>
-please add your local internal IP (192.168.x.x) to the .env file located in fridge_manager/restmanager
+#test
