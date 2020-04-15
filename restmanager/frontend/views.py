@@ -24,7 +24,7 @@ def fridge(request):
     for i in json_data:
         a = ''
         if i['fridge_is_empty'] == True:
-            a = 'Empty'
+            a.lower = 'Empty'
         else:
             a = 'Full'
         dict = {
