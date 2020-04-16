@@ -7,20 +7,32 @@ from . import strings
 
 class UrlsTest(TestCase):
     def test_fridge2(self):
-        url = reverse(fridge2)
+        url = '/fridge2'
+        url2 = reverse(fridge2)
+        self.assertEquals(url, url2)
         self.assertEquals(resolve(url).func, fridge2)
+        self.assertEquals(resolve(url2).func, fridge2)
 
     def test_manage(self):
-        url = reverse(manage)
+        url = '/manage'
+        url2 = reverse(manage)
+        self.assertEquals(url, url2)
         self.assertEquals(resolve(url).func, manage)
+        self.assertEquals(resolve(url2).func, manage)
 
     def test_beer(self):
-        url = reverse(post_beer)
+        url = '/api/beer/'
+        url2 = reverse(post_beer)
+        self.assertEquals(url, url2)
         self.assertEquals(resolve(url).func, post_beer)
+        self.assertEquals(resolve(url2).func, post_beer)
 
     def test_no_beer(self):
-        url = reverse(post_no_beer)
+        url = '/api/no_beer/'
+        url2 = reverse(post_no_beer)
+        self.assertEquals(url, url2)
         self.assertEquals(resolve(url).func, post_no_beer)
+        self.assertEquals(resolve(url2).func, post_no_beer)
 
 
 class UnitTests(TestCase):
