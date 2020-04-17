@@ -4,8 +4,8 @@ services:
   web:
     build: .
     command: python restmanager/manage.py migrate
-    command: python restmanager/manage.py runserver 0.0.0.0:8000
+    command: python restmanager/manage.py runserver 0.0.0.0:8069
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8069:8069"
