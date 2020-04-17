@@ -38,9 +38,11 @@ def fridge(request):
         'data_list': data_list
     }
     return render(request, 'frontend/fridge.html', context)
+	
+def fridge2(request):
+    return render(request, 'frontend/fridge2.html')
 
 # Endpoint http://localhost/manage. Displays admin web domain powered by React.
-
 
 def manage(request):
     return render(request, 'frontend/index.html')
