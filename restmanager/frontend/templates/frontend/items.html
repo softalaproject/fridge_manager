@@ -65,14 +65,11 @@
     {% endfor %}
     <div class="container">
         <div class="keskitys">
-            <div class="row">
-                <h1>Interface</h1>
-            </div>
             <div class="row"></div>
             {% for ctx in data %}
             <div id="items-wrapper" class="box">
                 <article id="items" class="media">
-                    <div class="media-content">
+                    <div id="send" class="media-content">
                         <div class="media-left">
                             <p>
                                 <span class="w3-sepia">{{ctx.id}}</span>
