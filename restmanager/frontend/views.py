@@ -27,13 +27,13 @@ def fridge(request):
             a.lower = 'Empty'
         else:
             a = 'Full'
-        dict = {
+        dicti = {
             'id': i['id'],
             'name': i['name'],
             'state': a,
         }
 
-        data_list.append(dict)
+        data_list.append(dicti)
     context = {
         'data_list': data_list
     }
@@ -70,12 +70,12 @@ def items(request):
     data_dict = []
 
     for i in data:
-        dict = {
+        dicti = {
             'id': i['id'],
             'name': i['name'],
             'state': i['state'],
         }
-        data_dict.append(dict)
+        data_dict.append(dicti)
     context = {
         'data': data_dict,
         'temp': t_dict
@@ -173,7 +173,7 @@ def change_method(request):
                 'fridge_is_empty': True
             })
             print(s)
-
+            
     return HttpResponse("b")
 
 
