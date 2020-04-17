@@ -38,20 +38,20 @@ def fridge(request):
         'data_list': data_list
     }
     return render(request, 'frontend/fridge.html', context)
-	
+
+
 def fridge2(request):
     return render(request, 'frontend/fridge2.html')
 
-# Endpoint http://localhost/manage. Displays admin web domain powered by React.
 
+# Endpoint http://localhost/manage. Displays admin web domain powered by React.
 def manage(request):
     return render(request, 'frontend/index.html')
+
 
 # Endpoint http://localhost/items.
 # Displays User Portal domain with a single item(fridge).
 # and PUT command to communicate the state to slack channel.
-
-
 def items(request):
 
     t = requests.get('https://sauna.eficode.fi/get-latest')
