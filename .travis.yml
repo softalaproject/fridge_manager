@@ -19,5 +19,5 @@ install:
 script:
 - python3 restmanager/manage.py migrate
 - python3 restmanager/manage.py test frontend
-after_success: '[[ $TRAVIS_BRANCH == "dev" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
+after_success: '[[ $TRAVIS_BRANCH == "dev2" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
 
