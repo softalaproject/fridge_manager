@@ -13,10 +13,10 @@ load_dotenv()
 client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 
-# Endpoint http://localhost:8000/. Displays HTML page with jquery. found in templates -> fridge.html
+# Endpoint http://localhost/. Displays HTML page with jquery. found in templates -> fridge.html
 def fridge(request):
 
-    r = requests.get('http://localhost:8000/api/fridges/')
+    r = requests.get('http://localhost/api/fridges/')
 
     json_data = json.loads(r.text)
     data_list = []
@@ -39,13 +39,13 @@ def fridge(request):
     }
     return render(request, 'frontend/fridge.html', context)
 
-# Endpoint http://localhost:8000/manage. Displays admin web domain powered by React.
+# Endpoint http://localhost/manage. Displays admin web domain powered by React.
 
 
 def manage(request):
     return render(request, 'frontend/index.html')
 
-# Endpoint http://localhost:8000/items.
+# Endpoint http://localhost/items.
 # Displays User Portal domain with a single item(fridge).
 # and PUT command to communicate the state to slack channel.
 
@@ -63,7 +63,7 @@ def items(request):
     }
     t_dict.append(temps)
 
-    r = requests.get('http://localhost:8000/api/items/')
+    r = requests.get('http://localhost/api/items/')
     data = json.loads(r.text)
     data_dict = []
 
@@ -105,7 +105,7 @@ def post_no_beer(request):
 @csrf_exempt
 def test_method(request):
     if request.method == "POST":
-        r = requests.get('http://localhost:8000/api/fridges/')
+        r = requests.get('http://localhost/api/fridges/')
         json_data = json.loads(r.text)
 
         names = []
@@ -155,7 +155,7 @@ def test_method(request):
 @csrf_exempt
 def change_method(request):
     if request.method == 'POST':
-        url = 'http://localhost:8000/api/fridges/27/'
+        url = 'http://localhost/api/fridges/27/'
         r = requests.get(url)
         json_data = json.loads(r.text)
 
@@ -184,7 +184,7 @@ def get_url_id(request):
 def change_to_empty(request):
     if request.method == 'POST':
         url_id = '26'
-        url = f'http://localhost:8000/api/fridges/{url_id}/'
+        url = f'http://localhost/api/fridges/{url_id}/'
         r = requests.get(url)
         json_data = json.loads(r.text)
 
@@ -210,7 +210,7 @@ def change_item(request):
     docstring: put method to change fridge state
     '''
     if request.method == 'POST':
-        url = 'http://localhost:8000/api/items/1/'
+        url = 'http://localhost/api/items/1/'
         r = requests.get(url)
         data = json.loads(r.text)
         name = data['name']
