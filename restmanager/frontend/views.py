@@ -13,10 +13,10 @@ load_dotenv()
 client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 
-# Endpoint http://localhost/. Displays HTML page with jquery. found in templates -> fridge.html
+# Endpoint http://localhost:8000/. Displays HTML page with jquery. found in templates -> fridge.html
 def fridge(request):
 
-    r = requests.get('http://localhost/api/fridges/')
+    r = requests.get('http://localhost:8000/api/fridges/')
 
     json_data = json.loads(r.text)
     data_list = []
@@ -44,14 +44,15 @@ def fridge2(request):
     return render(request, 'frontend/fridge2.html')
 
 
-# Endpoint http://localhost/manage. Displays admin web domain powered by React.
+# Endpoint http://localhost:8000/manage. Displays admin web domain powered by React.
 def manage(request):
     return render(request, 'frontend/index.html')
 
 
-# Endpoint http://localhost/items.
+# Endpoint http://localhost:8000/items.
 # Displays User Portal domain with a single item(fridge).
 # and PUT command to communicate the state to slack channel.
+@csrf_exempt
 def items(request):
 
     t = requests.get('https://sauna.eficode.fi/get-latest')
@@ -65,8 +66,9 @@ def items(request):
     }
     t_dict.append(temps)
 
-    r = requests.get('http://localhost/api/items/')
+    r = requests.get('http://localhost:8000/api/items/')
     data = json.loads(r.text)
+    print(r.text)
     data_dict = []
 
     for i in data:
@@ -107,7 +109,7 @@ def post_no_beer(request):
 @csrf_exempt
 def test_method(request):
     if request.method == "POST":
-        r = requests.get('http://localhost/api/fridges/')
+        r = requests.get('http://localhost:8000/api/fridges/')
         json_data = json.loads(r.text)
 
         names = []
@@ -157,17 +159,17 @@ def test_method(request):
 @csrf_exempt
 def change_method(request):
     if request.method == 'POST':
-        url = 'http://localhost/api/fridges/27/'
+        url = 'http://localhost:8000/api/fridges/27/'
         r = requests.get(url)
         json_data = json.loads(r.text)
 
-        if json_data['fridge_is_empty']:
+        if json_data.get('fridge_is_empty'):
             s = requests.put(url, data={
                 'name': json_data['name'],
                 'fridge_is_empty': False
             })
             print(s)
-        elif not json_data['fridge_is_empty']:
+        else:
             s = requests.put(url, data={
                 'name': json_data['name'],
                 'fridge_is_empty': True
@@ -186,17 +188,17 @@ def get_url_id(request):
 def change_to_empty(request):
     if request.method == 'POST':
         url_id = '26'
-        url = f'http://localhost/api/fridges/{url_id}/'
+        url = f'http://localhost:8000/api/fridges/{url_id}/'
         r = requests.get(url)
         json_data = json.loads(r.text)
 
-        if json_data['fridge_is_empty']:
+        if json_data.get('fridge_is_empty'):
             s = requests.put(url, data={
                 'name': json_data['name'],
                 'fridge_is_empty': False
             })
             print(s)
-        elif not json_data['fridge_is_empty']:
+        else:
             s = requests.put(url, data={
                 'name': json_data['name'],
                 'fridge_is_empty': True
@@ -212,12 +214,12 @@ def change_item(request):
     docstring: put method to change fridge state
     '''
     if request.method == 'POST':
-        url = 'http://localhost/api/items/1/'
+        url = 'http://localhost:8000/api/items/1/'
         r = requests.get(url)
         data = json.loads(r.text)
         name = data['name']
 
-        if data['state'] == 'Empty':
+        if data.get('state') == 'Empty':
             s = requests.put(url, data={
                 'name': data['name'],
                 'state': 'Tasked'
@@ -226,7 +228,7 @@ def change_item(request):
             str1 = f'*{name} Fridge state changed to Tasked*'
             print(s)
 
-        elif data['state'] == 'Tasked':
+        elif data.get('state') == 'Tasked':
             s = requests.put(url, data={
                 'name': data['name'],
                 'state': 'Pending'
@@ -234,14 +236,14 @@ def change_item(request):
             str1 = f'*{name} Fridge state changed to Pending*'
             print(s)
 
-        elif data['state'] == 'Pending':
+        elif data.get('state') == 'Pending':
             s = requests.put(url, data={
                 'name': data['name'],
                 'state': 'Full'
             })
             str1 = f'*{name} Fridge state changed to Full*'
             print(s)
-        elif data['state'] == 'Full':
+        elif data.get('state') == 'Full':
             s = requests.put(url, data={
                 'name': data['name'],
                 'state': 'Empty'
