@@ -23,7 +23,7 @@ def fridge(request):
 
     for i in json_data:
         a = ''
-        if i['fridge_is_empty'] == True:
+        if i['fridge_is_empty']:
             a.lower = 'Empty'
         else:
             a = 'Full'
@@ -119,7 +119,7 @@ def test_method(request):
         empty_ones = []
 
         for i in json_data:
-            if i['fridge_is_empty'] == True:
+            if i['fridge_is_empty']:
                 empty_checker += 1
                 length += 1
                 empty_ones.append(i['name'])
@@ -128,7 +128,7 @@ def test_method(request):
 
             names.append(i['name'])
 
-            if i['fridge_is_empty'] == True:
+            if i['fridge_is_empty']:
                 states.append(empty)
             else:
                 states.append(full)
@@ -161,13 +161,13 @@ def change_method(request):
         r = requests.get(url)
         json_data = json.loads(r.text)
 
-        if json_data['fridge_is_empty'] == True:
+        if json_data['fridge_is_empty']:
             s = requests.put(url, data={
                 'name': json_data['name'],
                 'fridge_is_empty': False
             })
             print(s)
-        elif json_data['fridge_is_empty'] == False:
+        elif not json_data['fridge_is_empty']:
             s = requests.put(url, data={
                 'name': json_data['name'],
                 'fridge_is_empty': True
@@ -190,13 +190,13 @@ def change_to_empty(request):
         r = requests.get(url)
         json_data = json.loads(r.text)
 
-        if json_data['fridge_is_empty'] == True:
+        if json_data['fridge_is_empty']:
             s = requests.put(url, data={
                 'name': json_data['name'],
                 'fridge_is_empty': False
             })
             print(s)
-        elif json_data['fridge_is_empty'] == False:
+        elif not json_data['fridge_is_empty']:
             s = requests.put(url, data={
                 'name': json_data['name'],
                 'fridge_is_empty': True
