@@ -7,16 +7,19 @@ from dotenv import load_dotenv
 from django.http import HttpResponse
 from . import strings
 from django.views.decorators.csrf import csrf_exempt
+from fridges.models import Fridge
 
 # GET SLACK TOKEN HERE
 load_dotenv()
 client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
+IP2 = os.getenv('IP2')
+
 
 # Endpoint http://localhost:8000/. Displays HTML page with jquery. found in templates -> fridge.html
 def fridge(request):
 
-    r = requests.get('http://localhost:8000/api/fridges/')
+    r = requests.get('http://localhost:8000/api/fridges/?format=json')
 
     json_data = json.loads(r.text)
     data_list = []
@@ -54,7 +57,6 @@ def manage(request):
 # and PUT command to communicate the state to slack channel.
 @csrf_exempt
 def items(request):
-
     t = requests.get('https://sauna.eficode.fi/get-latest')
     temp_data = json.loads(t.text)
     t_dict = []
@@ -66,7 +68,7 @@ def items(request):
     }
     t_dict.append(temps)
 
-    r = requests.get('http://localhost:8000/api/items/')
+    r = requests.get('HTTP://' + IP2 + ':8000/api/fridges/?format=json')
     data = json.loads(r.text)
     print(r.text)
     data_dict = []
@@ -75,7 +77,7 @@ def items(request):
         dicti = {
             'id': i['id'],
             'name': i['name'],
-            'state': i['state'],
+            'fridge_is_empty': i['fridge_is_empty'],
         }
         data_dict.append(dicti)
     context = {
