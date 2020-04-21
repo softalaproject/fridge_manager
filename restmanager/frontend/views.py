@@ -19,19 +19,31 @@ IP2 = os.getenv('IP2')
 def full_fridge(request):
     r1 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
     print(r1.text)
-    NewFridge.objects.filter(id=1).update(state='Full')
+    fid = request.GET.get('id')
+    NewFridge.objects.filter(id=fid).update(state='Full')
     r2 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
     print(r2.text)
-    return HttpResponse("Set to Full")
+    return HttpResponse(f"Fridge id: {id} Set to Full")
 
 
 def half_fridge(request):
     r1 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
     print(r1.text)
-    NewFridge.objects.filter(id=1).update(state='Half-full')
+    fid = request.GET.get('id')
+    NewFridge.objects.filter(id=fid).update(state='Half-full')
     r2 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
     print(r2.text)
-    return HttpResponse("Set to Half-full")
+    return HttpResponse(f"Fridge id: {fid} Set to Half-full")
+
+
+def empty_fridge(request):
+    r1 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
+    print(r1.text)
+    fid = request.GET.get('id')
+    NewFridge.objects.filter(id=fid).update(state='Empty')
+    r2 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
+    print(r2.text)
+    return HttpResponse(f"Fridge id: {fid} Set to Empty.")
 
 
 def create_fridges(request):
@@ -42,18 +54,6 @@ def create_fridges(request):
     b.save()
     c.save()
     return HttpResponse("Created fridges")
-
-
-def empty_fridge(request):
-    a = NewFridge(name="abinax", state="Empty")
-    print(a)
-    a.save()
-    r1 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
-    print(r1.text)
-    NewFridge.objects.filter(id=1).update(state='Empty')
-    r2 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
-    print(r2.text)
-    return HttpResponse("Set to Empty")
 
 
 # Endpoint http://localhost:8000/items.
@@ -87,8 +87,8 @@ def items(request):
         data_dict.append(dicti)
     context = {
         'data': data_dict,
-        'temp': t_dict
     }
+    print(data_dict)
 
     return render(request, 'frontend/items.html', context)
 
