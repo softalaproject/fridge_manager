@@ -12,7 +12,7 @@ class UrlsTest(TestCase):
         self.assertEquals(url, url2)
         self.assertEquals(resolve(url).func, fridge)
         self.assertEquals(resolve(url2).func, fridge)
-		
+
     def test_fridge2(self):
         url = '/fridge2'
         url2 = reverse(fridge2)
@@ -40,6 +40,7 @@ class UrlsTest(TestCase):
         self.assertEquals(url, url2)
         self.assertEquals(resolve(url).func, post_no_beer)
         self.assertEquals(resolve(url2).func, post_no_beer)
+
 
 class UnitTests(TestCase):
     def test_strings(self):

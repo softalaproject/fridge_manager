@@ -64,6 +64,7 @@
         {% endfor %}
         <div class="container">
             <div class="keskitys">
+
                 <div class="row"></div>
                 {% for ctx in data %}
                 <div id="items-wrapper" class="box">
@@ -75,18 +76,23 @@
                                     <span class="title">{{ctx.name}}</span>
                                     <span class="subtitle">{{ctx.state}}</span>
                                 </p>
+                                <form action="/api/change_item/" id="postformi" method="post">
+                                    <input type="hidden" name="id" id="id" value="{{ctx.id}}">
+                                    <input type="hidden" name="name" id="name" value="{{ctx.name}}">
+                                    <input type="hidden" name="state" id="state" value="{{ctx.state}}">
+                                    <input type="submit" value="Submit">
+                                </form>
                             </div>
                         </div>
                     </article>
                 </div>
                 {% endfor %}
-                <input class="empty" type="submit" id="send" value="Change">
             </div>
         </div>
     </body>
 
     <script>
-        $("#send").on("click", function () {
+        /*$("#send").on("click", function () {
             $.ajax({
                 type: 'POST',
                 data: "",
@@ -97,6 +103,6 @@
             window.location.reload()
         })
         var t = new Date()
-        document.getElementById("time").innerHTML = t.toLocaleDateString();
+        document.getElementById("time").innerHTML = t.toLocaleDateString();*/
     </script>
 </html>

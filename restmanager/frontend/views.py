@@ -23,7 +23,7 @@ def full_fridge(request):
     NewFridge.objects.filter(id=fid).update(state='Full')
     r2 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
     print(r2.text)
-    return HttpResponse(f"Fridge id: {id} Set to Full")
+    return redirect('/items/') # HttpResponse(f"Fridge id: {id} Set to Full")
 
 
 def half_fridge(request):
@@ -74,7 +74,7 @@ def items(request):
 
     r = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
     data = json.loads(r.text)
-    print(r.text)
+    # print(r.text)
     data_dict = []
 
     for item in data:
@@ -88,13 +88,14 @@ def items(request):
     context = {
         'data': data_dict,
     }
-    print(data_dict)
+    # print(data_dict)
 
     return render(request, 'frontend/items.html', context)
 
 
 @csrf_exempt
 def change_item(request):
+    print(request.POST)
     '''
     docstring: put method to change fridge state
     '''
@@ -103,28 +104,22 @@ def change_item(request):
         # r = requests.get(url)
         # data = json.loads(r.text)
         # name = data['name']
+        fid = request.POST.get('id')
+        if request.POST.get('state') == 'Empty':
+            new_state = 'Full'
 
-        if request.get('state') == 'Empty':
-            full_fridge(request)
-            str1 = f'*{request.name} fridge state changed to Full*'
-
-        elif request.get('state') == 'Full':
-            # s = requests.put(url, data={
-            #     'name': data['name'],
-            #     'state': 'Half-full'
-            # })
-            half_fridge(request)
-            str1 = f'*{request.name} fridge state changed to Half-full*'
+        elif request.POST.get('state') == 'Full':
+            new_state = 'Half'
 
         else:
-            empty_fridge(request)
-            str1 = f'*{request.name} fridge state changed to Empty*'
+            new_state = 'Empty'
 
-        client.chat_postMessage(
-            channel=strings.CHANNEL_NAME_1,
-            text=str(str1)
-        )
-    return HttpResponse('ok')
+        NewFridge.objects.filter(id=fid).update(state=new_state)
+        # client.chat_postMessage(
+        #     channel=strings.CHANNEL_NAME_1,
+        #     text=str(str1)
+        # )
+    return redirect('/items')
 
 
 # Endpoint http://localhost:8000/. Displays HTML page with jquery. found in templates -> fridge.html
