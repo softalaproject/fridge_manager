@@ -3,7 +3,7 @@ from . import views
 
 # Defining URL endpoints and what views they should return.
 urlpatterns = [
-    path('', views.fridge, name="home"),
+    path('', views.items, name="home"),
     path('items', views.items),
     path('manage', views.manage),
     path('api/beer/', views.post_beer, name="full"),
@@ -14,5 +14,7 @@ urlpatterns = [
     path('api/change_method/', views.change_method),
     path('api/change_to_empty/', views.change_to_empty),
     path('api/change_item/', views.change_item),
-
+    path('api/half_fridge/', views.half_fridge),
+    path('api/empty_fridge/', views.empty_fridge),
+    path('api/full_fridge/', views.full_fridge)
 ]
