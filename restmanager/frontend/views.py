@@ -34,7 +34,20 @@ def half_fridge(request):
     return HttpResponse("Set to Half-full")
 
 
+def create_fridges(request):
+    a = NewFridge(name="fridge", state="Empty")
+    b = NewFridge(name="fridgex", state="Full")
+    c = NewFridge(name="fridgey", state="Half-full")
+    a.save()
+    b.save()
+    c.save()
+    return HttpResponse("Created fridges")
+
+
 def empty_fridge(request):
+    a = NewFridge(name="abinax", state="Empty")
+    print(a)
+    a.save()
     r1 = requests.get('HTTP://' + IP2 + ':8000/api/items/?format=json')
     print(r1.text)
     NewFridge.objects.filter(id=1).update(state='Empty')

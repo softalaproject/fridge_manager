@@ -16,5 +16,6 @@ urlpatterns = [
     path('api/change_item/', views.change_item),
     path('api/half_fridge/', views.half_fridge),
     path('api/empty_fridge/', views.empty_fridge),
-    path('api/full_fridge/', views.full_fridge)
+    path('api/full_fridge/', views.full_fridge),
+    path('create_fridges/', views.create_fridges),
 ]
