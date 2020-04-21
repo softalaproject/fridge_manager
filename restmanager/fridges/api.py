@@ -1,6 +1,6 @@
-from .models import Fridge, Message, NewFridge
+from .models import Fridge
 from rest_framework import viewsets, permissions
-from .serializers import FridgeSerializer, MessageSerializer, NewFridgeSerializer
+from .serializers import FridgeSerializer
 
 # Fridge Viewset
 
@@ -12,18 +12,3 @@ class FridgeViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = FridgeSerializer
 
-
-class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.all()
-    permission_classes = [
-        permissions.AllowAny
-    ]
-    serializer_class = MessageSerializer
-
-
-class NewFridgeViewSet(viewsets.ModelViewSet):
-    queryset = NewFridge.objects.all()
-    permission_classes = [
-        permissions.AllowAny
-    ]
-    serializer_class = NewFridgeSerializer

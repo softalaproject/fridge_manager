@@ -75,11 +75,13 @@
                                     <span class="w3-sepia">{{ctx.id}}</span>
                                     <span class="title">{{ctx.name}}</span>
                                     <span class="subtitle">{{ctx.state}}</span>
+                                    <span class="subtitle">{{ctx.floor}}</span>
                                 </p>
                                 <form action="/api/change_item/" id="postformi" method="post">
                                     <input type="hidden" name="id" id="id" value="{{ctx.id}}">
                                     <input type="hidden" name="name" id="name" value="{{ctx.name}}">
                                     <input type="hidden" name="state" id="state" value="{{ctx.state}}">
+                                    <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
                                     <input type="submit" value="Submit">
                                 </form>
                             </div>

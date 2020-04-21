@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Fridge, Message, NewFridge
+from .models import Fridge
 
 # Fridge Serializer
 
@@ -9,14 +9,3 @@ class FridgeSerializer(serializers.ModelSerializer):
         model = Fridge
         fields = '__all__'
 
-
-class MessageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Message
-        fields = '__all__'
-
-
-class NewFridgeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = NewFridge
-        fields = '__all__'
