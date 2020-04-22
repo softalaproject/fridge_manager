@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 from django.http import HttpResponse
 from . import strings
 from django.views.decorators.csrf import csrf_exempt
-from fridges.models import NewFridge
+from fridges.models import Fridge
+from django.core import serializers
 
 # GET SLACK TOKEN HERE
 load_dotenv()
@@ -16,72 +17,39 @@ client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 IP2 = os.getenv('IP2')
 
 
-def full_fridge(request):
-    r1 = requests.get('HTTP://' + IP2 + ':8069/api/items/?format=json')
-    print(r1.text)
-    f_id = request.GET.get('id')
-    NewFridge.objects.filter(id=f_id).update(state='Full')
-    r2 = requests.get('HTTP://' + IP2 + ':8069/api/items/?format=json')
-    print(r2.text)
-    return redirect('/items/') # HttpResponse(f"Fridge id: {id} Set to Full")
-
-
-def half_fridge(request):
-    r1 = requests.get('HTTP://' + IP2 + ':8069/api/items/?format=json')
-    print(r1.text)
-    f_id = request.GET.get('id')
-    NewFridge.objects.filter(id=f_id).update(state='Half-full')
-    r2 = requests.get('HTTP://' + IP2 + ':8069/api/items/?format=json')
-    print(r2.text)
-    return HttpResponse(f"Fridge id: {f_id} Set to Half-full")
-
-
-def empty_fridge(request):
-    r1 = requests.get('HTTP://' + IP2 + ':8069/api/items/?format=json')
-    print(r1.text)
-    f_id = request.GET.get('id')
-    NewFridge.objects.filter(id=f_id).update(state='Empty')
-    r2 = requests.get('HTTP://' + IP2 + ':8069/api/items/?format=json')
-    print(r2.text)
-    return HttpResponse(f"Fridge id: {f_id} Set to Empty.")
-
-
 def create_fridges(request):
-    a = NewFridge(name="fridge", state="Empty")
-    b = NewFridge(name="fridgex", state="Full")
-    c = NewFridge(name="fridgey", state="Half-full")
-    a.save()
-    b.save()
-    c.save()
-    return HttpResponse("Created fridges")
+    fridge_1 = Fridge(name="Sauna Fridge", state="Empty", floor="1")
+    fridge_2 = Fridge(name="Fridge", state="Full", floor="2")
+    fridge_3 = Fridge(name="Fridgey", state="Half-full", floor="3")
+    fridge_4 = Fridge(name="Fridgex", state="Half-full", floor="4")
+    fridge_5 = Fridge(name="Fridgexy", state="Half-full", floor="5")
+    fridge_6 = Fridge(name="Fridgeyx", state="Half-full", floor="6")
+    fridge_7 = Fridge(name="Fridgeyxy", state="Half-full", floor="7")
+
+    fridge_1.save()
+    fridge_2.save()
+    fridge_3.save()
+    fridge_4.save()
+    fridge_5.save()
+    fridge_6.save()
+    fridge_7.save()
+
+    return HttpResponse("Created fridges.")
 
 
 # Endpoint http://localhost:8069/items.
-# Displays User Portal domain with a single item(fridge).
-# and PUT command to communicate the state to slack channel.
 @csrf_exempt
-def items(request):
-    t = requests.get('https://sauna.eficode.fi/get-latest')
-    temp_data = json.loads(t.text)
-    t_dict = []
-    temp = round(temp_data['temperature'], 1)
-    humid = round(temp_data['humidity'], 1)
-    temps = {
-        'temp': temp,
-        'humid': humid
-    }
-    t_dict.append(temps)
-
-    r = requests.get('HTTP://' + IP2 + ':8069/api/items/?format=json')
+def fridges(request):
+    r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/?format=json')
     data = json.loads(r.text)
     # print(r.text)
     data_dict = []
-
     for item in data:
         dicti = {
             'id': item['id'],
             'name': item['name'],
-            'state': item['state']
+            'state': item['state'],
+            'floor': item['floor'],
         }
 
         data_dict.append(dicti)
@@ -89,191 +57,69 @@ def items(request):
         'data': data_dict,
     }
     # print(data_dict)
-
-    return render(request, 'frontend/items.html', context)
+    return render(request, 'frontend/fridges.html', context)
+    # t = requests.get('https://sauna.eficode.fi/get-latest')
+    # temp_data = json.loads(t.text)
+    # t_dict = []
+    # temp = round(temp_data['temperature'], 1)
+    # humid = round(temp_data['humidity'], 1)
+    # temps = {
+    #     'temp': temp,
+    #     'humid': humid
+    # }
+    # t_dict.append(temps)
+#     { %
+#     for t in temp %}
+#     < nav
+#     id = "navbarr"
+#
+#     class ="navbar navbar-light bg-light" >
+#
+#     < span
+#
+#     class ="navbar-text" > < / span >
+#
+#     < span
+#
+#     class ="navbar-text" > {{t.temp}} °C | | {{t.humid}} % < / span >
+#
+#     < span
+#     id = "time"
+#
+#     class ="navbar-text" > < / span >
+#
+# < / nav >
+# { % endfor %}
 
 
 @csrf_exempt
-def change_item(request):
-    print(request.POST)
-    '''
-    docstring: put method to change fridge state
-    '''
+def change_state(request):
     if request.method == 'POST':
-        # url = 'http://' + IP2 + ':8069/api/items/1/?format=json'
-        # r = requests.get(url)
-        # data = json.loads(r.text)
-        # name = data['name']
         f_name = request.POST.get('name')
         f_id = request.POST.get('id')
+        floor_id = request.POST.get('floor')
         if request.POST.get('state') == 'Empty':
             new_state = 'Full'
 
         elif request.POST.get('state') == 'Full':
-            new_state = 'Half'
+            new_state = 'Half-full'
 
         else:
             new_state = 'Empty'
 
-        NewFridge.objects.filter(id=f_id).update(state=new_state)
+        Fridge.objects.filter(id=f_id).update(state=new_state)
         client.chat_postMessage(
             channel=strings.CHANNEL_NAME_1,
-            text=f'Fridge ID:{f_id} and Name: {f_name} state set to: {new_state}'
+            text=f'Fridge with name: {f_name} and ID: {f_id} from floor no: {floor_id} had its state set to: {new_state}.'
         )
-    return redirect('/items')
+    return redirect('/fridges')
 
 
-# Endpoint http://localhost:8069/. Displays HTML page with jquery. found in templates -> fridge.html
 def fridge(request):
-    # r = requests.get('http://localhost:8069/api/fridges/?format=json')
-    #
-    # json_data = json.loads(r.text)
-    # data_list = []
-    #
-    # for i in json_data:
-    #     a = ''
-    #     if i['fridge_is_empty']:
-    #         a.lower = 'Empty'
-    #     else:
-    #         a = 'Full'
-    #     dicti = {
-    #         'id': i['id'],
-    #         'name': i['name'],
-    #         'state': a,
-    #     }
-    #
-    #     data_list.append(dicti)
-    # context = {
-    #     'data_list': data_list
-    # }
-    return render(request, 'frontend/fridge.html')# , context)
-
-
-def fridge2(request):
-    return render(request, 'frontend/fridge2.html')
-
-
-@csrf_exempt
-def get_url_id(request):
-    pass
-
-
-@csrf_exempt
-def change_to_empty(request):
-    if request.method == 'POST':
-        url_id = '26'
-        url = f'http://localhost:8069/api/fridges/{url_id}/'
-        r = requests.get(url)
-        json_data = json.loads(r.text)
-
-        if json_data.get('fridge_is_empty'):
-            s = requests.put(url, data={
-                'name': json_data['name'],
-                'fridge_is_empty': False
-            })
-            print(s)
-        else:
-            s = requests.put(url, data={
-                'name': json_data['name'],
-                'fridge_is_empty': True
-            })
-            print(s)
-
-    return HttpResponse("b")
-
-# Endpoint http://localhost:8069/manage. Displays admin web domain powered by React.
-def manage(request):
-    return render(request, 'frontend/index.html')
-
-
-@csrf_exempt
-def test_method(request):
-    if request.method == "POST":
-        r = requests.get('http://localhost:8069/api/fridges/')
-        json_data = json.loads(r.text)
-
-        names = []
-        states = []
-        empty = 'Tyhjä'
-        full = 'Täynnä'
-        empty_checker = 0
-        length = 0
-        empty_ones = []
-
-        for i in json_data:
-            if i['fridge_is_empty']:
-                empty_checker += 1
-                length += 1
-                empty_ones.append(i['name'])
-            else:
-                length += 1
-
-            names.append(i['name'])
-
-            if i['fridge_is_empty']:
-                states.append(empty)
-            else:
-                states.append(full)
-
-        zipObj = zip(names, states)
-        dict1 = dict(zipObj)
-
-        if empty_checker == 0:
-            str2 = '*Kaikki jääkaapit täynnä!*'
-        elif empty_checker / length < 0.5:
-            str2 = f'Osa jääkaapeista on tyhjiä *{empty_ones}*'
-        elif empty_checker / length < 1:
-            str2 = f'Suurin osa jääkaapeista on tyhjiä *{empty_ones}*'
-        else:
-            str2 = f'Kaikki jääkapit ovat tyhjiä *{empty_ones}*'
-            # Text formatting in SLACK
-        str1 = ''.join(['```%s : %s``` \n' % (key, value)
-                        for (key, value) in dict1.items()])
-        client.chat_postMessage(
-            channel=strings.CHANNEL_NAME_1,
-            text=str(str1 + str2)
-        )
-    return HttpResponse("ok")
-
-
-@csrf_exempt
-def change_method(request):
-    if request.method == 'POST':
-        url = 'http://localhost:8069/api/fridges/27/'
-        r = requests.get(url)
-        json_data = json.loads(r.text)
-
-        if json_data.get('fridge_is_empty'):
-            s = requests.put(url, data={
-                'name': json_data['name'],
-                'fridge_is_empty': False
-            })
-            print(s)
-        else:
-            s = requests.put(url, data={
-                'name': json_data['name'],
-                'fridge_is_empty': True
-            })
-            print(s)
-
-    return HttpResponse("b")
-
-
-@csrf_exempt
-def post_beer(request):
-    if request.method == "POST":
-        client.chat_postMessage(
-            channel=strings.CHANNEL_NAME_1,
-            text=strings.SLACK_MESSAGE_2
-        )
-    return HttpResponse("ok")
-
-
-@csrf_exempt
-def post_no_beer(request):
-    if request.method == "POST":
-        client.chat_postMessage(
-            channel=strings.CHANNEL_NAME_1,
-            text=strings.SLACK_MESSAGE_1
-        )
-    return HttpResponse("ok")
+    data = serializers.serialize("python", Fridge.objects.all().filter(floor=1))
+    print(data)
+    all_entries = Fridge.objects.all().filter(floor=1)
+    print(all_entries)
+    one_entry = Fridge.objects.get(id=1)
+    print(one_entry)
+    return render(request, 'frontend/fridge.html')

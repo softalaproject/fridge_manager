@@ -45,9 +45,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% load static %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% load static %}
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
         <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
@@ -55,13 +52,6 @@
     </head>
 
     <body>
-        {% for t in temp %}
-        <nav id="navbarr" class="navbar navbar-light bg-light">
-            <span class="navbar-text"></span>
-            <span class="navbar-text">{{ t.temp }} °C || {{ t.humid }} %</span>
-            <span id="time" class="navbar-text"></span>
-        </nav>
-        {% endfor %}
         <div class="container">
             <div class="keskitys">
 
@@ -72,14 +62,16 @@
                         <div id="send" class="media-content">
                             <div class="media-left">
                                 <p>
-                                    <span class="w3-sepia">{{ctx.id}}</span>
-                                    <span class="title">{{ctx.name}}</span>
-                                    <span class="subtitle">{{ctx.state}}</span>
+                                    <p hidden>ID: {{ctx.id}}</p>
+                                    <h1>{{ctx.name}}</h1>
+                                    <p>State: {{ctx.state}}</p>
+                                    <p>Floor: {{ctx.floor}}</p>
                                 </p>
-                                <form action="/api/change_item/" id="postformi" method="post">
+                                <form action="/api/change_state/" id="postformi" method="post">
                                     <input type="hidden" name="id" id="id" value="{{ctx.id}}">
                                     <input type="hidden" name="name" id="name" value="{{ctx.name}}">
                                     <input type="hidden" name="state" id="state" value="{{ctx.state}}">
+                                    <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
                                     <input type="submit" value="Submit">
                                 </form>
                             </div>
