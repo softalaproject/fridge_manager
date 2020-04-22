@@ -14,8 +14,6 @@ ssh apps@$IP -p $PORT <<EOF
   git fetch origin
   git reset --hard origin/dev2
   docker-compose down
-  python restmanager/manage.py makemigrations
-  python restmanager/manage.py migrate
   docker-compose build
   docker-compose up -d
 EOF
