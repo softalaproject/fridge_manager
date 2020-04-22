@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from . import strings
 from django.views.decorators.csrf import csrf_exempt
 from fridges.models import Fridge
+from django.core import serializers
 
 # GET SLACK TOKEN HERE
 load_dotenv()
@@ -33,7 +34,7 @@ def create_fridges(request):
     fridge_6.save()
     fridge_7.save()
 
-    return HttpResponse("Created fridges")
+    return HttpResponse("Created fridges.")
 
 
 # Endpoint http://localhost:8069/items.
@@ -118,11 +119,10 @@ def change_state(request):
 
 
 def fridge(request):
+    data = serializers.serialize("python", Fridge.objects.all().filter(floor=1))
+    print(data)
     all_entries = Fridge.objects.all().filter(floor=1)
     print(all_entries)
     one_entry = Fridge.objects.get(id=1)
     print(one_entry)
-    print(one_entry.id)
-    # r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/1/?format=json')
-    # print(r.GET.get('id'))
-    return render(request, 'frontend/fridge.html')# , context)
+    return render(request, 'frontend/fridge.html')
