@@ -4,8 +4,7 @@ services:
   web:
     build: .
     command: sh -c "
-    python restmanager/manage.py makemigrations 
-    && python restmanager/manage.py migrate 
+    python restmanager/manage.py migrate 
     && python restmanager/manage.py runserver 0.0.0.0:8069
     "
     volumes:
