@@ -12,7 +12,7 @@ ssh-add .travis/id_rsa # Add the private key to SSH
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
   git fetch origin
-  git reset --hard origin/dev2
+  git reset --hard origin/feature/mariadb
   docker-compose build
   docker-compose down
   docker-compose up -d

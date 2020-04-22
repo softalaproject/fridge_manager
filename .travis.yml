@@ -7,7 +7,7 @@ env:
 addons:
   ssh_known_hosts:
   - 95.217.134.247
-  - 95.217.134.247:8069
+  - 95.217.134.247:8100
 before_install:
 - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv
   -in .travis/id_rsa.enc -out .travis/id_rsa -d
@@ -19,5 +19,5 @@ install:
 script:
 - python3 restmanager/manage.py migrate
 - python3 restmanager/manage.py test frontend
-after_success: '[[ $TRAVIS_BRANCH == "dev2" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
+after_success: '[[ $TRAVIS_BRANCH == "feature/mariadb" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
 
