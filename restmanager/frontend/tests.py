@@ -20,12 +20,6 @@ class UrlsTest(TestCase):
         self.assertEquals(resolve(url).func, fridges)
         self.assertEquals(resolve(url2).func, fridges)
 
-    def test_manage(self):
-        url = '/manage'
-        url2 = reverse(manage)
-        self.assertEquals(url, url2)
-        self.assertEquals(resolve(url).func, manage)
-        self.assertEquals(resolve(url2).func, manage)
 
     def test_beer(self):
         url = '/api/beer/'
