@@ -78,22 +78,3 @@ def fridge(request):
     }
     return render(request, 'frontend/fridge.html', context)
 
-
-@csrf_exempt
-def post_beer(request):
-    if request.method == "POST":
-        client.chat_postMessage(
-            channel=strings.CHANNEL_NAME_1,
-            text=strings.SLACK_MESSAGE_2
-        )
-    return HttpResponse("ok")
-
-
-@csrf_exempt
-def post_no_beer(request):
-    if request.method == "POST":
-        client.chat_postMessage(
-            channel=strings.CHANNEL_NAME_1,
-            text=strings.SLACK_MESSAGE_1
-        )
-    return HttpResponse("ok")

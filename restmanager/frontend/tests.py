@@ -1,5 +1,5 @@
 import unittest
-from .views import fridge, fridges, post_beer, post_no_beer
+from .views import fridge, fridges
 from django.urls import reverse, resolve
 from unittest import TestCase
 from . import strings
@@ -19,20 +19,6 @@ class UrlsTest(TestCase):
         self.assertEquals(url, url2)
         self.assertEquals(resolve(url).func, fridges)
         self.assertEquals(resolve(url2).func, fridges)
-
-    def test_beer(self):
-        url = '/api/beer/'
-        url2 = reverse(post_beer)
-        self.assertEquals(url, url2)
-        self.assertEquals(resolve(url).func, post_beer)
-        self.assertEquals(resolve(url2).func, post_beer)
-
-    def test_no_beer(self):
-        url = '/api/no_beer/'
-        url2 = reverse(post_no_beer)
-        self.assertEquals(url, url2)
-        self.assertEquals(resolve(url).func, post_no_beer)
-        self.assertEquals(resolve(url2).func, post_no_beer)
 
 
 class UnitTests(TestCase):
