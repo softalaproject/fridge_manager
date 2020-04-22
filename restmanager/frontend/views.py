@@ -17,6 +17,7 @@ client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 IP2 = os.getenv('IP2')
 
 
+@csrf_exempt
 def create_fridges(request):
     fridge_1 = Fridge(name="Sauna Fridge", state="Empty", floor="1")
     fridge_2 = Fridge(name="Fridge", state="Full", floor="2")
