@@ -8,34 +8,13 @@ from django.http import HttpResponse
 from . import strings
 from django.views.decorators.csrf import csrf_exempt
 from fridges.models import Fridge
-from django.core import serializers
+from django.core import serializers 
 
 # GET SLACK TOKEN HERE
 load_dotenv()
 client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 IP2 = os.getenv('IP2')
-
-
-@csrf_exempt
-def create_fridges(request):
-    fridge_1 = Fridge(name="Sauna Fridge", state="Empty", floor="1")
-    fridge_2 = Fridge(name="Fridge", state="Full", floor="2")
-    fridge_3 = Fridge(name="Fridgey", state="Half-full", floor="3")
-    fridge_4 = Fridge(name="Fridgex", state="Half-full", floor="4")
-    fridge_5 = Fridge(name="Fridgexy", state="Half-full", floor="5")
-    fridge_6 = Fridge(name="Fridgeyx", state="Half-full", floor="6")
-    fridge_7 = Fridge(name="Fridgeyxy", state="Half-full", floor="7")
-
-    fridge_1.save()
-    fridge_2.save()
-    fridge_3.save()
-    fridge_4.save()
-    fridge_5.save()
-    fridge_6.save()
-    fridge_7.save()
-
-    return HttpResponse("Created fridges.")
 
 
 # Endpoint http://localhost:8069/items.
