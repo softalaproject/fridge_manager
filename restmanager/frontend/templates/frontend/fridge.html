@@ -57,34 +57,30 @@
                 <div class="row">
                     <h1>Rasp käyttöliittymä</h1>
                 </div>
-
-                <div class="rivi">
-                    <input class="empty" type="button" value="Kaappi täytetty" id="beer_post">
+                {% for ctx in data %}
+                <div id="items-wrapper" class="box">
+                    <article id="items" class="media">
+                        <div id="send" class="media-content">
+                            <div class="media-left">
+                                <p>
+                                    <p hidden>ID: {{ctx.id}}</p>
+                                    <h1>{{ctx.name}}</h1>
+                                    <p>State: {{ctx.state}}</p>
+                                    <p>Floor: {{ctx.floor}}</p>
+                                </p>
+                                <form action="/api/change_state/" id="postformi" method="post">
+                                    <input type="hidden" name="id" id="id" value="{{ctx.id}}">
+                                    <input type="hidden" name="name" id="name" value="{{ctx.name}}">
+                                    <input type="hidden" name="state" id="state" value="{{ctx.state}}">
+                                    <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
+                                    <input type="submit" value="Submit">
+                                </form>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-
-                <div class="rivi">
-                    <input class="empty" type="button" id="no_beer_post" value="Kaappi tyhjä">
-                </div>
+                {% endfor %}
             </div>
         </div>
     </body>
-
-    <script>
-        $("#beer_post").on("click", function () {
-            $.ajax({
-                type: 'POST',
-                data: "",
-                url: '/api/beer/',
-            });
-            alert('Täytöstä ilmoitettu slackiin.');
-        });
-        $("#no_beer_post").on("click", function () {
-            $.ajax({
-                type: 'POST',
-                data: "",
-                url: '/api/no_beer/',
-            });
-            alert('Tyhjästä kaapista ilmoitettu slackiin.');
-        });
-    </script>
 </html>
