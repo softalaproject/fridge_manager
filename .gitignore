@@ -4,6 +4,9 @@
 # Applen DS_Store
 .DS_Store
 
+# loki filu
+log.txt
+
 vir/
 ### react ###
 .DS_*
