@@ -1,5 +1,5 @@
 import unittest
-from .views import fridge, fridge2, manage, post_beer, post_no_beer
+from .views import fridge, fridges, post_beer, post_no_beer
 from django.urls import reverse, resolve
 from unittest import TestCase
 from . import strings
@@ -14,11 +14,11 @@ class UrlsTest(TestCase):
         self.assertEquals(resolve(url2).func, fridge)
 
     def test_fridge2(self):
-        url = '/fridge2'
-        url2 = reverse(fridge2)
+        url = '/fridges'
+        url2 = reverse(fridges)
         self.assertEquals(url, url2)
-        self.assertEquals(resolve(url).func, fridge2)
-        self.assertEquals(resolve(url2).func, fridge2)
+        self.assertEquals(resolve(url).func, fridges)
+        self.assertEquals(resolve(url2).func, fridges)
 
     def test_manage(self):
         url = '/manage'
