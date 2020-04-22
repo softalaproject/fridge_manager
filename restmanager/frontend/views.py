@@ -85,6 +85,7 @@ def change_state(request):
         f_name = request.POST.get('name')
         f_id = request.POST.get('id')
         floor_id = request.POST.get('floor')
+        username_c = 'Floor: ' + floor_id + ', ' + f_name
         if request.POST.get('state') == 'Empty':
             new_state = 'Full'
 
@@ -97,7 +98,8 @@ def change_state(request):
         Fridge.objects.filter(id=f_id).update(state=new_state)
         client.chat_postMessage(
             channel=strings.CHANNEL_NAME_1,
-            text=f'Fridge with name: {f_name} and ID: {f_id} from floor no: {floor_id} had its state set to: {new_state}.'
+            text=f'State: {new_state}',
+            username=username_c
         )
     return redirect('/fridges')
 
