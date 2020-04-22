@@ -94,10 +94,7 @@ def fridges(request):
 
 @csrf_exempt
 def change_state(request):
-    # print(request.POST)
     if request.method == 'POST':
-        # url = 'http://' + IP2 + ':8069/api/items/1/?format=json'
-        # r = requests.get(url)
         f_name = request.POST.get('name')
         f_id = request.POST.get('id')
         floor_id = request.POST.get('floor')
