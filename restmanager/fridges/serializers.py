@@ -9,3 +9,8 @@ class FridgeSerializer(serializers.ModelSerializer):
         model = Fridge
         fields = '__all__'
 
+
+class Fridge2Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fridge
+        fields = '__all__'
