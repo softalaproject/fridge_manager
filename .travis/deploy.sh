@@ -13,7 +13,7 @@ ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
   git fetch origin
   git reset --hard origin/dev2
-  docker-compose down
   docker-compose build
+  docker-compose down
   docker-compose up -d
 EOF
