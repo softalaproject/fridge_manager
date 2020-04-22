@@ -3,10 +3,7 @@ version: '3'
 services:
   web:
     build: .
-    command: sh -c "
-    python restmanager/manage.py migrate 
-    && python restmanager/manage.py runserver 0.0.0.0:8069
-    "
+    command: sh -c "python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8069"
     volumes:
       - .:/code
     ports:
