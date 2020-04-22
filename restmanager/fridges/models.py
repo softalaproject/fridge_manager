@@ -9,3 +9,5 @@ class Fridge(models.Model):
     state = models.CharField(max_length=20)
     floor = models.IntegerField()
 
+    def _str_(self):
+        return self.name
