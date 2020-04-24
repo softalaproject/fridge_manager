@@ -1,13 +1,9 @@
 from django.db import models
 
 # Create your models here.
-# id, name, state, floor
-
+# Fridgename, Fridgelevel, Fridgelevel_is_empty, Fridge_time_since, 
 
 class Fridge(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    state = models.CharField(max_length=20)
-    floor = models.IntegerField()
-
-    def _str_(self):
-        return self.name
+    fridge_is_empty = models.BooleanField()
+    time_since = models.DateTimeField(auto_now_add=True)    

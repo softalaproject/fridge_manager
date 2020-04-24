@@ -3,10 +3,9 @@ from . import views
 
 # Defining URL endpoints and what views they should return.
 urlpatterns = [
-    path('', views.fridges, name="home"),
-    path('fridges', views.fridges),
-    path('fridges/', views.fridges),
-    path('fridge', views.fridge),
-    path('create_fridges/', views.create_fridges),
-    path('api/change_state/', views.change_state),
+    path('', views.fridge2),
+    path('manage', views.manage),
+    path('api/beer/', views.post_beer),
+    path('api/no_beer/', views.post_no_beer),
+    path('fridge2', views.fridge2),
 ]
