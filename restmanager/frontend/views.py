@@ -18,42 +18,30 @@ IP2 = os.getenv('IP2')
 
 @csrf_exempt
 def create_fridges(request):
-    fridge_1 = Fridge(name="Sauna Fridge", state="Empty", floor="1")
-    fridge_2 = Fridge(name="Fridge", state="Full", floor="2")
-    fridge_3 = Fridge(name="Fridgey", state="Half-full", floor="3")
-    fridge_4 = Fridge(name="Fridgex", state="Half-full", floor="4")
-    fridge_5 = Fridge(name="Fridgexy", state="Half-full", floor="5")
-    fridge_6 = Fridge(name="Fridgeyx", state="Half-full", floor="6")
-    fridge_7 = Fridge(name="Fridgeyxy", state="Half-full", floor="7")
-
-    fridge_1.save()
-    fridge_2.save()
-    fridge_3.save()
-    fridge_4.save()
-    fridge_5.save()
-    fridge_6.save()
-    fridge_7.save()
+    Fridge.objects.bulk_create([
+        Fridge(name="Sauna Fridge", state="Empty", floor="1"),
+        Fridge(name="Fridge", state="Full", floor="2"),
+        Fridge(name="Fridgey", state="Half-full", floor="3"),
+        Fridge(name="Fridgex", state="Half-full", floor="4"),
+        Fridge(name="Fridgexy", state="Half-full", floor="5"),
+        Fridge(name="Fridgeyx", state="Half-full", floor="6"),
+        Fridge(name="Fridgeyxy", state="Half-full", floor="7")
+    ])
 
     return HttpResponse("Created fridges.")
 
 
 @csrf_exempt
 def create_fridges2(request):
-    fridge_1 = Fridge(name="Egdirf_01", state="Empty", floor="1")
-    fridge_2 = Fridge(name="Egdirf_02", state="Full", floor="2")
-    fridge_3 = Fridge(name="Egdirf_03", state="Half-full", floor="3")
-    fridge_4 = Fridge(name="Egdirf_04", state="Half-full", floor="4")
-    fridge_5 = Fridge(name="Egdirf_05", state="Half-full", floor="5")
-    fridge_6 = Fridge(name="Egdirf_06", state="Half-full", floor="6")
-    fridge_7 = Fridge(name="Egdirf_07", state="Half-full", floor="7")
-
-    fridge_1.save()
-    fridge_2.save()
-    fridge_3.save()
-    fridge_4.save()
-    fridge_5.save()
-    fridge_6.save()
-    fridge_7.save()
+    Fridge.objects.bulk_create([
+        Fridge(name="Egdirf_01", state="Empty", floor="1"),
+        Fridge(name="Egdirf_02", state="Full", floor="2"),
+        Fridge(name="Egdirf_03", state="Half-full", floor="3"),
+        Fridge(name="Egdirf_04", state="Half-full", floor="4"),
+        Fridge(name="Egdirf_05", state="Half-full", floor="5"),
+        Fridge(name="Egdirf_06", state="Half-full", floor="6"),
+        Fridge(name="Egdirf_07", state="Half-full", floor="7")
+    ])
 
     return HttpResponse("Created fridges 2.")
 
