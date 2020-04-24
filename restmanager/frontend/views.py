@@ -10,7 +10,7 @@ from rest_framework import generics
 from django.shortcuts import render
 from fridges.serializers import FridgeSerializer
 from django.views.decorators.csrf import csrf_exempt
-
+# test
 
 # GET SLACK TOKEN HERE
 load_dotenv()
