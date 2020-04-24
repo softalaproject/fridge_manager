@@ -11,9 +11,9 @@ ssh-add .travis/id_rsa # Add the private key to SSH
 # Skip this command if you don't need to execute any additional commands after deploying.
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
+  docker kill $(docker ps -q)
   git fetch origin
   git reset --hard origin/feature/mariadb
-  docker-compose down
   docker-compose build
   docker-compose -p mariadb_django up -d
 EOF
