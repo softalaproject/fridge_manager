@@ -117,8 +117,7 @@ def change_state(request):
             text=f'State: {new_state}',
             username=username_c
         )
-    next = request.POST.get('next', '/')
-    return HttpResponseRedirect(next)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @csrf_exempt
