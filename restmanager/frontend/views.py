@@ -17,7 +17,7 @@ load_dotenv()
 client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 IP2 = os.getenv('IP2')
-D_PORT = "8080"
+D_PORT = "8100"
 
 
 class FloorList(generics.ListAPIView):
