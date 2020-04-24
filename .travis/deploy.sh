@@ -16,4 +16,5 @@ ssh apps@$IP -p $PORT <<EOF
   docker-compose build
   docker-compose down
   docker-compose up -d
+  docker-compose -p dev2_django up -d
 EOF
