@@ -105,22 +105,48 @@ def change_state(request):
 
 
 def fridge(request):
-    r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/1/?format=json')
+    r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/?format=json')
     data = json.loads(r.text)
     data_dict = []
-    for item in data:
-        dicti = {
-            'id': item['id'],
-            'name': item['name'],
-            'state': item['state'],
-            'floor': item['floor'],
-        }
+    fid = request.GET.get('id')
+    print(type(fid))
+    print(f'A id is {fid}')
+    if fid is not None:
+        int_id = int(fid)
+        print(int_id)
+    else:
+        int_id = fid
+        pass
 
-        data_dict.append(dicti)
+    if fid is not None:
+        print(f'B id is {int_id}')
+        for item in data:
+            dicti = {
+                'id': item['id'],
+                'name': item['name'],
+                'state': item['state'],
+                'floor': item['floor'],
+            }
+            if item['id'] == int_id:
+                data_dict.append(dicti)
+                print(f'C id is {int_id}')
+            else:
+                pass
+    else:
+        print(f'D id is {int_id}')
+        for item in data:
+            dicti = {
+                'id': item['id'],
+                'name': item['name'],
+                'state': item['state'],
+                'floor': item['floor'],
+            }
+            data_dict.append(dicti)
 
     context = {
         'data': data_dict,
     }
+
     return render(request, 'frontend/fridge.html', context)
 
 

@@ -7,7 +7,7 @@ from . import strings
 
 class UrlsTest(TestCase):
     def test_fridge(self):
-        url = '/fridge'
+        url = '/fridge/'
         url2 = reverse(fridge)
         self.assertEquals(url, url2)
         self.assertEquals(resolve(url).func, fridge)
