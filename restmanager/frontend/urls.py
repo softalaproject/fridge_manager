@@ -7,5 +7,6 @@ urlpatterns = [
     path('fridges', views.fridges),
     path('fridges/', views.fridges),
     path('fridge', views.fridge),
+    path('create_fridges/', views.create_fridges),
     path('api/change_state/', views.change_state),
 ]
