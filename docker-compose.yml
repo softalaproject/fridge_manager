@@ -31,4 +31,5 @@ services:
       - mariadb-db
     networks:
       - mariadb-django
+    restart: on-failure
 
