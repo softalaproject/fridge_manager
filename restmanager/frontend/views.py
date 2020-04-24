@@ -1,16 +1,15 @@
-import requests
-import json
-from django.shortcuts import render, redirect
 import os
+import json
 import slack
+import requests
+from . import channels
 from dotenv import load_dotenv
 from django.http import HttpResponse, HttpResponseRedirect
-from . import strings
-from django.views.decorators.csrf import csrf_exempt
 from fridges.models import Fridge
 from rest_framework import generics
+from django.shortcuts import render
 from fridges.serializers import FridgeSerializer
-
+from django.views.decorators.csrf import csrf_exempt
 
 
 # GET SLACK TOKEN HERE
@@ -27,7 +26,7 @@ class FloorList(generics.ListAPIView):
         queryset = Fridge.objects.all()
         fid = self.request.query_params.get('id', None)
 
-        if id is not None:
+        if fid is not None:
             queryset = queryset.filter(id=fid)
         return queryset
 
@@ -45,6 +44,7 @@ def fridges(request):
     data_list = []
     floor = request.GET.get('floor')
     fid = request.GET.get('id')
+
     if floor is not None:
         int_floor = int(floor)
     else:
@@ -67,6 +67,7 @@ def fridges(request):
                 data_list.append(dicti)
             else:
                 pass
+
     elif fid is not None:
         for item in data:
             dicti = {
@@ -79,6 +80,7 @@ def fridges(request):
                 data_list.append(dicti)
             else:
                 pass
+
     else:
         for item in data:
             dicti = {
@@ -103,18 +105,17 @@ def change_state(request):
         f_id = request.POST.get('id')
         floor_id = request.POST.get('floor')
         username_c = 'Floor: ' + floor_id + ', ' + f_name
+
         if request.POST.get('state') == 'Empty':
             new_state = 'Full'
-
         elif request.POST.get('state') == 'Full':
             new_state = 'Half-full'
-
         else:
             new_state = 'Empty'
 
         Fridge.objects.filter(id=f_id).update(state=new_state)
         client.chat_postMessage(
-            channel=strings.CHANNEL_NAME_1,
+            channel=channels.CHANNEL_NAME_1,
             text=f'State: {new_state}',
             username=username_c
         )
