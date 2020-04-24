@@ -7,3 +7,4 @@ class FridgeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fridge
         fields = '__all__'
+

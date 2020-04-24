@@ -11,3 +11,4 @@ urlpatterns = [
     path('create_fridges/', views.create_fridges),
     path('create_fridges2/', views.create_fridges2),
 ]
+

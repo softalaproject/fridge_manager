@@ -32,6 +32,11 @@ class FloorList(generics.ListAPIView):
         return queryset
 
 
+# GET SLACK TOKEN HERE
+load_dotenv()
+client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
+
+
 @csrf_exempt
 def get_request():
     r = requests.get('HTTP://' + IP2 + ':' + D_PORT + '/api/fridges/?format=json')
@@ -163,5 +168,4 @@ def create_fridges2(request):
     fridge_7.save()
 
     return HttpResponse("Created fridges 2.")
-
 
