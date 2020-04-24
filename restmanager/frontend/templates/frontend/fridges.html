@@ -43,7 +43,7 @@
         </style>
 
         <script src="https://code.jquery.com/jquery-2.1.4.js"
-            integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
+                integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% load static %}
@@ -60,10 +60,12 @@
                 <div id="items-wrapper" class="box">
                     <div class="media-left">
                         <div class="container">
+
                             <p hidden>ID: {{ctx.id}}</p>
                             <h1>{{ctx.name}}</h1>
                             <p class="para">State: {{ctx.state}}</p>
                             <p>Floor: {{ctx.floor}}</p>
+
                             <form action="/api/change_state/" id="post_form" method="post">
                                 <input type="hidden" name="id" id="id" value="{{ctx.id}}">
                                 <input type="hidden" name="name" id="name" value="{{ctx.name}}">
@@ -71,6 +73,7 @@
                                 <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
                                 <input type="submit" class="button_1" value="Change state">
                             </form>
+
                         </div>
                     </div>
                 </div>
