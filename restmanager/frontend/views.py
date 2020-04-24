@@ -4,12 +4,13 @@ from django.shortcuts import render, redirect
 import os
 import slack
 from dotenv import load_dotenv
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from . import strings
 from django.views.decorators.csrf import csrf_exempt
 from fridges.models import Fridge
 from rest_framework import generics
 from fridges.serializers import FridgeSerializer
+
 
 
 # GET SLACK TOKEN HERE
