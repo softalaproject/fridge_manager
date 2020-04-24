@@ -105,23 +105,23 @@ def change_state(request):
 
 
 def fridge(request):
-#     r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/1/?format=json')
-#     data = json.loads(r.text)
-#     data_dict = []
-#     for item in data:
-#         dicti = {
-#             'id': item['id'],
-#             'name': item['name'],
-#             'state': item['state'],
-#             'floor': item['floor'],
-#         }
-#
-#         data_dict.append(dicti)
-#
-#     context = {
-#         'data': data_dict,
-#     }
-    return render(request, 'frontend/fridge.html')# , context)
+    r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/1/?format=json')
+    data = json.loads(r.text)
+    data_dict = []
+    for item in data:
+        dicti = {
+            'id': item['id'],
+            'name': item['name'],
+            'state': item['state'],
+            'floor': item['floor'],
+        }
+
+        data_dict.append(dicti)
+
+    context = {
+        'data': data_dict,
+    }
+    return render(request, 'frontend/fridge.html', context)
 
 
 @csrf_exempt
