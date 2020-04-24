@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  web:
+  django-mariadb:
     build: .
     command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8100"
     volumes:
