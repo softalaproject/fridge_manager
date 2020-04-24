@@ -117,7 +117,8 @@ def change_state(request):
             text=f'State: {new_state}',
             username=username_c
         )
-    return redirect('/fridges')
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
 
 
 @csrf_exempt
