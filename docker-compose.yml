@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  web:
+  dev-django:
     build: .
     command: python restmanager/manage.py migrate
     command: python restmanager/manage.py runserver 0.0.0.0:8000
