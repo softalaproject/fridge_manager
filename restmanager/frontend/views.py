@@ -17,6 +17,7 @@ load_dotenv()
 client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 IP2 = os.getenv('IP2')
+D_PORT = "8080"
 
 
 class FloorList(generics.ListAPIView):
@@ -33,11 +34,11 @@ class FloorList(generics.ListAPIView):
 
 @csrf_exempt
 def get_request():
-    r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/?format=json')
+    r = requests.get('HTTP://' + IP2 + ':' + D_PORT + '/api/fridges/?format=json')
     return json.loads(r.text)
 
 
-# Endpoint http://localhost:8069/fridges.
+# Endpoint http://localhost:PORTNO/fridges.
 @csrf_exempt
 def fridges(request):
     data = get_request()
