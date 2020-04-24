@@ -15,5 +15,5 @@ ssh apps@$IP -p $PORT <<EOF
   git reset --hard origin/feature/mariadb
   docker-compose build
   docker-compose down
-  docker-compose up -d
+  docker-compose -p mariadb_django up -d
 EOF
