@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .box{
+                border:2px solid #000000;
+            }
+
+            .button_1 {
+                background-color:#ffffff;
+                border-radius:5px;
+                border:2px solid #5c5b5c;
+                display:inline-block;
+                cursor:pointer;
+                color:#000000;
+                font-family:Segoe UI;
+                font-size:18px;
+                font-weight:bold;
+                padding:6px 24px;
+                text-decoration:none;
+            }
+
+            .button_1:hover {
+                background-color:#9c9c9c;
+            }
+
+            .button_1:active {
+                position:relative;
+                top:1px;
+            }
+
+            .container {
+                text-align: center;
+            }
+
+            .center {
+                text-align: center;
+                width: auto;
+                height: auto;
+                display: inline-block;
+                position: relative;
+            }
+        </style>
+
+        <script src="https://code.jquery.com/jquery-2.1.4.js"
+                integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+        <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css"/>
+        <title>Fridges</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="center">
+                {% for ctx in data %}
+                <div id="items-wrapper" class="box">
+                    <div class="media-left">
+                        <div class="container">
+
+                            <p hidden>ID: {{ctx.id}}</p>
+                            <h1>{{ctx.name}}</h1>
+                            <p class="para">State: {{ctx.state}}</p>
+                            <p>Floor: {{ctx.floor}}</p>
+
+                            <form action="/api/change_state/" id="post_form" method="post">
+                                <input type="hidden" name="id" id="id" value="{{ctx.id}}">
+                                <input type="hidden" name="name" id="name" value="{{ctx.name}}">
+                                <input type="hidden" name="state" id="state" value="{{ctx.state}}">
+                                <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
+                                <input type="submit" class="button_1" value="Change state">
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,9 +1,10 @@
 version: '3'
 
 services:
-  dev-django:
+  dev2-django:
     build: .
-    command: python restmanager/manage.py migrate
-    command: python restmanager/manage.py runserver 0.0.0.0:8000
+    command: sh -c "python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - .:/code
     ports:
-      - "8000:8000"
+      - "8080:8080"

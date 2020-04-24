@@ -15,5 +15,6 @@ ssh apps@$IP -p $PORT <<EOF
   git reset --hard origin/dev
   docker-compose build
   docker-compose down
+  docker-compose up -d
   docker-compose -p dev_django up -d
 EOF
