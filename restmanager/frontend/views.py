@@ -31,24 +31,30 @@ class FloorList(generics.ListAPIView):
         return queryset
 
 
+@csrf_exempt
+def get_request():
+    r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/?format=json')
+    return json.loads(r.text)
+
+
 # Endpoint http://localhost:8069/fridges.
 @csrf_exempt
 def fridges(request):
-    r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/?format=json')
-    data = json.loads(r.text)
-    data_dict = []
+    data = get_request()
+    data_list = []
     floor = request.GET.get('floor')
-    print(type(floor))
-    print(f'A floor is {floor}')
+    fid = request.GET.get('id')
     if floor is not None:
         int_floor = int(floor)
-        print(int_floor)
     else:
         int_floor = floor
-        pass
+
+    if fid is not None:
+        int_fid = int(fid)
+    else:
+        int_fid = fid
 
     if floor is not None:
-        print(f'B floor is {floor}')
         for item in data:
             dicti = {
                 'id': item['id'],
@@ -57,12 +63,10 @@ def fridges(request):
                 'floor': item['floor'],
             }
             if item['floor'] == int_floor:
-                data_dict.append(dicti)
-                print(f'C floor is {int_floor}')
+                data_list.append(dicti)
             else:
                 pass
-    else:
-        print(f'D floor is {floor}')
+    elif fid is not None:
         for item in data:
             dicti = {
                 'id': item['id'],
@@ -70,10 +74,22 @@ def fridges(request):
                 'state': item['state'],
                 'floor': item['floor'],
             }
-            data_dict.append(dicti)
+            if item['id'] == int_fid:
+                data_list.append(dicti)
+            else:
+                pass
+    else:
+        for item in data:
+            dicti = {
+                'id': item['id'],
+                'name': item['name'],
+                'state': item['state'],
+                'floor': item['floor'],
+            }
+            data_list.append(dicti)
 
     context = {
-        'data': data_dict,
+        'data': data_list,
     }
 
     return render(request, 'frontend/fridges.html', context)
@@ -102,52 +118,6 @@ def change_state(request):
             username=username_c
         )
     return redirect('/fridges')
-
-
-def fridge(request):
-    r = requests.get('HTTP://' + IP2 + ':8069/api/fridges/?format=json')
-    data = json.loads(r.text)
-    data_dict = []
-    fid = request.GET.get('id')
-    print(type(fid))
-    print(f'A id is {fid}')
-    if fid is not None:
-        int_id = int(fid)
-        print(int_id)
-    else:
-        int_id = fid
-        pass
-
-    if fid is not None:
-        print(f'B id is {int_id}')
-        for item in data:
-            dicti = {
-                'id': item['id'],
-                'name': item['name'],
-                'state': item['state'],
-                'floor': item['floor'],
-            }
-            if item['id'] == int_id:
-                data_dict.append(dicti)
-                print(f'C id is {int_id}')
-            else:
-                pass
-    else:
-        print(f'D id is {int_id}')
-        for item in data:
-            dicti = {
-                'id': item['id'],
-                'name': item['name'],
-                'state': item['state'],
-                'floor': item['floor'],
-            }
-            data_dict.append(dicti)
-
-    context = {
-        'data': data_dict,
-    }
-
-    return render(request, 'frontend/fridge.html', context)
 
 
 @csrf_exempt

@@ -6,13 +6,6 @@ from . import strings
 
 
 class UrlsTest(TestCase):
-    def test_fridge(self):
-        url = '/fridge/'
-        url2 = reverse(fridge)
-        self.assertEquals(url, url2)
-        self.assertEquals(resolve(url).func, fridge)
-        self.assertEquals(resolve(url2).func, fridge)
-
     def test_fridges(self):
         url = '/fridges/'
         url2 = reverse(fridges)

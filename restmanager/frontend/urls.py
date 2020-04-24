@@ -6,8 +6,6 @@ urlpatterns = [
     path('', views.fridges, name="home"),
     path('fridges', views.fridges),
     path('fridges/', views.fridges),
-    path('fridge', views.fridge),
-    path('fridge/', views.fridge),
     path('api/change_state/', views.change_state),
     path('create_fridges/', views.create_fridges),
     path('create_fridges2/', views.create_fridges2),
