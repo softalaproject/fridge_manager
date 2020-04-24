@@ -5,6 +5,7 @@ networks:
     driver: bridge
 
 services:
+<<<<<<< HEAD
   mariadb-db:
     image: mariadb
     user: root
@@ -31,3 +32,12 @@ services:
       - mariadb-db
     networks:
       - mariadb-django
+=======
+  dev2-django:
+    build: .
+    command: sh -c "python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - .:/code
+    ports:
+      - "8080:8080"
+>>>>>>> dev

@@ -12,8 +12,16 @@ ssh-add .travis/id_rsa # Add the private key to SSH
 ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
   git fetch origin
+<<<<<<< HEAD
   git reset --hard origin/feature/mariadb
   docker-compose build
   docker-compose down
   docker-compose -p mariadb_django up -d
+=======
+  git reset --hard origin/dev
+  docker-compose build
+  docker-compose down
+  docker-compose up -d
+  docker-compose -p dev_django up -d
+>>>>>>> dev
 EOF

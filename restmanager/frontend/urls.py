@@ -1,11 +1,14 @@
 from django.urls import path
 from . import views
 
+
 # Defining URL endpoints and what views they should return.
 urlpatterns = [
-    path('', views.fridge2),
-    path('manage', views.manage),
-    path('api/beer/', views.post_beer),
-    path('api/no_beer/', views.post_no_beer),
-    path('fridge2', views.fridge2),
+    path('', views.fridges, name="home"),
+    path('fridges', views.fridges),
+    path('fridges/', views.fridges),
+    path('api/change_state/', views.change_state),
+    path('create_fridges/', views.create_fridges),
+    path('create_fridges2/', views.create_fridges2),
 ]
+
