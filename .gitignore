@@ -4,6 +4,9 @@
 # Applen DS_Store
 .DS_Store
 
+#Mariadb data
+mariadb/
+
 # loki filu
 log.txt
 
