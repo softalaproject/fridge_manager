@@ -1,5 +1,5 @@
 import unittest
-from .views import fridge, fridges
+from .views import fridges
 from django.urls import reverse, resolve
 from unittest import TestCase
 from . import strings
