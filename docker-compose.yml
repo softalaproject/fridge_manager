@@ -22,7 +22,7 @@ services:
   
   mariadb-django:
     build: .
-    command: sh -c "echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'pass')" | python restmanager/manage.py shell && python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8100"
+    command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8100"
     volumes:
       - .:/code
     ports:
