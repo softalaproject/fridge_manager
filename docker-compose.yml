@@ -1,9 +1,5 @@
 version: '3'
 
-networks:
-  mariadb-django:
-    driver: bridge
-
 services:
   mariadb-db:
     image: mariadb
@@ -16,15 +12,13 @@ services:
       MYSQL_PASSWORD: 'mariadbpassword'
     restart: on-failure
     volumes:
-      - '/var/lib/docker/volumes/mariadb_data/_data:/mariadb'
+      - db-data:/var/lib/mysql
     networks:
       - mariadb-django
   
   mariadb-django:
     build: .
     command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8100"
-    volumes:
-      - .:/code
     ports:
       - "8100:8100"
     depends_on:
@@ -33,3 +27,8 @@ services:
       - mariadb-django
     restart: on-failure
 
+volumes: 
+  db-data:
+
+networks:
+  mariadb-django:
