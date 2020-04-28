@@ -6,7 +6,7 @@ from . import channels
 from dotenv import load_dotenv
 from fridges.models import Fridge
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 # GET SLACK TOKEN HERE
@@ -44,6 +44,17 @@ def create_list(request):
         else:
             select_list.append(item)
     return select_list
+
+
+def create_json(a_list):
+    my_json_string = json.dumps(a_list)
+    return my_json_string
+
+
+def json_view(request):
+    filtered_list = create_list(request)
+    a=create_json(filtered_list)
+    return HttpResponse(a)
 
 
 # Endpoint http://localhost:PORTNO/fridges.
