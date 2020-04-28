@@ -77,7 +77,7 @@
 
                             <p hidden>ID: {{ctx.id}}</p>
                             <a href="/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
-                            <h4>State: {{ctx.state}}</h4>
+                            <a href="/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
                             <a href="/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
 
                             <form action="/api/change_state/" id="post_form" method="post">

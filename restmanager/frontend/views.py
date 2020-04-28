@@ -48,6 +48,7 @@ def get_request():
 def fridges(request):
     data = get_request()
     data_list = []
+    state = request.GET.get('state')
     floor = request.GET.get('floor')
     fid = request.GET.get('id')
 
@@ -87,6 +88,19 @@ def fridges(request):
             else:
                 pass
 
+    elif state is not None:
+        for item in data:
+            dicti = {
+                'id': item['id'],
+                'name': item['name'],
+                'state': item['state'],
+                'floor': item['floor'],
+            }
+            if item['state'] == state:
+                data_list.append(dicti)
+            else:
+                pass
+            
     else:
         for item in data:
             dicti = {
