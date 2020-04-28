@@ -53,8 +53,8 @@ def create_json(a_list):
 
 def json_view(request):
     filtered_list = create_list(request)
-    a = create_json(filtered_list)
-    return HttpResponse(a)
+    json_response = create_json(filtered_list)
+    return HttpResponse(json_response)
 
 
 # Endpoint http://localhost:PORTNO/fridges.
