@@ -39,7 +39,7 @@ def create_list(request):
             if item['id'] == int_fridge_id:
                 select_list.append(item)
         elif state is not None:
-            if item['state'] == state:
+            if item['state'].lower() == state.lower():
                 select_list.append(item)
         else:
             select_list.append(item)
@@ -53,8 +53,8 @@ def create_json(a_list):
 
 def json_view(request):
     filtered_list = create_list(request)
-    a=create_json(filtered_list)
-    return HttpResponse(a)
+    json_response = create_json(filtered_list)
+    return HttpResponse(json_response)
 
 
 # Endpoint http://localhost:PORTNO/fridges.
