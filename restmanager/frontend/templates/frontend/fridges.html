@@ -6,6 +6,20 @@
                 border:2px solid #000000;
             }
 
+            a:link{
+                font-family:Segoe UI;
+                font-size:18px;
+                font-weight:bold;
+                color:#000000;
+            }
+
+            a:active{
+                font-family:Segoe UI;
+                font-size:18px;
+                font-weight:bold;
+                color:#000000;
+            }
+
             .button_1 {
                 background-color:#ffffff;
                 border-radius:5px;
@@ -62,9 +76,9 @@
                         <div class="container">
 
                             <p hidden>ID: {{ctx.id}}</p>
-                            <h1>{{ctx.name}}</h1>
-                            <p class="para">State: {{ctx.state}}</p>
-                            <p>Floor: {{ctx.floor}}</p>
+                            <a href="/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
+                            <h4>State: {{ctx.state}}</h4>
+                            <a href="/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
 
                             <form action="/api/change_state/" id="post_form" method="post">
                                 <input type="hidden" name="id" id="id" value="{{ctx.id}}">
@@ -81,7 +95,7 @@
                                     {% endif %}
                                 {% endwith %}
                             </form>
-
+                            <a href="fridges"><p>Main menu</p></a>
                         </div>
                     </div>
                 </div>
