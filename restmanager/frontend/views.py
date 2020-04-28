@@ -39,7 +39,7 @@ def create_list(request):
             if item['id'] == int_fridge_id:
                 select_list.append(item)
         elif state is not None:
-            if item['state'] == state:
+            if item['state'].lower() == state.lower():
                 select_list.append(item)
         else:
             select_list.append(item)
