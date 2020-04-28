@@ -6,6 +6,20 @@
                 border:2px solid #000000;
             }
 
+            a:link{
+                font-family:Segoe UI;
+                font-size:18px;
+                font-weight:bold;
+                color:#000000;
+            }
+
+            a:active{
+                font-family:Segoe UI;
+                font-size:18px;
+                font-weight:bold;
+                color:#000000;
+            }
+
             .button_1 {
                 background-color:#ffffff;
                 border-radius:5px;
@@ -13,15 +27,13 @@
                 display:inline-block;
                 cursor:pointer;
                 color:#000000;
-                font-family:Segoe UI;
+                font-family:BlinkMacSystemFont;
                 font-size:18px;
-                font-weight:bold;
                 padding:6px 24px;
-                text-decoration:none;
             }
 
             .button_1:hover {
-                background-color:#9c9c9c;
+                background-color:#4aa48a;
             }
 
             .button_1:active {
@@ -62,25 +74,26 @@
                         <div class="container">
 
                             <p hidden>ID: {{ctx.id}}</p>
-                            <h1>{{ctx.name}}</h1>
-                            <p class="para">State: {{ctx.state}}</p>
-                            <p>Floor: {{ctx.floor}}</p>
+                            <a href="/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
+                            <a href="/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
+                            <a href="/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
 
                             <form action="/api/change_state/" id="post_form" method="post">
                                 <input type="hidden" name="id" id="id" value="{{ctx.id}}">
                                 <input type="hidden" name="name" id="name" value="{{ctx.name}}">
                                 <input type="hidden" name="state" id="state" value="{{ctx.state}}">
                                 <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
-                            {%  with curr_state=ctx.state %}
-                                {%  if curr_state == "Full" %}
-                                    <input type="submit" class="button_1" value="Change state to Half-full">
-                                {% elif curr_state == "Half-full" %}
-                                    <input type="submit" class="button_1" value="Change state to Empty">
-                                {% else %}
-                                    <input type="submit" class="button_1" value="Change state to Full">
-                                {% endif %}
-                            {% endwith %}
+                                {%  with curr_state=ctx.state %}
+                                    {%  if curr_state == "Full" %}
+                                        <input type="submit" class="button_1" value="Change state to Half-full">
+                                    {% elif curr_state == "Half-full" %}
+                                        <input type="submit" class="button_1" value="Change state to Empty">
+                                    {% else %}
+                                        <input type="submit" class="button_1" value="Change state to Full">
+                                    {% endif %}
+                                {% endwith %}
                             </form>
+                            <a href="fridges"><p>Main menu</p></a>
                         </div>
                     </div>
                 </div>
