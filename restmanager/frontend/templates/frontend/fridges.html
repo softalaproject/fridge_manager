@@ -71,9 +71,16 @@
                                 <input type="hidden" name="name" id="name" value="{{ctx.name}}">
                                 <input type="hidden" name="state" id="state" value="{{ctx.state}}">
                                 <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
-                                <input type="submit" class="button_1" value="Change state">
+                            {%  with curr_state=ctx.state %}
+                                {%  if curr_state == "Full" %}
+                                    <input type="submit" class="button_1" value="Change state to Half-full">
+                                {% elif curr_state == "Half-full" %}
+                                    <input type="submit" class="button_1" value="Change state to Empty">
+                                {% else %}
+                                    <input type="submit" class="button_1" value="Change state to Full">
+                                {% endif %}
+                            {% endwith %}
                             </form>
-
                         </div>
                     </div>
                 </div>
