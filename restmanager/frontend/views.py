@@ -6,8 +6,8 @@ from . import channels
 from dotenv import load_dotenv
 from fridges.models import Fridge
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 
 # GET SLACK TOKEN HERE
 load_dotenv()
@@ -15,6 +15,18 @@ client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 IP2 = os.getenv('IP2')
 D_PORT = "8100"
+
+
+def create_floor_list(request):
+    floor_list = []
+    data_list = []
+    for item in get_request():
+        data_list.append(item)
+
+    for item in data_list:
+        if item['floor'] not in floor_list:
+            floor_list.append(item['floor'])
+    return floor_list
 
 
 @csrf_exempt
@@ -57,6 +69,14 @@ def json_view(request):
     return HttpResponse(json_response)
 
 
+def floors(request):
+    context = {
+        'data': create_floor_list(request),
+    }
+    print(context)
+    return render(request, 'frontend/floors.html', context)
+
+
 # Endpoint http://localhost:PORTNO/fridges.
 @csrf_exempt
 def fridges(request):
@@ -89,4 +109,3 @@ def change_state(request):
             username=username_c
         )
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
