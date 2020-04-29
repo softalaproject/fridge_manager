@@ -38,7 +38,7 @@ def create_list(request):
     floor = request.GET.get('floor')
     fridge_id = request.GET.get('id')
     state = request.GET.get('state')
-    channel = request.GET.get('channel_msg')
+    channel_msg = request.GET.get('channel_msg')
 
     for item in get_request():
         if floor is not None:
@@ -52,8 +52,8 @@ def create_list(request):
         elif state is not None:
             if item['state'].lower() == state.lower():
                 select_list.append(item)
-        elif channel is not None:
-            if item['channel_msg'].lower() == channel.lower():
+        elif channel_msg is not None:
+            if item['channel_msg'].lower() == channel_msg.lower():
                 select_list.append(item)
         else:
             select_list.append(item)
@@ -97,7 +97,7 @@ def change_state(request):
         fridge_name = request.POST.get('name')
         fridge_id = request.POST.get('id')
         floor_id = request.POST.get('floor')
-        channel = request.POST.get('channel_msg')
+        channel_msg = request.POST.get('channel_msg')
         username_c = 'Floor: ' + floor_id + ', ' + fridge_name
 
         if request.POST.get('state') == 'Empty':
@@ -109,7 +109,7 @@ def change_state(request):
 
         Fridge.objects.filter(id=fridge_id).update(state=new_state)
         client.chat_postMessage(
-            channel=f'#{channel}',
+            channel=f'#{channel_msg}',
             text=f'State: {new_state}',
             username=username_c
         )
