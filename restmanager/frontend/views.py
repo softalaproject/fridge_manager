@@ -2,7 +2,6 @@ import os
 import json
 import slack
 import requests
-from . import channels
 from dotenv import load_dotenv
 from fridges.models import Fridge
 from django.shortcuts import render
@@ -39,6 +38,7 @@ def create_list(request):
     floor = request.GET.get('floor')
     fridge_id = request.GET.get('id')
     state = request.GET.get('state')
+    channel = request.GET.get('channel')
 
     for item in get_request():
         if floor is not None:
@@ -51,6 +51,9 @@ def create_list(request):
                 select_list.append(item)
         elif state is not None:
             if item['state'].lower() == state.lower():
+                select_list.append(item)
+        elif channel is not None:
+            if item['channel'].lower() == channel.lower():
                 select_list.append(item)
         else:
             select_list.append(item)
@@ -94,6 +97,7 @@ def change_state(request):
         fridge_name = request.POST.get('name')
         fridge_id = request.POST.get('id')
         floor_id = request.POST.get('floor')
+        channel = request.POST.get('channel')
         username_c = 'Floor: ' + floor_id + ', ' + fridge_name
 
         if request.POST.get('state') == 'Empty':
@@ -105,7 +109,7 @@ def change_state(request):
 
         Fridge.objects.filter(id=fridge_id).update(state=new_state)
         client.chat_postMessage(
-            channel=channels.CHANNEL_NAME_1,
+            channel=f'#{channel}',
             text=f'State: {new_state}',
             username=username_c
         )

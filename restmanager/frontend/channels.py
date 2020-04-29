@@ -1,3 +1,0 @@
-CHANNEL_NAME_1 = '#general'
-CHANNEL_NAME_2 = ""
-CHANNEL_NAME_3 = ""
