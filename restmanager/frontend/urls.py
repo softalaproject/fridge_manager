@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 
-# Defining URL endpoints and what views they should return.
+# Defining URL endpoints and what views they use.
 urlpatterns = [
     path('', views.floors, name="home"),
     path('fridges', views.fridges),
