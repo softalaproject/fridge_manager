@@ -82,7 +82,7 @@
                                 <input type="hidden" name="name" id="name" value="{{ctx.name}}">
                                 <input type="hidden" name="state" id="state" value="{{ctx.state}}">
                                 <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
-                                <input type="hidden" name="channel" id="channel" value="{{ctx.channel}}">
+                                <input type="hidden" name="channel_msg" id="channel_msg" value="{{ctx.channel_msg}}">
                                 {%  with curr_state=ctx.state %}
                                     {%  if curr_state == "Empty" %}
                                         <input type="submit" class="button_1" value="Change state to Full">

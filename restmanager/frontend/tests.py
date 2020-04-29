@@ -13,10 +13,5 @@ class UrlsTest(TestCase):
         self.assertEquals(resolve(url2).func, fridges)
 
 
-class UnitTests(TestCase):
-    def test_strings(self):
-        self.assertEqual('#general', channels.CHANNEL_NAME_1)
-
-
 if __name__ == '__main__':
     unittest.main()
