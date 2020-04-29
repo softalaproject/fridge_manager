@@ -54,8 +54,6 @@
             }
         </style>
 
-        <script src="https://code.jquery.com/jquery-2.1.4.js"
-                integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% load static %}
@@ -68,6 +66,8 @@
     <body>
         <div class="container">
             <div class="center">
+                <a href="/fridges/"><p>Back to all fridges</p></a>
+                <a href="/"><p>Back to floor select</p></a>
                 {% for ctx in data %}
                 <div id="items-wrapper" class="box">
                     <div class="media-left">
@@ -93,9 +93,6 @@
                                     {% endif %}
                                 {% endwith %}
                             </form>
-
-                            <a href="/fridges/"><p>Back to all fridges</p></a>
-                            <a href="/"><p>Back to floor select</p></a>
                         </div>
                     </div>
                 </div>
