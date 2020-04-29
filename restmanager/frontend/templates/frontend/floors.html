@@ -72,29 +72,7 @@
                 <div id="items-wrapper" class="box">
                     <div class="media-left">
                         <div class="container">
-
-                            <p hidden>ID: {{ctx.id}}</p>
-                            <a href="/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
-                            <a href="/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
-                            <a href="/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
-
-                            <form action="/api/change_state/" id="post_form" method="post">
-                                <input type="hidden" name="id" id="id" value="{{ctx.id}}">
-                                <input type="hidden" name="name" id="name" value="{{ctx.name}}">
-                                <input type="hidden" name="state" id="state" value="{{ctx.state}}">
-                                <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
-                                {%  with curr_state=ctx.state %}
-                                    {%  if curr_state == "Empty" %}
-                                        <input type="submit" class="button_1" value="Change state to Full">
-                                    {% elif curr_state == "Full" %}
-                                        <input type="submit" class="button_1" value="Change state to Half-full">
-                                    {% else %}
-                                        <input type="submit" class="button_1" value="Change state to Empty">
-                                    {% endif %}
-                                {% endwith %}
-                            </form>
-                            <a href="http://127.0.0.1:8080/fridges/"><p>Back to all fridges</p></a>
-                            <a href="http://127.0.0.1:8080/"><p>Back to floor select</p></a>
+                            <a href="http://127.0.0.1:8080/fridges/?floor={{ctx}}"><h4>Floor: {{ctx}}</h4></a>
                         </div>
                     </div>
                 </div>

@@ -17,6 +17,18 @@ IP2 = os.getenv('IP2')
 D_PORT = "8080"
 
 
+def create_floor_list(request):
+    floor_list = []
+    data_list = []
+    for item in get_request():
+        data_list.append(item)
+
+    for item in data_list:
+        if item['floor'] not in floor_list:
+            floor_list.append(item['floor'])
+    return floor_list
+
+
 @csrf_exempt
 def get_request():
     r = requests.get('HTTP://' + IP2 + ':' + D_PORT + '/api/fridges/?format=json')
@@ -55,6 +67,14 @@ def json_view(request):
     filtered_list = create_list(request)
     json_response = create_json(filtered_list)
     return HttpResponse(json_response)
+
+
+def floors(request):
+    context = {
+        'data': create_floor_list(request),
+    }
+    print(context)
+    return render(request, 'frontend/floors.html', context)
 
 
 # Endpoint http://localhost:PORTNO/fridges.
