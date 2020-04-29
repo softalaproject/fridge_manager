@@ -17,13 +17,11 @@ IP2 = os.getenv('IP2')
 D_PORT = "8080"
 
 
-def create_floor_list(request):
+@csrf_exempt
+def create_floor_list():
     floor_list = []
-    data_list = []
-    for item in get_request():
-        data_list.append(item)
 
-    for item in data_list:
+    for item in get_request():
         if item['floor'] not in floor_list:
             floor_list.append(item['floor'])
     return floor_list
@@ -35,6 +33,7 @@ def get_request():
     return json.loads(r.text)
 
 
+@csrf_exempt
 def create_list(request):
     select_list = []
     floor = request.GET.get('floor')
@@ -58,22 +57,24 @@ def create_list(request):
     return select_list
 
 
+@csrf_exempt
 def create_json(a_list):
     my_json_string = json.dumps(a_list)
     return my_json_string
 
 
+@csrf_exempt
 def json_view(request):
     filtered_list = create_list(request)
     json_response = create_json(filtered_list)
     return HttpResponse(json_response)
 
 
+@csrf_exempt
 def floors(request):
     context = {
-        'data': create_floor_list(request),
+        'data': create_floor_list(),
     }
-    print(context)
     return render(request, 'frontend/floors.html', context)
 
 
