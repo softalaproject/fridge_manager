@@ -67,6 +67,8 @@
             <div class="center">
             <a href="/fridges/"><p>Back to all fridges</p></a>
             <a href="/"><p>Back to floor select</p></a>
+                <a href="/fridges/"><p>Back to all Fridges</p></a>
+                <a href="/"><p>Back to Floor selection</p></a>
                 {% for ctx in data %}
                 <div id="items-wrapper" class="box">
                     <div class="media-left">
@@ -76,12 +78,14 @@
                             <a href="/fridges/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
                             <a href="/fridges/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
                             <a href="/fridges/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
+                            <a href="/fridges/?channel={{ctx.channel}}"><p>Channel: {{ctx.channel}}</p></a>
 
                             <form action="/api/change_state/" id="post_form" method="post">
                                 <input type="hidden" name="id" id="id" value="{{ctx.id}}">
                                 <input type="hidden" name="name" id="name" value="{{ctx.name}}">
                                 <input type="hidden" name="state" id="state" value="{{ctx.state}}">
                                 <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
+                                <input type="hidden" name="channel" id="channel" value="{{ctx.channel}}">
                                 {%  with curr_state=ctx.state %}
                                     {%  if curr_state == "Empty" %}
                                         <input type="submit" class="button_1" value="Change state to Full">

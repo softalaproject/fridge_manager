@@ -4,7 +4,7 @@ from .models import Fridge
 
 # Register your models here.
 class AppAdmin(admin.ModelAdmin):
-    list_display = ('name', 'state', 'floor')
+    list_display = ('name', 'state', 'floor', 'channel')
 
 
 admin.site.register(Fridge, AppAdmin)

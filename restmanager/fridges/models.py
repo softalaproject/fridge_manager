@@ -5,9 +5,10 @@ from django.db import models
 
 
 class Fridge(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    state = models.CharField(max_length=20)
-    floor = models.IntegerField()
+    name = models.CharField(max_length=100, unique=True, default="Fridge ", editable="True")
+    state = models.CharField(max_length=20, default='Empty', editable=True)
+    floor = models.IntegerField(default=1)
+    channel = models.CharField(max_length=30, default='general', editable=True)
 
     def _str_(self):
         return self.name
