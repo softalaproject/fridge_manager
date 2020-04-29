@@ -1,7 +1,6 @@
 from django.urls import reverse, resolve
 from unittest import TestCase
 from .views import fridges
-from . import channels
 import unittest
 
 
