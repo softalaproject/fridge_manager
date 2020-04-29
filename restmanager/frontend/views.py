@@ -23,8 +23,8 @@ def create_floor_list():
     for item in get_request():
         if item['floor'] not in floor_list:
             floor_list.append(item['floor'])
-    print(floor_list.sort())
-    return floor_list.sort()
+    floor_list.sort()
+    return floor_list
 
 
 @csrf_exempt
