@@ -77,7 +77,6 @@
                             <a href="/fridges/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
                             <a href="/fridges/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
                             <a href="/fridges/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
-                            <a href="/fridges/?channel={{ctx.channel}}"><p>Channel: {{ctx.channel}}</p></a>
 
                             <form action="/api/change_state/" id="post_form" method="post">
                                 <input type="hidden" name="id" id="id" value="{{ctx.id}}">
