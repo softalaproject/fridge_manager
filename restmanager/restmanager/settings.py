@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv("DJANGO_TOKEN")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+# Adds the servers ip from .env located in fridge_manager/restmanager to allowed_hosts
 ALLOWED_HOSTS = [os.getenv('IP2'), "127.0.0.1"]
 
 # Application definition

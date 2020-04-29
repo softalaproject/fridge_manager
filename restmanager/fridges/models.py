@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-# id, name, state, floor
+# id, name, state, floor, channel_msg
 
 
 class Fridge(models.Model):
