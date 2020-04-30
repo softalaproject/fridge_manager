@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 # Gets slack token from .env file and sets it here
 load_dotenv()
-client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
+slack_client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 # IP2 is the servers IP Address set in .env found in fridge_manager/restmanager
 IP2 = os.getenv('IP2', "127.0.0.1")
@@ -44,9 +44,7 @@ def get_request():
 # Accepts parameters from url id, floor, state and returns a select_list named list
 @csrf_exempt
 def create_list(request):
-    # Creates list to output
     select_list = []
-    # Sets the parameters found in the request
     floor = request.GET.get('floor')
     fridge_id = request.GET.get('id')
     state = request.GET.get('state')
@@ -115,32 +113,24 @@ def change_state(request):
     # If the requests method which is sent to the endpoint is POST goes into the if logic
     # otherwise redirects back to where the user came from
     if request.method == 'POST':
-        # sets the parameters from the received request
         fridge_name = request.POST.get('name')
         fridge_id = request.POST.get('id')
         floor_id = request.POST.get('floor')
         channel_msg = request.POST.get('channel_msg')
-        # sets username based on the given parameters which are sent in a form from the template
         username_c = 'Floor: ' + floor_id + ', ' + fridge_name
 
-        # if given state is empty changes to full, etc.
         if request.POST.get('state') == 'Empty':
             new_state = 'Full'
         elif request.POST.get('state') == 'Full':
             new_state = 'Half-full'
-        # if given state is anything else changes it to empty
         else:
             new_state = 'Empty'
 
         # updates the fridge objects data in the database with given parameters
         Fridge.objects.filter(id=fridge_id).update(state=new_state)
-        # sends the message to slack
-        client.chat_postMessage(
-            # sends the message to the channel corresponding with the requests given channel_msg value
+        slack_client.chat_postMessage(
             channel=f'#{channel_msg}',
-            # the text sent to slack, updating the state
             text=f'State: {new_state}',
-            # sets the username for the message which was given earlier in the view
             username=username_c
         )
     # redirects the requests sender back to where they came from
