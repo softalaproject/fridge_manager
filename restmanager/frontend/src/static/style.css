@@ -1,0 +1,53 @@
+/* Fridges.html styles: */
+.box{
+    border:2px solid #000000;
+}
+
+.button_1 {
+    background-color:#ffffff;
+    border-radius:5px;
+    border:2px solid #5c5b5c;
+    display:inline-block;
+    cursor:pointer;
+    color:#000000;
+    font-family:Segoe UI;
+    font-size:18px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+}
+
+.button_1:hover {
+    background-color:#9c9c9c;
+}
+
+.button_1:active {
+    position:relative;
+    top:1px;
+}
+
+.container {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    position: relative;
+}
+/* Floors.html styles: */
+a:link{
+    font-family:Segoe UI;
+    font-size:18px;
+    font-weight:bold;
+    color:#000000;
+}
+
+a:active{
+    font-family:Segoe UI;
+    font-size:18px;
+    font-weight:bold;
+    color:#000000;
+}
