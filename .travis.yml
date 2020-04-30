@@ -16,8 +16,5 @@ install:
 - pip3 install -r requirements.txt
 - pip3 install django==$DJANGO --quiet
 - pip3 install psycopg2 --quiet
-script:
-#- python3 restmanager/manage.py migrate
-#- python3 restmanager/manage.py test frontend
 after_success: '[[ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
 
