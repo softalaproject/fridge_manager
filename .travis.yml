@@ -17,6 +17,3 @@ install:
 - pip3 install django==$DJANGO --quiet
 script:
 - .travis/deploy.sh
-# - pwd
-# after_success: '[[ $TRAVIS_BRANCH == "feature/mariadb" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
-
