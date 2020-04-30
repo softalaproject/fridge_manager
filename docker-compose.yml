@@ -5,13 +5,12 @@ services:
     image: mariadb
     user: root
     command: ['--character-set-server=utf8', '--collation-server=utf8_unicode_ci']
-    env_file: 
-      - .env
+    env_file: .env
     environment:
-      MYSQL_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
-      MYSQL_DATABASE: "${MARIADB_DATABASE}"
-      MYSQL_USER: "${MARIADB_USER}"
-      MYSQL_PASSWORD: "${MARIADB_PASSWORD}"
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
     restart: on-failure
     volumes:
       - db-data:/var/lib/mysql
