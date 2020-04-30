@@ -19,9 +19,9 @@ IP2 = os.getenv('IP2', "127.0.0.1")
 D_PORT = os.getenv('D_PORT', "8100")
 
 
-# Creates a list of unique floors found in fridges table in the database and returns it
 @csrf_exempt
 def create_floor_list():
+    """ Creates a list of unique floors found in fridges table in the database and returns it """
     floor_list = []
 
     # adds unique floor numbers found in the get_request()
@@ -33,17 +33,18 @@ def create_floor_list():
     return floor_list
 
 
-# Sends get request to api endpoint /api/fridges/ which returns a json object with all the fridges in the database
 @csrf_exempt
 def get_request():
+    """ Sends get request to api endpoint /api/fridges/ which returns a json object with all the fridges in
+    the database """
     r = requests.get('HTTP://' + IP2 + ':' + D_PORT + '/api/fridges/?format=json')
     return json.loads(r.text)
 
 
-# Creates a list and sorts through it depending on what parameters are given in the request that it receives
-# Accepts parameters from url id, floor, state and returns a select_list named list
 @csrf_exempt
 def create_list(request):
+    """ Creates a list and sorts through it depending on what parameters are given in the request that it receives
+     Accepts parameters from url id, floor, state and returns a select_list named list """
     select_list = []
     floor = request.GET.get('floor')
     fridge_id = request.GET.get('id')
@@ -69,16 +70,17 @@ def create_list(request):
     return select_list
 
 
-# converts given list into json and returns it
 @csrf_exempt
 def create_json(a_list):
+    """ converts given list into json and returns it """
     json_string = json.dumps(a_list)
     return json_string
 
 
-# view found at /api/json/ uses the create_list function, meaning it can use all the parameters listed in the function
 @csrf_exempt
 def json_view(request):
+    """ view found at /api/json/ uses the create_list function, meaning it can use all the parameters listed in
+    the function """
     # assigns the list using the create_list function
     filtered_list = create_list(request)
     # creates the json to return using the create_json function
@@ -86,20 +88,20 @@ def json_view(request):
     return HttpResponse(json_response)
 
 
-# View for index and /floors/ endpoint, passes create_floor_list() which creates a list of unique floors
-# and passes it as context to template floors.html
 @csrf_exempt
 def floors(request):
+    """ View for index and /floors/ endpoint, passes create_floor_list() which creates a list of unique floors
+     and passes it as context to template floors.html """
     context = {
         'data': create_floor_list(),
     }
     return render(request, 'frontend/floors.html', context)
 
 
-# View for /fridges/ endpoint, uses create_list() passing the received request to it and then passing the filtered list
-# as context to the template fridges.html
 @csrf_exempt
 def fridges(request):
+    """ View for /fridges/ endpoint, uses create_list() passing the received request to it and then passing the filtered
+    list as context to the template fridges.html """
     context = {
         'data': create_list(request),
     }
@@ -107,9 +109,10 @@ def fridges(request):
     return render(request, 'frontend/fridges.html', context)
 
 
-# View for endpoint /api/change_state, which is used to change the state of a fridge and send the message to slack
 @csrf_exempt
 def change_state(request):
+    """ View for endpoint /api/change_state, which is used to change the state of a fridge and send
+    the message to slack """
     # If the requests method which is sent to the endpoint is POST goes into the if logic
     # otherwise redirects back to where the user came from
     if request.method == 'POST':
