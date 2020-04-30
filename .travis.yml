@@ -15,6 +15,6 @@ before_install:
 install:
 - pip3 install -r requirements.txt
 - pip3 install django==$DJANGO --quiet
-- pip3 install psycopg2 --quiet
+# - pip3 install psycopg2 --quiet
 after_success: '[[ $TRAVIS_BRANCH == "feature/mariadb" && $TRAVIS_PULL_REQUEST == "false" ]] && .travis/deploy.sh'
 
