@@ -24,7 +24,6 @@
 
                             <p hidden>ID: {{ctx.id}}</p>
                             <a href="/fridges/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
-                            <a href="/fridges/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
                             <a href="/fridges/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
 
                             <!--hidden form for POST request to send correct data to endpoint for changing fridge state-->
@@ -37,14 +36,21 @@
                             <!--Assigns ctx.state to curr_state to display the next state the fridge will be changed to-->
                                 {%  with curr_state=ctx.state %}
                                     {%  if curr_state == "Empty" %}
+                                        <img src="{% static "bottle-empty.png" %}"/>
+                                        <br>
                                         <input type="submit" class="button_1" value="Change state to Full">
                                     {% elif curr_state == "Full" %}
+                                        <img src="{% static "bottle-full.png" %}"/>
+                                        <br>
                                         <input type="submit" class="button_1" value="Change state to Half-full">
                                     {% else %}
+                                        <img src="{% static "bottle-half.png" %}"/>
+                                        <br>
                                         <input type="submit" class="button_1" value="Change state to Empty">
                                     {% endif %}
                                 {% endwith %}
                             </form>
+                            <a href="/fridges/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
                         </div>
                     </div>
                 </div>
