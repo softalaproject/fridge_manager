@@ -16,11 +16,7 @@ slack_client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 IP2 = os.getenv('IP2', "127.0.0.1")
 # D_PORT is set only here, determines which port the get_request is sent to (the port that the server is running on)
 
-<<<<<<< HEAD
 D_PORT = os.getenv('D_PORT', "8080")
-=======
-D_PORT = os.getenv('D_PORT', "8100")
->>>>>>> feature/mariadb
 
 
 @csrf_exempt
@@ -123,7 +119,7 @@ def change_state(request):
         fridge_name = request.POST.get('name')
         fridge_id = request.POST.get('id')
         floor_id = request.POST.get('floor')
-        channel_msg = request.POST.get('channel_msg')
+        channel = request.POST.get('channel')
         username_c = 'Floor: ' + floor_id + ', ' + fridge_name
 
         if request.POST.get('state') == 'Empty':
@@ -136,7 +132,7 @@ def change_state(request):
         # updates the fridge objects data in the database with given parameters
         Fridge.objects.filter(id=fridge_id).update(state=new_state)
         slack_client.chat_postMessage(
-            channel=f'#{channel_msg}',
+            channel=f'#{channel}',
             text=f'State: {new_state}',
             username=username_c
         )
