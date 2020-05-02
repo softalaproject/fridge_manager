@@ -26,10 +26,6 @@
                             <a href="/fridges/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
                             <a href="/fridges/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
                             <a href="/fridges/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
-<<<<<<< HEAD
-                            <p hidden>{{ ctx.channel }}</p>
-=======
->>>>>>> feature/mariadb
 
                             <!--hidden form for POST request to send correct data to endpoint for changing fridge state-->
                             <form action="/api/change_state/" id="post_form" method="post">
