@@ -4,7 +4,5 @@ services:
   dev-django:
     build: .
     command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8080"
-    volumes:
-      - .:/code
     ports:
       - "8080:8080"
