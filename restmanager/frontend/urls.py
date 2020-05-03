@@ -10,5 +10,6 @@ urlpatterns = [
     path('api/change_state/', views.change_state),
     path('api/json/', views.json_view),
     path('floors', views.floors),
-    path('floors/', views.floors)
+    path('floors/', views.floors),
+    path('create_fridges', views.create_fridges)
 ]

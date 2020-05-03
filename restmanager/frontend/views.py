@@ -139,3 +139,23 @@ def change_state(request):
     # redirects the requests sender back to where they came from
     # doesnt work if the user has blocked metadata with incognito mode or other means
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+@csrf_exempt	
+def create_fridges(request):	
+    fridge_1 = Fridge(name="Sauna FridgeX", state="Empty", floor="1", channel="general")	
+    fridge_2 = Fridge(name="FridgeX", state="Full", floor="2", channel="general")	
+    fridge_3 = Fridge(name="FridgeyX", state="Half-full", floor="3", channel="general")	
+    fridge_4 = Fridge(name="FridgexX", state="Half-full", floor="4", channel="general")	
+    fridge_5 = Fridge(name="FridgexyX", state="Half-full", floor="5", channel="general")	
+    fridge_6 = Fridge(name="FridgeyxX", state="Half-full", floor="6", channel="general")	
+    fridge_7 = Fridge(name="FridgeyxyX", state="Half-full", floor="7", channel="general")	
+
+    fridge_1.save()	
+    fridge_2.save()	
+    fridge_3.save()	
+    fridge_4.save()	
+    fridge_5.save()	
+    fridge_6.save()	
+    fridge_7.save()	
+
+    return HttpResponse("Created fridges.")
