@@ -4,9 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% load static %}
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
-        <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css"/>
         <link rel="stylesheet" href="{% static "style.css" %}" type="text/css" >
         <title>Fridges</title>
     </head>
@@ -21,10 +18,10 @@
                 <div id="items-wrapper" class="box">
                     <div class="media-left">
                         <div class="container">
-
                             <p hidden>ID: {{ctx.id}}</p>
                             <a href="/fridges/?id={{ctx.id}}"><h1>{{ctx.name}}</h1></a>
-                            <a href="/fridges/?floor={{ctx.floor}}"><h4>Floor: {{ctx.floor}}</h4></a>
+                            <a href="/fridges/?floor={{ctx.floor}}"><p>Floor: {{ctx.floor}}</p></a>
+                            <a href="/fridges/?state={{ctx.state}}"><p>State: {{ctx.state}}</p></a>
 
                             <!--hidden form for POST request to send correct data to endpoint for changing fridge state-->
                             <form action="/api/change_state/" id="post_form" method="post">
@@ -50,7 +47,6 @@
                                     {% endif %}
                                 {% endwith %}
                             </form>
-                            <a href="/fridges/?state={{ctx.state}}"><h4>State: {{ctx.state}}</h4></a>
                         </div>
                     </div>
                 </div>
