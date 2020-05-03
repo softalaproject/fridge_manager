@@ -7,7 +7,7 @@ class Fridge(models.Model):
     name = models.CharField(max_length=100, unique=True, default=name_def, editable=True)
     state = models.CharField(max_length=20, default=state_def, editable=True)
     floor = models.IntegerField(default=floor_def)
-    channel = models.CharField(max_length=30, default=channel_def, editable=True)
+    channel_msg = models.CharField(max_length=30, default=channel_def, editable=True)
 
     def _str_(self):
         return self.name
