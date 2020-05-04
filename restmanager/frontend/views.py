@@ -28,7 +28,6 @@ def create_floor_list():
     for item in get_request():
         if item['floor'] not in floor_list:
             floor_list.append(item['floor'])
-    # sorts the floor_list from smallest to largest so the list makes sense in the view
     floor_list.sort()
     return floor_list
 
