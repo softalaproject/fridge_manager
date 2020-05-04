@@ -9,13 +9,13 @@
 
 **1 Make your admin login creditentals to .env file** (`remember add .env to .gitignore`)
 
-![](dotenv_example.jpg)**location <app_root>/.env**
+![](./dotenv_example.JPG)**location <app_root>/.env**
 <br/>
 <br/>
 
 **2 Adding docker-compose.yml `python <app_root>/manage.py createsuperuser --no-input` script command**
 
-![](compose.yml_example.jpg)
+![](./compose.yml_example.JPG)
 
 **3 Git add changes, commit & push**
 
@@ -31,7 +31,7 @@
 **<a id="admin-ui"></a>6 Admin UI usage & functionalities:**
 <br>
 
-![](suBaseView.jpg)
+![](./suBaseView.JPG)
 
     Once you have registered your app or apps with admin it appears under Authentication & authorization in own section.
     You can add or change existing objects from here in this case fridges.
