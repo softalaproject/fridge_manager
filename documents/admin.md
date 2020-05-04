@@ -1,13 +1,11 @@
-## <a id="start"></a>Django admin user creation &  admin interface usage
+## <a id="start"></a>Django admin user creation &  admin panel usage
 
 ### Shortcuts:
 
 [Admin panel usage](#admin-ui)
 <br>
-<br>
-<br>
 
-**1 Add your preferred admin login credentials to .env file** (`remember to add .env to .gitignore`)<br/>
+**1 Add your preferred admin panel login credentials to .env file** (`remember to add .env to .gitignore`)<br/>
 **location <app_root>/.env**
 
 ![](./dotenv_example.JPG)
@@ -20,7 +18,7 @@
 **3 Git add changes, commit & push**
 
 
-**4 Go into your deployed projects admin interface which is typically found at /admin/ and test that the login credentials work**
+**4 Go into your deployed projects admin panel which is typically found at /admin/ and test that the login credentials work**
 
 
 **5 Remove or comment the createsuperuser command from docker-compose.yml**
