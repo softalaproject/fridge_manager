@@ -1,56 +1,54 @@
-## <a id="start"></a>Django admin creation & usage
+## <a id="start"></a>Django admin user creation &  admin interface usage
 
 ### Shortcuts:
 
-[Admin UI usage](#admin-ui)
+[Admin panel usage](#admin-ui)
 <br>
 <br>
 <br>
 
-**1 Make your admin login creditentals to .env file** (`remember add .env to .gitignore`)
+**1 Add your preferred admin login credentials to .env file** (`remember to add .env to .gitignore`)<br/>
+**location <app_root>/.env**
 
-![](./dotenv_example.JPG)**location <app_root>/.env**
+![](./dotenv_example.JPG)
 <br/>
-<br/>
 
-**2 Adding docker-compose.yml `python <app_root>/manage.py createsuperuser --no-input` script command**
+**2 Add command `python <app_root>/manage.py createsuperuser --no-input` to docker-compose.yml before the runserver command (Remember to separate the commands with &&)**
 
 ![](./compose.yml_example.JPG)
 
 **3 Git add changes, commit & push**
 
 
-**4 Go into deployed admin interface & test login creditentals working**
+**4 Go into your deployed projects admin interface which is typically found at /admin/ and test that the login credentials work**
 
 
-**5 Remove or comment createsuperuser script from docker-compose.yml**
+**5 Remove or comment the createsuperuser command from docker-compose.yml**
 <br>
 
 ****
 
-**<a id="admin-ui"></a>6 Admin UI usage & functionalities:**
+**<a id="admin-ui"></a>6 Admin panel usage & functionality:**
 <br>
 
 ![](./suBaseView.JPG)
 
-    Once you have registered your app or apps with admin it appears under Authentication & authorization in own section.
-    You can add or change existing objects from here in this case fridges.
+    Once you have registered your app or apps with the django admin panel it should appear here under authentication & authorization in its own section.
+    You can add new or change existing objects to the database from here.
 <br>
 
-**Add fridges view:**
+**Adding objects to the database:**
 
-    Defaults helps adding & creating own case sensitive values for fridges. 
-    After done with inputs press save button & it should notify your recent creation.
+    Defaults set in restmanager/fridges/defaultvars.py help with adding fridges quickly to the database. 
+    Upon saving the object the page should notify you of the objects creation.
 
-**Change existing fridges view:**
+**Changing existing objects values from the database:**
 
-    Again same values appears while editing your app objects.
-    Once decided new relevant values press save button and djnago seds notification for you succeeded edit.  
+    Change the objects values as you please here and upon pressing save you should get a notification of the changes being saved.
 
-**Delete fridges view:**
+**Deleting objects from the database:**
 
-
-    Select "Delete selected fridges" from shown dropdown. Then when decide you're done press go-button. 
-    Django should throw warning & ask confirm action. 
+    Tick the boxes next to fridges u wish to delete and then select "Delete selected fridges" from the dropdown menu.
+    Django should warn you about the deletion and ask you to confirm the action. 
 
 [Return to start of document](#start)
