@@ -9,13 +9,13 @@
 
 **1 Make your admin login creditentals to .env file** (`remember add .env to .gitignore`)
 
-<img src="./dotenv_example.jpg"/>**location <app_root>/.env**
+![](dotenv_example.jpg)**location <app_root>/.env**
 <br/>
 <br/>
 
 **2 Adding docker-compose.yml `python <app_root>/manage.py createsuperuser --no-input` script command**
 
-<img src="./compose.yml_example.jpg"/>
+![](compose.yml_example.jpg)
 
 **3 Git add changes, commit & push**
 
@@ -31,7 +31,7 @@
 **<a id="admin-ui"></a>6 Admin UI usage & functionalities:**
 <br>
 
-<img src="./suBaseView.jpg" />
+![](suBaseView.jpg)
 
     Once you have registered your app or apps with admin it appears under Authentication & authorization in own section.
     You can add or change existing objects from here in this case fridges.
@@ -39,7 +39,8 @@
 
 **Add fridges view:**
 
-    Defaults helps adding & creating own case sensitive values for fridges. After done with inputs press save button & it should notify your recent creation.
+    Defaults helps adding & creating own case sensitive values for fridges. 
+    After done with inputs press save button & it should notify your recent creation.
 
 **Change existing fridges view:**
 
@@ -49,6 +50,7 @@
 **Delete fridges view:**
 
 
-    Select "Delete selected fridges" from shown dropdown. Then when decide you're done press go-button. Django should throw warning & ask confirm action. 
+    Select "Delete selected fridges" from shown dropdown. Then when decide you're done press go-button. 
+    Django should throw warning & ask confirm action. 
 
 [Return to start of document](#start)
