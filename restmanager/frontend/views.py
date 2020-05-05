@@ -135,6 +135,7 @@ def change_state(request):
     # doesnt work if the user has blocked metadata with incognito mode or other means
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+
 @csrf_exempt	
 def create_fridges(request):	
     fridge_1 = Fridge(name="Sauna FridgeX", state="Empty", floor="1", channel="general")	
