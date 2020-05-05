@@ -58,6 +58,7 @@ a:active {
     text-decoration-color: #0B0500;
 }
 .box2{
+    border-radius: 9px;
     background-color:#ffD700;
     border:3px solid #0B0500;
     margin: 5px;
@@ -117,6 +118,7 @@ h4 {
     margin-right: 15px;
     margin-top: 5px;
     margin-bottom: 10px;
+    border-radius: 9px;
     border:2px solid #0B0500;
 }
 
