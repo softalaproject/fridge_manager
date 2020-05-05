@@ -16,7 +16,7 @@ slack_client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 IP2 = os.getenv('IP2', "127.0.0.1")
 # D_PORT is set only here, determines which port the get_request is sent to (the port that the server is running on)
 
-D_PORT = os.getenv('D_PORT', "8100")
+D_PORT = os.getenv('D_PORT', "8000")
 
 
 def create_floor_list():
@@ -35,6 +35,19 @@ def get_request():
     the database """
     r = requests.get('HTTP://' + IP2 + ':' + D_PORT + '/api/fridges/?format=json')
     return json.loads(r.text)
+
+
+def fridges(request):
+    """ View for /fridges/ endpoint, uses create_list() passing the received request to it and then passing the filtered
+    list as context to the template fridges.html """
+    floor = request.GET.get('floor')
+    fridge_id = request.GET.get('id')
+    state = request.GET.get('state')
+
+    context = {
+        'data': create_list(floor, fridge_id, state),
+    }
+    return render(request, 'frontend/fridges.html', context)
 
 
 def create_list(floor, fridge_id, state):
@@ -93,12 +106,13 @@ def fridges(request):
     state = request.GET.get('state')
 
     context = {
-        'data': create_list(floor, fridge_id, state),
+        'data': create_list(floor, fridge_id, state)
     }
 
     return render(request, 'frontend/fridges.html', context)
 
 
+@csrf_exempt
 def change_state(request):
     """ View for endpoint /api/change_state, which is used to change the state of a fridge and send
     the message to slack """
@@ -108,14 +122,14 @@ def change_state(request):
         fridge_name = request.POST.get('name')
         fridge_id = request.POST.get('id')
         floor_id = request.POST.get('floor')
-        channel_msg = request.POST.get('channel_msg')
+        channel = request.POST.get('channel')
         username_c = 'Floor: ' + floor_id + ', ' + fridge_name
         new_state = request.POST.get('new_state')
 
         # updates the fridge objects data in the database with given parameters
         Fridge.objects.filter(id=fridge_id).update(state=new_state)
         slack_client.chat_postMessage(
-            channel=f'#{channel_msg}',
+            channel=f'#{channel}',
             text=f'State: {new_state}',
             username=username_c
         )
@@ -123,3 +137,23 @@ def change_state(request):
     # doesnt work if the user has blocked metadata with incognito mode or other means
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+
+@csrf_exempt	
+def create_fridges(request):	
+    fridge_1 = Fridge(name="Sauna FridgeX", state="Empty", floor="1", channel="general")	
+    fridge_2 = Fridge(name="FridgeX", state="Full", floor="2", channel="general")	
+    fridge_3 = Fridge(name="FridgeyX", state="Half-full", floor="3", channel="general")	
+    fridge_4 = Fridge(name="FridgexX", state="Half-full", floor="4", channel="general")	
+    fridge_5 = Fridge(name="FridgexyX", state="Half-full", floor="5", channel="general")	
+    fridge_6 = Fridge(name="FridgeyxX", state="Half-full", floor="6", channel="general")	
+    fridge_7 = Fridge(name="FridgeyxyX", state="Half-full", floor="7", channel="general")	
+
+    fridge_1.save()	
+    fridge_2.save()	
+    fridge_3.save()	
+    fridge_4.save()	
+    fridge_5.save()	
+    fridge_6.save()	
+    fridge_7.save()	
+
+    return HttpResponse("Created fridges.")
