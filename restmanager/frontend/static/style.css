@@ -59,7 +59,7 @@ a:active {
 }
 .box2{
     background-color:#ffD700;
-    border:1px solid #0B0500;
+    border:3px solid #0B0500;
     margin: 5px;
 }
 
@@ -75,14 +75,14 @@ a:active {
 
 .box{
     border-radius: 9px;
-    border:1px solid #0B0500;
+    border:3px solid #0B0500;
     margin: 5px;
 }
 
 p {
     font-family:Lato;
     margin: 2px;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 h2 {
@@ -117,7 +117,7 @@ h4 {
     margin-right: 15px;
     margin-top: 5px;
     margin-bottom: 10px;
-    border:1px solid #0B0500;
+    border:2px solid #0B0500;
 }
 
 .button_1:hover {
