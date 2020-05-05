@@ -79,9 +79,7 @@ def create_json(a_list):
 def json_view(request):
     """ view found at /api/json/ uses the create_list function, meaning it can use all the parameters listed in
     the function """
-    # assigns the list using the create_list function
     filtered_list = create_list(request)
-    # creates the json to return using the create_json function
     json_response = create_json(filtered_list)
     return HttpResponse(json_response)
 
