@@ -16,7 +16,7 @@ slack_client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 IP2 = os.getenv('IP2', "127.0.0.1")
 # D_PORT is set only here, determines which port the get_request is sent to (the port that the server is running on)
 
-D_PORT = os.getenv('D_PORT', "8000")
+D_PORT = os.getenv('D_PORT', "8100")
 
 
 def create_floor_list():

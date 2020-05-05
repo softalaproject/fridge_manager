@@ -1,8 +1,37 @@
 version: '3'
 
+
 services:
-  dev-django:
+  mariadb-db:
+    image: mariadb
+    user: root
+    command: ['--character-set-server=utf8', '--collation-server=utf8_unicode_ci']	
+    env_file: .env	
+    environment:	
+      - MYSQL_ROOT_PASSWORD	
+      - MYSQL_DATABASE	
+      - MYSQL_USER	
+      - MYSQL_PASSWORD	
+    restart: on-failure	
+    volumes:	
+      - db-data:/var/lib/mysql	
+    networks:	
+      - overlay	
+
+  mariadb-django:	
     build: .
-    command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8080"
+    # command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py createsuperuser --no-input && python restmanager/manage.py runserver 0.0.0.0:8100"
+    command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:8100"
     ports:
-      - "8080:8080"
+      - "8100:8100"
+    depends_on:	
+      - mariadb-db	
+    networks:	
+      - overlay	
+    restart: on-failure	
+
+volumes: 	
+  db-data:	
+
+networks:	
+  overlay: 
