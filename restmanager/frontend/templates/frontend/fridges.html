@@ -32,6 +32,15 @@
                                 <input type="hidden" name="id" id="id" value="{{ctx.id}}">
                                 <input type="hidden" name="name" id="name" value="{{ctx.name}}">
                                 <input type="hidden" name="state" id="state" value="{{ctx.state}}">
+                                {% with curr_state=ctx.state %}
+                                    {%  if curr_state == "Empty" %}
+                                        <input type="hidden" name="new_state" id="new_state" value="Full">
+                                    {% elif curr_state == "Full" %}
+                                        <input type="hidden" name="new_state" id="new_state" value="Half-full">
+                                    {% else %}
+                                        <input type="hidden" name="new_state" id="new_state" value="Empty">
+                                    {% endif %}
+                                {% endwith %}
                                 <input type="hidden" name="floor" id="floor" value="{{ctx.floor}}">
                                 <input type="hidden" name="channel_msg" id="channel_msg" value="{{ctx.channel_msg}}">
                             <!--Assigns ctx.state to curr_state to display the next state the fridge will be changed to-->

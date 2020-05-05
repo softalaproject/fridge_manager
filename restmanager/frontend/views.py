@@ -109,13 +109,7 @@ def change_state(request):
         floor_id = request.POST.get('floor')
         channel_msg = request.POST.get('channel_msg')
         username_c = 'Floor: ' + floor_id + ', ' + fridge_name
-
-        if request.POST.get('state') == 'Empty':
-            new_state = 'Full'
-        elif request.POST.get('state') == 'Full':
-            new_state = 'Half-full'
-        else:
-            new_state = 'Empty'
+        new_state = request.POST.get('new_state')
 
         # updates the fridge objects data in the database with given parameters
         Fridge.objects.filter(id=fridge_id).update(state=new_state)
