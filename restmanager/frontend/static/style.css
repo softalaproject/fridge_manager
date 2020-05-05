@@ -12,6 +12,30 @@
 a {
     text-decoration: none;
     margin: 2px;
+    text-transform: uppercase;
+}
+
+.mainHeader {
+color: #0b0500;
+  font-weight: bold;
+  font-size: xx-large;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+}
+
+.title1 {
+    color: #0b0500;
+    font-weight: bold;
+    position: relative;
+    height: auto;
+    width: auto;
+    font-size: 16px;
+    border: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    text-decoration: underline;
+    font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 
 a:link {
@@ -35,18 +59,16 @@ a:active {
 }
 
 .box{
-    border-radius: 15px;
-    border:2px solid #0B0500;
+    border-radius: 9px;
+    border:1px solid #0B0500;
     margin: 5px;
-}
-h4 {
-    font-family:Montserrat;
-    margin: 2px;
 }
 
 p {
     font-family:Lato;
     margin: 2px;
+    text-transform: uppercase;
+    font-size: 18px;
 }
 
 h2 {
@@ -61,19 +83,28 @@ h1 {
     padding: 5px;
 }
 
+h4 {
+    font-family:Montserrat;
+    margin: 5px;
+    padding: 5px;
+}
+
 .button_1 {
     background-color:#ffD700;
-    border-radius:5px;
-    border:2px solid #0B0500;
+    border: 0;
     display:inline-block;
     cursor:pointer;
     color:#0B0500;
-    font-family:Lato;
+    font-family:Montserrat;
     font-size:18px;
     font-weight:bold;
-    padding:6px 24px;
+    padding:6px 14px;
     text-decoration:none;
-    margin: 5px;
+    text-transform: uppercase;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .button_1:hover {
