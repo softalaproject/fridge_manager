@@ -19,7 +19,6 @@ IP2 = os.getenv('IP2', "127.0.0.1")
 D_PORT = os.getenv('D_PORT', "8100")
 
 
-@csrf_exempt
 def create_floor_list():
     """ Creates a list of unique floors found in fridges table in the database and returns it """
     floor_list = []
@@ -31,7 +30,6 @@ def create_floor_list():
     return sorted(floor_list)
 
 
-@csrf_exempt
 def get_request():
     """ Sends get request to api endpoint /api/fridges/ which returns a json object with all the fridges in
     the database """
@@ -39,7 +37,6 @@ def get_request():
     return json.loads(r.text)
 
 
-@csrf_exempt
 def create_list(request):
     """ Creates a list and sorts through it depending on what parameters are given in the request that it receives
      Accepts parameters from url id, floor, state and returns a select_list named list """
@@ -68,14 +65,12 @@ def create_list(request):
     return select_list
 
 
-@csrf_exempt
 def create_json(a_list):
     """ converts given list into json and returns it """
     json_string = json.dumps(a_list)
     return json_string
 
 
-@csrf_exempt
 def json_view(request):
     """ view found at /api/json/ uses the create_list function, meaning it can use all the parameters listed in
     the function """
@@ -84,7 +79,6 @@ def json_view(request):
     return HttpResponse(json_response)
 
 
-@csrf_exempt
 def floors(request):
     """ View for index and /floors/ endpoint, passes create_floor_list() which creates a list of unique floors
      and passes it as context to template floors.html """
@@ -94,7 +88,6 @@ def floors(request):
     return render(request, 'frontend/floors.html', context)
 
 
-@csrf_exempt
 def fridges(request):
     """ View for /fridges/ endpoint, uses create_list() passing the received request to it and then passing the filtered
     list as context to the template fridges.html """
@@ -105,7 +98,6 @@ def fridges(request):
     return render(request, 'frontend/fridges.html', context)
 
 
-@csrf_exempt
 def change_state(request):
     """ View for endpoint /api/change_state, which is used to change the state of a fridge and send
     the message to slack """
