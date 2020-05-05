@@ -11,8 +11,8 @@
     <body>
         <div class="container">
             <div class="center">
-                <a href="/fridges/"><p>Back to all Fridges</p></a>
-                <a href="/"><p>Back to Floor selection</p></a>
+                <a href="/fridges/"><p>List of all Fridges</p></a>
+                <a href="/"><p>Back to Floors</p></a>
                 <!--goes over the data which it receives from django view-->
                 {% for ctx in data %}
                 <div id="items-wrapper" class="box">
@@ -47,15 +47,15 @@
                                     {%  if curr_state == "Empty" %}
                                         <img src="{% static "bottle-empty.png" %}"/>
                                         <br>
-                                        <input type="submit" class="button_1" value="Change state to Full">
+                                        <input type="submit" class="button_1" value="Change to Full">
                                     {% elif curr_state == "Full" %}
                                         <img src="{% static "bottle-full.png" %}"/>
                                         <br>
-                                        <input type="submit" class="button_1" value="Change state to Half-full">
+                                        <input type="submit" class="button_1" value="Change to Half-full">
                                     {% else %}
                                         <img src="{% static "bottle-half.png" %}"/>
                                         <br>
-                                        <input type="submit" class="button_1" value="Change state to Empty">
+                                        <input type="submit" class="button_1" value="Change to Empty">
                                     {% endif %}
                                 {% endwith %}
                             </form>

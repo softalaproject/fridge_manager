@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% load static %}
         <link rel="stylesheet" href="{% static "Style.css" %}" type="text/css" />
-        <title>Floor selection</title>
+        <title>Floors</title>
     </head>
 
     <body>
         <div class="container">
             <div class="center">
-                <h1>Floor selection</h1>
-                <a href="/fridges/"><p>All Fridges</p></a>
+                <h1>Floors</h1>
+                <a href="/fridges/"><p>List of all Fridges</p></a>
                 <!--goes over the data which it receives from django view-->
                 {% for ctx in data %}
                 <div id="items-wrapper" class="box2">
