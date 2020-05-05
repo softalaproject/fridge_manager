@@ -37,13 +37,10 @@ def get_request():
     return json.loads(r.text)
 
 
-def create_list(request):
+def create_list(floor, fridge_id, state):
     """ Creates a list and sorts through it depending on what parameters are given in the request that it receives
      Accepts parameters from url id, floor, state and returns a select_list named list """
     select_list = []
-    floor = request.GET.get('floor')
-    fridge_id = request.GET.get('id')
-    state = request.GET.get('state')
 
     # loops through data from get_request()
     for item in get_request():
@@ -91,8 +88,12 @@ def floors(request):
 def fridges(request):
     """ View for /fridges/ endpoint, uses create_list() passing the received request to it and then passing the filtered
     list as context to the template fridges.html """
+    floor = request.GET.get('floor')
+    fridge_id = request.GET.get('id')
+    state = request.GET.get('state')
+
     context = {
-        'data': create_list(request),
+        'data': create_list(floor, fridge_id, state),
     }
 
     return render(request, 'frontend/fridges.html', context)
