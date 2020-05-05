@@ -12,31 +12,31 @@
 a {
     text-decoration: none;
     margin: 2px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
-.mainHeader {
-color: #0b0500;
-  font-weight: bold;
-  font-size: xx-large;
-  font-family: Montserrat, Arial, Helvetica, sans-serif;
-}
+/*.mainHeader {*/
+/*color: #0b0500;*/
+  /*font-weight: bold;*/
+  /*font-size: xx-large;*/
+  /*font-family: Montserrat, Arial, Helvetica, sans-serif;*/
+/*}*/
 
-.title1 {
-    color: #0b0500;
-    font-weight: bold;
-    position: relative;
-    height: auto;
-    width: auto;
-    font-size: 16px;
-    border: 0;
-    border-radius: 4px;
-    overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
-    text-decoration: underline;
-    font-family: Montserrat, Arial, Helvetica, sans-serif;
-}
+/*.title1 {*/
+    /*color: #0b0500;*/
+    /*font-weight: bold;*/
+    /*position: relative;*/
+    /*height: auto;*/
+    /*width: auto;*/
+    /*font-size: 16px;*/
+    /*border: 0;*/
+    /*border-radius: 4px;*/
+    /*overflow: hidden;*/
+    /*text-transform: uppercase;*/
+    /*letter-spacing: 0.2px;*/
+    /*text-decoration: underline;*/
+    /*font-family: Montserrat, Arial, Helvetica, sans-serif;*/
+/*}*/
 
 a:link {
     color: #0B0500;
@@ -67,7 +67,6 @@ a:active {
 p {
     font-family:Lato;
     margin: 2px;
-    text-transform: uppercase;
     font-size: 18px;
 }
 
@@ -95,12 +94,11 @@ h4 {
     display:inline-block;
     cursor:pointer;
     color:#0B0500;
-    font-family:Montserrat;
+    font-family:Lato;
     font-size:18px;
     font-weight:bold;
     padding:6px 14px;
     text-decoration:none;
-    text-transform: uppercase;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 5px;
