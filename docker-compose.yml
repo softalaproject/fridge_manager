@@ -6,7 +6,8 @@ services:
     image: mariadb
     user: root
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    env_file: .env
+    env_file:
+      - mariadb.env
     environment:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE
@@ -31,7 +32,7 @@ services:
     restart: on-failure
 
 volumes:
-  db-data:	
+  db-data:
 
 networks:
   overlay:

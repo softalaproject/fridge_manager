@@ -7,6 +7,9 @@
 #Mariadb data
 mariadb/
 
+#Docker-compose MariaDB environment variables
+mariadb.env
+
 # loki filu
 log.txt
 
