@@ -19,7 +19,10 @@ def fridges(request):
 def json_view(request):
     """ view found at /api/json/ uses the create_list function, meaning it can use all the parameters listed in
     the function """
-    filtered_list = urlfunctions.create_list(request)
+    floor = request.GET.get('floor')
+    fridge_id = request.GET.get('id')
+    state = request.GET.get('state')
+    filtered_list = urlfunctions.create_list(floor, fridge_id, state)
     json_response = urlfunctions.create_json(filtered_list)
     return HttpResponse(json_response)
 
