@@ -6,4 +6,5 @@ urlpatterns = [
     path('', include('frontend.urls')),
     path('admin/', admin.site.urls),
     path('', include('fridges.urls')),
+    path('api/', include('api.urls')),
 ]
