@@ -103,6 +103,11 @@ local_settings.py
 db.sqlite3
 hidden.py
 
+# django migrations 
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+
 # Translations
 *.mo
 *.pot
