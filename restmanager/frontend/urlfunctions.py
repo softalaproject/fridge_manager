@@ -94,7 +94,7 @@ def change_state(request):
 
 
 @csrf_exempt
-def create_fridges():
+def create_fridges(request):
     fridge_1 = Fridge(name="Sauna FridgeX", state="Empty", floor="1", channel="general")
     fridge_2 = Fridge(name="FridgeX", state="Full", floor="2", channel="general")
     fridge_3 = Fridge(name="FridgeyX", state="Half-full", floor="3", channel="general")
