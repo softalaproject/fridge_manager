@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% load static %}
-        <link rel="stylesheet" href="{% static "style.css" %}" type="text/css" />
-        <title>Floors</title>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %} <link rel="stylesheet" href="{% static "floorStyle.css" %}" type="text/css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <title>Floors</title>
+  </head>
 
-    <body>
-        <div class="container">
-            <div class="center">
-                <h1>Floors</h1>
-                <a href="/fridges/"><p>List of all Fridges</p></a>
-                <!--goes over the data which it receives from django view-->
-                {% for ctx in data %}
-                <div id="items-wrapper" class="box2">
-                    <div class="media-left">
-                        <div class="container">
-                            <a href="/fridges/?floor={{ctx}}"><h2>Floor: {{ctx}}</h2></a>
-                        </div>
-                    </div>
+  <body>
+    <div class="container">
+      <div class="center">
+        <h1 class="title1">Floors</h1>
+        <a href="/fridges/"><h4 class="item2">All Fridges</h4></a>
+        <!--goes over the data which it receives from django view-->
+        {% for ctx in data %}
+        <div id="items-wrapper" class="box2">
+            <a href="/fridges/?floor={{ctx}}">
+                <div class="box-content">
+                    <h4 class="item">Floor: {{ctx}}</h4>
                 </div>
-                {% endfor %}
-            </div>
+            </a>
         </div>
-    </body>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
 </html>

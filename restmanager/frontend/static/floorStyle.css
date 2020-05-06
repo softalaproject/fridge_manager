@@ -1,3 +1,25 @@
+a:link {
+  color: #0B0500;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #0B0500;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0B0500;
+  text-decoration: underline;
+  text-decoration-color: #0B0500;
+}
+
+a:active {
+  color: #0B0500;
+  text-decoration: underline;
+  text-decoration-color: #0B0500;
+}
+
 .title1 {
   color: #0b0500;
   font-weight: bold;
@@ -55,12 +77,10 @@
   height: auto;
   width: auto;
   font-size: 16px;
-  border: 0;
-  border-radius: 4px;
   overflow: hidden;
   text-transform: uppercase;
   letter-spacing: 0.2px;
-  text-decoration: underline;
+  text-decoration: none;
   padding-bottom: 10px;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
