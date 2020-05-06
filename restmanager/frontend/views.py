@@ -42,13 +42,25 @@ def get_request():
 
 
 @csrf_exempt
-def create_list(request):
-    """ Creates a list and sorts through it depending on what parameters are given in the request that it receives
-     Accepts parameters from url id, floor, state and returns a select_list named list """
-    select_list = []
+def fridges(request):
+    """ View for /fridges/ endpoint, uses create_list() passing the received request to it and then passing the filtered
+    list as context to the template fridges.html """
     floor = request.GET.get('floor')
     fridge_id = request.GET.get('id')
     state = request.GET.get('state')
+
+    context = {
+        'data': create_list(floor, fridge_id, state),
+    }
+
+    return render(request, 'frontend/fridges.html', context)
+
+
+@csrf_exempt
+def create_list(floor, fridge_id, state):
+    """ Creates a list and sorts through it depending on what parameters are given in the request that it receives
+     Accepts parameters from url id, floor, state and returns a select_list named list """
+    select_list = []
 
     # loops through data from get_request()
     for item in get_request():
@@ -99,17 +111,6 @@ def floors(request):
 
 
 @csrf_exempt
-def fridges(request):
-    """ View for /fridges/ endpoint, uses create_list() passing the received request to it and then passing the filtered
-    list as context to the template fridges.html """
-    context = {
-        'data': create_list(request),
-    }
-
-    return render(request, 'frontend/fridges.html', context)
-
-
-@csrf_exempt
 def change_state(request):
     """ View for endpoint /api/change_state, which is used to change the state of a fridge and send
     the message to slack """
@@ -122,12 +123,7 @@ def change_state(request):
         channel = request.POST.get('channel')
         username_c = 'Floor: ' + floor_id + ', ' + fridge_name
 
-        if request.POST.get('state') == 'Empty':
-            new_state = 'Full'
-        elif request.POST.get('state') == 'Full':
-            new_state = 'Half-full'
-        else:
-            new_state = 'Empty'
+        new_state = request.POST.get('new_state')
 
         # updates the fridge objects data in the database with given parameters
         Fridge.objects.filter(id=fridge_id).update(state=new_state)
@@ -139,6 +135,7 @@ def change_state(request):
     # redirects the requests sender back to where they came from
     # doesnt work if the user has blocked metadata with incognito mode or other means
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 @csrf_exempt	
 def create_fridges(request):	
