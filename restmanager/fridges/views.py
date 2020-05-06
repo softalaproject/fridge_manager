@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from requests import request
-from . import FridgeSerializer
-from django.http import Response, Http404
+from .serializers import FridgeSerializer
+from django.http import HttpResponse, Http404
 
 
 # Create your views here.
@@ -18,7 +18,7 @@ class fridges(APIView):
        queryset = fridges.objects.all()
        resultSet = FridgeSerializer(queryset, many=True)
 
-       return Response(resultSet.data)
+       return HttpResponse(resultSet.data)
 
 class FridgeDetails(APIView):
 
@@ -38,4 +38,4 @@ class FridgeDetails(APIView):
        fridge = self.get_object(pk)
        serializer = FridgeSerializer(fridge)
 
-       return Response(serializer.data)
+       return HttpResponse(serializer.data)
