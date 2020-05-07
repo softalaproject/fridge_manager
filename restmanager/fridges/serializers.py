@@ -8,4 +8,3 @@ class FridgeSerializer(serializers.ModelSerializer):
         model = Fridge
         fields = '__all__'
 
-

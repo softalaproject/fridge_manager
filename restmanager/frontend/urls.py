@@ -11,5 +11,5 @@ urlpatterns = [
     path('api/json/', views.json_view),
     path('floors', views.floors),
     path('floors/', views.floors),
-    path('create_fridges', urlfunctions.create_fridges)
+    path('create_fridges', urlfunctions.create_fridges),
 ]

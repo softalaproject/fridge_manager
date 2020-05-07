@@ -1,73 +1,60 @@
 import os
 import json
 import slack
-import requests
 from dotenv import load_dotenv
 from fridges.models import Fridge
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect
+from rest_framework import permissions
+from django.core import serializers
 
 # Gets slack token from .env file and sets it here
 load_dotenv()
 slack_client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
-# IP2 is the servers IP Address set in .env found in fridge_manager/restmanager
-IP2 = os.getenv('IP2', '127.0.0.1')
-# D_PORT determines which port the get_request is sent to (the port that the server is running on)
-D_PORT = os.getenv('D_PORT', '8100')
-# API_URL is here incase versioning happens
-API_URL = os.getenv('API_URL', '/api/')
-# REQ_URL is where get_request sends its request to
-REQ_URL = os.getenv('REQ_URL', f'HTTP://{IP2}:{D_PORT}{API_URL}fridges/?format=json')
+
+def ValuesQuerySetToDict(vqs):
+    return [item for item in vqs]
 
 
-def create_json(a_list):
-    """ converts given list into json and returns it """
-    json_string = json.dumps(a_list)
+def get_floor_json(request):
+    """ Returns json with all objects from database """
+    data = Fridge.objects.all().values()
+    data_dict = ValuesQuerySetToDict(data)
+    floor_json = json.dumps(data_dict)
+    return floor_json
+
+
+def create_json(dicti):
+    """ converts given dict into json and returns it as a string"""
+    json_string = json.dumps(dicti)
     return json_string
 
 
-def create_list(floor, fridge_id, state):
-    """ Creates a list and sorts through it depending on what parameters are given in the request that it receives
-     Accepts parameters from url id, floor, state and returns a select_list named list """
-    select_list = []
-
-    # loops through data from get_request()
-    for item in get_request():
-        # if the request has a given parameter floor it is added to select_list
-        if floor is not None:
-            int_floor = int(floor)
-            if item['floor'] == int_floor:
-                select_list.append(item)
-        elif fridge_id is not None:
-            int_fridge_id = int(fridge_id)
-            if item['id'] == int_fridge_id:
-                select_list.append(item)
-        elif state is not None:
-            if item['state'].lower() == state.lower():
-                select_list.append(item)
-        # if the request has no given parameters, adds all data from get_request() to select_list
-        else:
-            select_list.append(item)
-    return select_list
+def create_json_data_string(floor = None, id = None):
+    """ Accepts parameters if found in url, filters data based on found parameter or returns data which contains all fridge object models values in the database """
+    data = Fridge.objects.all().values()
+    # Checks if params exist in request
+    if floor is not None:
+        data = data.filter(floor=floor)
+    elif id is not None:
+        data = data.filter(id=id)
+    else:
+        pass
+    data_dict = ValuesQuerySetToDict(data)
+    data_json = json.dumps(data_dict)
+    return json.loads(data_json)
 
 
-def create_floor_list():
+def create_floor_list(request):
     """ Creates a list of unique floors found in fridges table in the database and returns it """
     floor_list = []
-
+    get_floors = json.loads(get_floor_json(request))
     # adds unique floor numbers found in the get_request()
-    for item in get_request():
+    for item in get_floors:
         if item['floor'] not in floor_list:
             floor_list.append(item['floor'])
     return sorted(floor_list)
-
-
-def get_request():
-    """ Sends get request to api endpoint /api/fridges/ which returns a json object with all the fridges in
-    the database """
-    r = requests.get(REQ_URL)
-    return json.loads(r.text)
 
 
 @csrf_exempt
