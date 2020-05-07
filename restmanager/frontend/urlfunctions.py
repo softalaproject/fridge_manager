@@ -12,10 +12,13 @@ load_dotenv()
 slack_client = slack.WebClient(token=os.getenv("SLACK_TOKEN"))
 
 # IP2 is the servers IP Address set in .env found in fridge_manager/restmanager
-IP2 = os.getenv('IP2', "127.0.0.1")
-# D_PORT is set only here, determines which port the get_request is sent to (the port that the server is running on)
-
-D_PORT = os.getenv('D_PORT', "8100")
+IP2 = os.getenv('IP2', '127.0.0.1')
+# D_PORT determines which port the get_request is sent to (the port that the server is running on)
+D_PORT = os.getenv('D_PORT', '8100')
+# API_URL is here incase versioning happens
+API_URL = os.getenv('API_URL', '/api/')
+# REQ_URL is where get_request sends its request to
+REQ_URL = os.getenv('REQ_URL', f'HTTP://{IP2}:{D_PORT}{API_URL}fridges/?format=json')
 
 
 def create_json(a_list):
@@ -63,7 +66,7 @@ def create_floor_list():
 def get_request():
     """ Sends get request to api endpoint /api/fridges/ which returns a json object with all the fridges in
     the database """
-    r = requests.get('HTTP://' + IP2 + ':' + D_PORT + '/api/fridges/?format=json')
+    r = requests.get(REQ_URL)
     return json.loads(r.text)
 
 
