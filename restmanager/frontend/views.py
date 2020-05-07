@@ -2,10 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from . import urlfunctions
 from fridges.models import Fridge
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from rest_framework import viewsets
-from rest_framework.response import Response
 
 
 def fridges(request):
@@ -13,9 +9,10 @@ def fridges(request):
     list as context to the template fridges.html """
     floor = request.GET.get('floor')
     id = request.GET.get('id')
+    state = request.GET.get('state')
 
     context = {
-        'data': urlfunctions.create_json_data_string(floor, id),
+        'data': urlfunctions.create_json_data_string(floor, id, state)
     }
     return render(request, 'frontend/fridges.html', context)
 
@@ -27,7 +24,7 @@ def json_view(request):
     fridge_id = request.GET.get('id')
     state = request.GET.get('state')
 
-    filtered_string = urlfunctions.create_json_data_string(floor, fridge_id)
+    filtered_string = urlfunctions.create_json_data_string(floor, fridge_id, state)
     json_response = urlfunctions.create_json(filtered_string)
     return HttpResponse(json_response)
 

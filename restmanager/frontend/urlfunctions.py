@@ -5,8 +5,7 @@ from dotenv import load_dotenv
 from fridges.models import Fridge
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect
-from rest_framework import permissions
-from django.core import serializers
+
 
 # Gets slack token from .env file and sets it here
 load_dotenv()
@@ -31,7 +30,7 @@ def create_json(dicti):
     return json_string
 
 
-def create_json_data_string(floor = None, id = None):
+def create_json_data_string(floor = None, id = None, state = None):
     """ Accepts parameters if found in url, filters data based on found parameter or returns data which contains all fridge object models values in the database """
     data = Fridge.objects.all().values()
     # Checks if params exist in request
@@ -39,6 +38,9 @@ def create_json_data_string(floor = None, id = None):
         data = data.filter(floor=floor)
     elif id is not None:
         data = data.filter(id=id)
+    elif state is not None:
+        state = state.capitalize()
+        data = data.filter(state=state)
     else:
         pass
     data_dict = ValuesQuerySetToDict(data)
