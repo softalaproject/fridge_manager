@@ -36,6 +36,3 @@ def floors(request):
         'data': urlfunctions.create_floor_list(request),
     }
     return render(request, 'frontend/floors.html', context)
-
-
-

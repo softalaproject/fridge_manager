@@ -16,14 +16,6 @@ def ValuesQuerySetToDict(vqs):
     return [item for item in vqs]
 
 
-def get_floor_json(request):
-    """ Returns json with all objects from database """
-    data = Fridge.objects.all().values()
-    data_dict = ValuesQuerySetToDict(data)
-    floor_json = json.dumps(data_dict)
-    return floor_json
-
-
 def create_json(dicti):
     """ converts given dict into json and returns it as a string"""
     json_string = json.dumps(dicti)
@@ -32,7 +24,7 @@ def create_json(dicti):
 
 def create_json_data_string(floor = None, id = None, state = None):
     """ Accepts parameters if found in url, filters data based on found parameter or returns data which contains all fridge object models values in the database """
-    data = Fridge.objects.all().values()
+    data = Fridge.objects.all().values().order_by('floor')
     # Checks if params exist in request
     if floor is not None:
         data = data.filter(floor=floor)
@@ -40,7 +32,7 @@ def create_json_data_string(floor = None, id = None, state = None):
         data = data.filter(id=id)
     elif state is not None:
         state = state.capitalize()
-        data = data.filter(state=state)
+        data = data.filter(state=state).order_by('floor')
     else:
         pass
     data_dict = ValuesQuerySetToDict(data)
@@ -48,15 +40,22 @@ def create_json_data_string(floor = None, id = None, state = None):
     return json.loads(data_json)
 
 
+def create_uniq_floors(request):
+    """ queryset with distinct floors """
+    floors = Fridge.objects.all().values_list('floor', flat=True).distinct().order_by('floor')
+    data_dict = ValuesQuerySetToDict(floors)
+    floors_json = json.dumps(data_dict)
+    return json.loads(floors_json)
+
+
 def create_floor_list(request):
     """ Creates a list of unique floors found in fridges table in the database and returns it """
     floor_list = []
-    get_floors = json.loads(get_floor_json(request))
-    # adds unique floor numbers found in the get_request()
-    for item in get_floors:
-        if item['floor'] not in floor_list:
-            floor_list.append(item['floor'])
-    return sorted(floor_list)
+    # adds unique floor numbers found in the create_uniq_floors(request)
+    for item in create_uniq_floors(request):
+        if item not in floor_list:
+            floor_list.append(item)
+    return floor_list
 
 
 @csrf_exempt
@@ -83,25 +82,3 @@ def change_state(request):
     # redirects the requests sender back to where they came from
     # doesnt work if the user has blocked metadata with incognito mode or other means
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
-
-@csrf_exempt
-def create_fridges(request):
-    """ Function only for adding fridges quickly in testing/development """
-    fridge_1 = Fridge(name="Sauna FridgeX", state="Empty", floor="1", channel="general")
-    fridge_2 = Fridge(name="FridgeX", state="Full", floor="2", channel="general")
-    fridge_3 = Fridge(name="FridgeyX", state="Half-full", floor="3", channel="general")
-    fridge_4 = Fridge(name="FridgexX", state="Half-full", floor="4", channel="general")
-    fridge_5 = Fridge(name="FridgexyX", state="Half-full", floor="5", channel="general")
-    fridge_6 = Fridge(name="FridgeyxX", state="Half-full", floor="6", channel="general")
-    fridge_7 = Fridge(name="FridgeyxyX", state="Half-full", floor="7", channel="general")
-
-    fridge_1.save()
-    fridge_2.save()
-    fridge_3.save()
-    fridge_4.save()
-    fridge_5.save()
-    fridge_6.save()
-    fridge_7.save()
-
-    return HttpResponse("Created fridges.")
