@@ -15,15 +15,15 @@ def create_json(dicti):
 def create_json_data_string(floor=None, fridge_id=None, state=None):
     """ Accepts parameters if found in url, filters data based on found parameter or returns data which contains
     all fridge object models values in the database """
-    data = Fridge.objects.all().values().order_by('floor')
+    data = Fridge.objects.all().values().order_by('floor', 'name')
     # Checks if params exist in request
     if floor is not None:
-        data = data.filter(floor=floor)
+        data = data.filter(floor=floor).order_by('name')
     elif fridge_id is not None:
         data = data.filter(id=fridge_id)
     elif state is not None:
         state = state.capitalize()
-        data = data.filter(state=state).order_by('floor')
+        data = data.filter(state=state).order_by('floor', 'name')
     data_dict = values_queryset_to_dict(data)
     data_json = json.dumps(data_dict)
     return json.loads(data_json)
