@@ -6,7 +6,7 @@ services:
     image: mariadb
     user: root
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    env_file: fridgemanager/restmanager/.env
+    env_file: restmanager/.env
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
