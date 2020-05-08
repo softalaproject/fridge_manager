@@ -33,8 +33,6 @@ def create_json_data_string(floor = None, id = None, state = None):
     elif state is not None:
         state = state.capitalize()
         data = data.filter(state=state).order_by('floor')
-    else:
-        pass
     data_dict = ValuesQuerySetToDict(data)
     data_json = json.dumps(data_dict)
     return json.loads(data_json)
