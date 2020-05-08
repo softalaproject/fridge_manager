@@ -66,7 +66,8 @@ def change_state(request):
         slack_client.chat_postMessage(
             channel=f'#{channel}',
             text=f'State: {new_state}',
-            username=username_c
+            username=username_c,
+            icon_emoji=":repair:"
         )
     # redirects the requests sender back to where they came from
     # doesnt work if the user has blocked metadata with incognito mode or other means
