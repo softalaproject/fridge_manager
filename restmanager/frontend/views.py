@@ -42,7 +42,7 @@ def floors(request):
     """ View for index and /floors/ endpoint, passes create_floor_list() which creates a list of unique floors
      and passes it as context to template floors.html """
     context = {
-        'data': utils.create_floor_list(request),
+        'data': utils.create_floor_list(),
     }
     return render(request, 'frontend/floors.html', context)
 
