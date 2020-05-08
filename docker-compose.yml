@@ -21,7 +21,7 @@ services:
   mariadb-django:
     build: .
     # command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py createsuperuser --no-input && python restmanager/manage.py runserver 0.0.0.0:80"
-    command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && python restmanager/manage.py runserver 0.0.0.0:80"
+    command: sh -c "python restmanager/manage.py makemigrations && python restmanager/manage.py migrate && restmanager/manage.py collectstatic --noinput && python restmanager/manage.py runserver 0.0.0.0:80"
     ports:
       - "80:80"
     depends_on:
