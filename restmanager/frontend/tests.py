@@ -1,35 +1,38 @@
 import unittest
-from .views import fridge2, manage, post_beer, post_no_beer
-from django.urls import reverse, resolve
 from unittest import TestCase
-from . import strings
+from django.urls import reverse, resolve
+from .views import fridges, floors, json_view, change_state
 
 
 class UrlsTest(TestCase):
-    def test_fridge(self):
-        url = reverse(fridge2)
-        self.assertEquals(resolve(url).func, fridge2)
+    """ tests if url matches the function, tests if reversing the function returns the correct url """
+    def test_fridges(self):
+        url = '/fridges/'
+        url2 = reverse(fridges)
+        self.assertEquals(url, url2)
+        self.assertEquals(resolve(url).func, fridges)
+        self.assertEquals(resolve(url2).func, fridges)
 
-    def test_manage(self):
-        url = reverse(manage)
-        self.assertEquals(resolve(url).func, manage)
+    def test_floors(self):
+        url = '/floors/'
+        url2 = reverse(floors)
+        self.assertEquals(url, url2)
+        self.assertEquals(resolve(url).func, floors)
+        self.assertEquals(resolve(url2).func, floors)
 
-    def test_beer(self):
-        url = reverse(post_beer)
-        self.assertEquals(resolve(url).func, post_beer)
+    def test_api_json(self):
+        url = '/api/json/'
+        url2 = reverse(json_view)
+        self.assertEquals(url, url2)
+        self.assertEquals(resolve(url).func, json_view)
+        self.assertEquals(resolve(url2).func, json_view)
 
-    def test_no_beer(self):
-        url = reverse(post_no_beer)
-        self.assertEquals(resolve(url).func, post_no_beer)
-
-
-class UnitTests(TestCase):
-    def test_strings(self):
-        self.assertEqual('Saunatilan kaappi on tyhjä.', strings.SLACK_MESSAGE_1)
-        self.assertEqual('#general', strings.CHANNEL_NAME_1)
-        self.assertEqual('Saunatilan kaappi on täytetty.', strings.SLACK_MESSAGE_2)
-        self.assertEqual('Täyttäminen vaiheessa.', strings.SLACK_MESSAGE_3)
-        self.assertEqual('Otit vastuun täyttämisestä, viesti laitettu Slackiin.', strings.SUCCESS_MSG_3)
+    def test_api_change_state(self):
+        url = '/api/change_state/'
+        url2 = reverse(change_state)
+        self.assertEquals(url, url2)
+        self.assertEquals(resolve(url).func, change_state)
+        self.assertEquals(resolve(url2).func, change_state)
 
 
 if __name__ == '__main__':

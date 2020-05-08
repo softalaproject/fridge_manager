@@ -6,12 +6,10 @@ ssh-add .travis/id_rsa # Add the private key to SSH
 
 # Skip this command if you don't need to execute any additional commands after deploying.
 ssh apps@$IP -p $PORT <<EOF
-  pkill -f runserver
   cd $DEPLOY_DIR
+  docker-compose down
   git fetch origin
-  git reset --hard origin/dev
-  pip3 install -r requirements.txt
-  python3.6 restmanager/manage.py makemigrations
-  python3.6 restmanager/manage.py migrate
-  python3.6 restmanager/manage.py runserver $IP2:8079 &
+  git reset --hard origin/feature/mariadb
+  docker-compose build
+  docker-compose up -d
 EOF

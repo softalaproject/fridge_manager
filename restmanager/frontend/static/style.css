@@ -1,0 +1,152 @@
+/* Fridges.html styles: */
+@font-face {
+    font-family: Montserrat;
+    src: url(Montserrat-Bold.ttf);
+ }
+
+ @font-face {
+    font-family: Lato;
+    src: url(Lato-Light.ttf);
+ }
+
+a {
+    text-decoration: none;
+    margin: 2px;
+    text-transform: uppercase;
+}
+
+/*.mainHeader {*/
+/*color: #0b0500;*/
+  /*font-weight: bold;*/
+  /*font-size: xx-large;*/
+  /*font-family: Montserrat, Arial, Helvetica, sans-serif;*/
+/*}*/
+
+/*.title1 {*/
+    /*color: #0b0500;*/
+    /*font-weight: bold;*/
+    /*position: relative;*/
+    /*height: auto;*/
+    /*width: auto;*/
+    /*font-size: 16px;*/
+    /*border: 0;*/
+    /*border-radius: 4px;*/
+    /*overflow: hidden;*/
+    /*text-transform: uppercase;*/
+    /*letter-spacing: 0.2px;*/
+    /*text-decoration: underline;*/
+    /*font-family: Montserrat, Arial, Helvetica, sans-serif;*/
+/*}*/
+
+a:link {
+    color: #0B0500;
+  }
+
+a:visited {
+    color: #0B0500;
+  }
+
+a:hover {
+    color: #0B0500;
+    text-decoration: underline;
+    text-decoration-color: #0B0500;
+}
+
+a:active {
+    color: #0B0500;
+    text-decoration: underline;
+    text-decoration-color: #0B0500;
+}
+
+.box2{
+    background-color:#ffD700;
+    margin: 5px;
+}
+
+.box2:hover {
+    background-color:#ffc31c;
+}
+
+.box2:active {
+    position:relative;
+    background-color:#ffc31c;
+    top:1px;
+}
+
+.box{
+    border-radius: 9px;
+    margin: 5px;
+}
+
+p {
+    font-family:Lato;
+    margin: 2px;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-family:Montserrat;
+    margin: 5px;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-family:Montserrat;
+    margin: 5px;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-family:Montserrat;
+    margin: 5px;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-family:Montserrat;
+    margin: 5px;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+.button_1 {
+    background-color:#ffD700;
+    display:inline-block;
+    cursor:pointer;
+    color:#0B0500;
+    font-family:Lato;
+    font-size:18px;
+    border: 0;
+    font-weight:bold;
+    padding:6px 14px;
+    text-decoration:none;
+    text-transform: uppercase;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.button_1:hover {
+    background-color:#ffc31c;
+}
+
+.button_1:active {
+    position:relative;
+    background-color:#ffc31c;
+    top:1px;
+}
+
+.container {
+    text-align: center;
+}
+
+.center {
+    line-height: 50%;
+    text-align: center;
+    display: inline-block;
+}

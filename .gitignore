@@ -4,6 +4,12 @@
 # Applen DS_Store
 .DS_Store
 
+#Mariadb data
+mariadb/
+
+# loki filu
+log.txt
+
 vir/
 ### react ###
 .DS_*
@@ -96,6 +102,11 @@ coverage.xml
 local_settings.py
 db.sqlite3
 hidden.py
+
+# django migrations 
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
 
 # Translations
 *.mo

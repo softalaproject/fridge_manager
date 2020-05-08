@@ -25,8 +25,8 @@ load_dotenv()
 SECRET_KEY = os.getenv("DJANGO_TOKEN")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+DEBUG = True
+# Adds the servers ip from .env located in fridge_manager/restmanager to allowed_hosts
 ALLOWED_HOSTS = [os.getenv('IP2'), "127.0.0.1"]
 
 # Application definition
@@ -76,14 +76,26 @@ WSGI_APPLICATION = 'restmanager.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
+# SQLite for local testing and development without docker
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+}  """
 
+ # MariaDB
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        "DEFAULT-CHARACTER-SET": 'utf8',
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+    }
+} 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
