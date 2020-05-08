@@ -6,12 +6,12 @@
 <br>
 
 **1 Add your preferred admin panel login credentials to .env file** (`remember to add .env to .gitignore`)<br/>
-**location <app_root>/.env**
+**location fridgemanager/restmanager/.env**
 
 ![](./env.png)
 <br/>
 
-**2 Add command `python <app_root>/manage.py createsuperuser --no-input` to docker-compose.yml before the runserver command (Remember to separate the commands with &&)**
+**2 Add command `python restmanager/manage.py createsuperuser --no-input` to docker-compose.yml before the runserver command (Remember to separate the commands with &&)**
 
 ![](./command.png)
 

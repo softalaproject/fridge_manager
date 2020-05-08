@@ -1,10 +1,10 @@
 # Environment variables for this project.
 
 For running this project you need two .env files.
-First .env file needs to be located in fridge_manager/<app_root>/.env folder and it's used for django's environment variables.
+First .env file needs to be located in fridge_manager/restmanager/.env folder and it's used for django's environment variables.
 Second .env file needs to be located in fridge_manager/ folder and it's used for Docker-Compose's environment variables.
 
-## fridge_manager/<app_root>/.env for Django app:
+## fridge_manager/restmanager/.env for Django app:
     
     DJANGO_TOKEN='DJANGO secret key' 
     SLACK_TOKEN="Slack Bot User OAuth Access Token"
