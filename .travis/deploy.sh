@@ -9,7 +9,7 @@ ssh apps@$IP -p $PORT <<EOF
   cd $DEPLOY_DIR
   docker-compose down
   git fetch origin
-  git reset --hard origin/feature/mariadb
+  git reset --hard origin/master
   docker-compose build
   docker-compose up -d
 EOF
