@@ -17,11 +17,11 @@ def fridges(request):
     """ View for /fridges/ endpoint, uses create_list() passing the received request to it and then passing the filtered
     list as context to the template fridges.html """
     floor = request.GET.get('floor')
-    id = request.GET.get('id')
+    fridge_id = request.GET.get('id')
     state = request.GET.get('state')
 
     context = {
-        'data': utils.create_json_data_string(floor, id, state)
+        'data': utils.create_json_data_string(floor, fridge_id, state)
     }
     return render(request, 'frontend/fridges.html', context)
 
