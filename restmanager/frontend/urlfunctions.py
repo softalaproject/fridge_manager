@@ -51,8 +51,7 @@ def create_floor_list(request):
     floor_list = []
     # adds unique floor numbers found in the create_uniq_floors(request)
     for item in create_uniq_floors(request):
-        if item not in floor_list:
-            floor_list.append(item)
+        floor_list.append(item)
     return floor_list
 
 
