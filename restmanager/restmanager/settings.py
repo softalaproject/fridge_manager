@@ -25,7 +25,7 @@ load_dotenv()
 SECRET_KEY = os.getenv("DJANGO_TOKEN")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # Adds the servers ip from .env located in fridge_manager/restmanager to allowed_hosts
 ALLOWED_HOSTS = [os.getenv('IP2'), "127.0.0.1"]
 
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'restmanager.urls'
@@ -77,14 +78,15 @@ WSGI_APPLICATION = 'restmanager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 # SQLite for local testing and development without docker
-""" DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}  """
+} 
 
  # MariaDB
+''' 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -95,7 +97,7 @@ DATABASES = {
         'HOST': os.getenv("DB_HOST"),
         'PORT': os.getenv("DB_PORT"),
     }
-} 
+} '''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -130,7 +132,10 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
+# Static files config (CSS, JavaScript, Images)
+
+STATIC_ROOT = os.path.join(BASE_DIR, './frontend/static')
 
 STATIC_URL = '/static/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
