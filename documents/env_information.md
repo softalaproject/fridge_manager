@@ -10,13 +10,13 @@ Second .env file needs to be located in fridge_manager/ folder and it's used for
     SLACK_TOKEN="Slack Bot User OAuth Access Token"
     IP2="IP-address of the hosting server or your local computers internal IP starting 192.168"
 
-    DJANGO_SUPERUSER_PASSWORD = "password for django superuser"
-    DJANGO_SUPERUSER_USERNAME = "username for django superuser"
-    DJANGO_SUPERUSER_EMAIL = "email for django superuser"
+    DJANGO_SUPERUSER_PASSWORD="password for django superuser"
+    DJANGO_SUPERUSER_USERNAME="username for django superuser"
+    DJANGO_SUPERUSER_EMAIL="email for django superuser"
 
-    DB_NAME='DB_NAME <-- same value for both --> MYSQL_DATABASE'
-    DB_USER='DB_USER <-- same value for both --> MYSQL_USER'
-    DB_PASSWORD='DB_PASSWORD <-- same value for both --> MYSQL_PASSWORD'
+    DB_NAME='mariadbdjango'
+    DB_USER='mariadbuser'
+    DB_PASSWORD='mariadbuser'
     DB_HOST='mariadb-db'
     DB_PORT='3306'
 
@@ -24,6 +24,6 @@ Second .env file needs to be located in fridge_manager/ folder and it's used for
 ## fridge_manager/.env for Docker:
 
     MYSQL_ROOT_PASSWORD=mariadbroot
-    MYSQL_DATABASE=DB_NAME <-- same value for both --> MYSQL_DATABASE
-    MYSQL_USER=DB_USER <-- same value for both --> MYSQL_USER
-    MYSQL_PASSWORD=DB_PASSWORD <-- same value for both --> MYSQL_PASSWORD
+    MYSQL_DATABASE=same value as DB_NAME in the Django app .env
+    MYSQL_USER=same value as DB_USER in the Django app .env
+    MYSQL_PASSWORD=same value as DB_PASSWORD in the Django app .env
