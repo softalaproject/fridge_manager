@@ -6,8 +6,7 @@ Project uses SQLite for the database.
 ## SW requirements:
 Git bash (if you're using Windows): https://gitforwindows.org/<br>
 Docker or Python3.<br>
-Make sure you have both .env files in right folders with appropriate values. Check [documentation](https://github.com/softalaproject/fridge_manager/blob/master/documents/env_information.md) for details.
-
+Make sure you have both .env files in right folders with appropriate values. Check [env documentation](https://github.com/softalaproject/fridge_manager/blob/master/documents/env_information.md) for details.
 ## Start server:
 Locally using python;
 
