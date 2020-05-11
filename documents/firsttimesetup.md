@@ -36,11 +36,11 @@ When running the app for the first time, we want to create a superuser account s
 The file is located at the projects root folder **C:\Users\userName\Desktop\fridge_manager-master\docker-compose.yml**
 
 Navigate the file until you come across these two lines.
-![](./Capture.png)
+![](./Capture.PNG)
 
 Remove the hashtag from the beginning of the first line and move it in front of the second line.
 
-![](./Capture2.png)
+![](./Capture2.PMG)
 
 After doing so, save the file but keep the file open because we need to change it back after you launch the app for the first time.
 
@@ -60,11 +60,11 @@ This will create the superuser account with the details you have included in the
 
 changing this:
 
-![](./Capture2.png)
+![](./Capture2.PNG)
 
 into this:
 
-![](./Capture.png)
+![](./Capture.PNG)
 
 Now run the command **docker-compose up -d**
 
