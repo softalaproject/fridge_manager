@@ -66,6 +66,9 @@ into this:
 
 ![](./Capture.PNG)
 
-Now run the command **docker-compose up -d**
+Now run the command:
 
+ **docker-compose up -d**
+
+ 
 this will now migrate the database and start the server. You can now go to your localhost [http://127.0.0.1/](http://127.0.0.1/) and start using the app.
