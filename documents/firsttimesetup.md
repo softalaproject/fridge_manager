@@ -40,7 +40,7 @@ Navigate the file until you come across these two lines.
 
 Remove the hashtag from the beginning of the first line and move it in front of the second line.
 
-![](./Capture2.PMG)
+![](./Capture2.PNG)
 
 After doing so, save the file but keep the file open because we need to change it back after you launch the app for the first time.
 
