@@ -4,7 +4,8 @@ the application manages different floors and fridge contents on said floors. The
 The application is containerized with Docker. <br>
 The build is done with Django.<br> 
 Project uses MariaDB for the database. <br>
-There is a mobile version of this app wrapped with Cordova.
+There is a mobile version of this app wrapped with Cordova. <br>
+This project is licensed under the terms of the MIT license.
 
 
 ## Screenshots of the application running
