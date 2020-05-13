@@ -5,10 +5,10 @@ Project uses SQLite for the database.
 
 ## Screenshots of the application running
 1st image is the view for all the floors that the appliacation is tracking.
-![Floors](https://github.com/softalaproject/fridge_manager/blob/master/documents/screenshots/floors.jpg)
+![Floors](https://github.com/softalaproject/fridge_manager/blob/master/documents/screenshots/floors.jpg =500x500)
 
 2nd image is the single floor view, that displays all the fridges on that floor and their content status.
-![Floor2](https://github.com/softalaproject/fridge_manager/blob/master/documents/screenshots/floor2.jpg)
+![Floor2](https://github.com/softalaproject/fridge_manager/blob/master/documents/screenshots/floor2.jpg =500x500)
 
 ## SW requirements:
 Git bash (if you're using Windows): https://gitforwindows.org/<br>
