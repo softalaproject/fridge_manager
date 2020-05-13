@@ -1,7 +1,7 @@
 # Softalaproject repo for automated fridge management app
 The application is containerized with Docker. <br>
 The build is done with Django and Node.<br> 
-Project uses SQLite for the database.
+Project uses SQLite for the database. <br>
 This is a school project done by Haaga-Helia software development students for Eficode,
 the application manages different floors and fridge contents on said floors. The user of the application can send direct messages to the companys internal Slack channel of the fridge status e.g. when it need's a fill up etc.
 
