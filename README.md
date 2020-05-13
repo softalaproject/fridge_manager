@@ -3,6 +3,10 @@ The application is containerized with Docker. <br>
 The build is done with Django and Node.<br> 
 Project uses SQLite for the database.
 
+## Screenshots of the application running
+1st image is the view for all the fridges that the appliacation is tracking
+![Floors](https://github.com/softalaproject/fridge_manager/blob/master/documents/screenshots/floors.jpg)
+
 ## SW requirements:
 Git bash (if you're using Windows): https://gitforwindows.org/<br>
 Docker or Python3.<br>
